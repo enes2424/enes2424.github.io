@@ -6,44 +6,71 @@
     <title>Enes Mahmut Ateş | Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body { background-color: #0f172a; color: white; }
-        .project-card { transition: transform 0.3s; }
-        .project-card:hover { transform: translateY(-5px); }
+        body { background-color: #020617; color: #f8fafc; scroll-behavior: smooth; }
+        .glass { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .project-card:hover { transform: translateY(-8px); border-color: #3b82f6; transition: all 0.3s ease; }
     </style>
 </head>
-<body class="font-sans">
-    <nav class="p-6 flex justify-between items-center border-b border-gray-800">
-        <h1 class="text-2xl font-bold bg-gradient-to-r from-blue-400 to-emerald-400 bg-clip-text text-transparent">EMA</h1>
-        <div class="space-x-6 text-gray-400">
-            <a href="#projects" class="hover:text-white">Projeler</a>
-            <a href="https://github.com/enes2424" target="_blank" class="hover:text-white">GitHub</a>
+<body>
+    <nav class="fixed w-full z-50 glass px-6 py-4 flex justify-between items-center">
+        <span class="text-xl font-bold tracking-tighter text-blue-400">ENES2424</span>
+        <div class="space-x-8 text-sm font-medium">
+            <a href="#about" class="hover:text-blue-400 transition">Hakkımda</a>
+            <a href="#projects" class="hover:text-blue-400 transition">Projeler</a>
+            <a href="mailto:enesmahmutates@email.com" class="bg-blue-600 px-4 py-2 rounded-lg hover:bg-blue-700 transition">İletişim</a>
         </div>
     </nav>
 
-    <header class="py-20 text-center">
-        <h2 class="text-5xl font-extrabold mb-4">Merhaba, Ben Enes</h2>
-        <p class="text-xl text-gray-400 max-w-2xl mx-auto">Bilgisayar Mühendisi & Yazılım Geliştirici. Sistem mimarisi, mobil uygulamalar ve açık kaynak projeler üzerine çalışıyorum.</p>
-    </header>
+    <section id="about" class="pt-32 pb-20 px-6 text-center">
+        <h1 class="text-5xl md:text-7xl font-black mb-6 bg-gradient-to-b from-white to-gray-500 bg-clip-text text-transparent">
+            Bilgisayar Mühendisi
+        </h1>
+        <p class="max-w-2xl mx-auto text-gray-400 text-lg md:text-xl">
+            Sistem mühendisliği, mobil geliştirme ve karmaşık altyapı çözümleri üzerine odaklanıyorum. 
+            Yeditepe Üniversitesi ve 42 Kocaeli'de projeler üretiyorum.
+        </p>
+    </section>
 
-    <main id="projects" class="max-w-6xl mx-auto px-6 py-12">
-        <h3 class="text-3xl font-bold mb-8 border-l-4 border-blue-500 pl-4">Öne Çıkan Projeler</h3>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div class="project-card bg-gray-800 p-6 rounded-xl border border-gray-700">
-                <h4 class="text-xl font-bold mb-2">Meeting Notes Assistant</h4>
-                <p class="text-gray-400 mb-4 text-sm">Toplantı notlarını otomatik özetleyen React ve Node.js tabanlı bitirme projem.</p>
-                <div class="flex gap-2 mb-4">
-                    <span class="bg-blue-900 text-blue-300 text-xs px-2 py-1 rounded">React</span>
-                    <span class="bg-green-900 text-green-300 text-xs px-2 py-1 rounded">Node.js</span>
+    <section id="projects" class="max-w-6xl mx-auto px-6 py-20">
+        <h2 class="text-3xl font-bold mb-12 flex items-center gap-4">
+            <span class="h-1 w-12 bg-blue-500 rounded"></span> Projelerim
+        </h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="project-card glass p-8 rounded-2xl">
+                <div class="text-blue-500 mb-4 font-mono text-sm">Graduation Project</div>
+                <h3 class="text-2xl font-bold mb-3">Meeting Notes Assistant</h3>
+                <p class="text-gray-400 mb-6">Toplantı notlarını otomatik olarak alan ve özetleyen tam kapsamlı bir web uygulaması. React ve Node.js mimarisi üzerine kurulu.</p>
+                <div class="flex gap-3">
+                    <span class="text-xs border border-gray-700 px-2 py-1 rounded">React</span>
+                    <span class="text-xs border border-gray-700 px-2 py-1 rounded">MongoDB</span>
                 </div>
-                <a href="#" class="text-blue-400 hover:underline text-sm font-semibold">GitHub'da Gör →</a>
             </div>
 
+            <div class="project-card glass p-8 rounded-2xl">
+                <div class="text-emerald-500 mb-4 font-mono text-sm">Flutter & API</div>
+                <h3 class="text-2xl font-bold mb-3">Perfume Recommendation App</h3>
+                <p class="text-gray-400 mb-6">Fragella ve Fragrantica API'lerini kullanarak kişiselleştirilmiş parfüm önerileri sunan mobil uygulama.</p>
+                <div class="flex gap-3">
+                    <span class="text-xs border border-gray-700 px-2 py-1 rounded">Flutter</span>
+                    <span class="text-xs border border-gray-700 px-2 py-1 rounded">Dart</span>
+                </div>
             </div>
-    </main>
 
-    <footer class="py-12 text-center text-gray-500 border-t border-gray-800">
-        <p>© 2026 - GitHub Pages ile oluşturuldu</p>
+            <div class="project-card glass p-8 rounded-2xl">
+                <div class="text-purple-500 mb-4 font-mono text-sm">Infrastructure</div>
+                <h3 class="text-2xl font-bold mb-3">Inception of Things</h3>
+                <p class="text-gray-400 mb-6">42 Kocaeli kapsamında hazırlanan; K3s, Docker ve Vagrant kullanarak kurulan gelişmiş sistem altyapısı projesi.</p>
+                <div class="flex gap-3">
+                    <span class="text-xs border border-gray-700 px-2 py-1 rounded">K3s</span>
+                    <span class="text-xs border border-gray-700 px-2 py-1 rounded">Docker</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="text-center py-10 text-gray-600 text-sm border-t border-gray-900">
+        <p>© 2026 enes2424.github.io</p>
     </footer>
 </body>
 </html>
