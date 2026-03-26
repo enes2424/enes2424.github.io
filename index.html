@@ -3,74 +3,117 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Enes Mahmut Ateş | Portfolio</title>
+    <title>Enes Mahmut Ateş | Portfolyo</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body { background-color: #020617; color: #f8fafc; scroll-behavior: smooth; }
-        .glass { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
-        .project-card:hover { transform: translateY(-8px); border-color: #3b82f6; transition: all 0.3s ease; }
+        body { background-color: #010409; color: #c9d1d9; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; }
+        .gh-card { background-color: #0d1117; border: 1px solid #30363d; border-radius: 6px; transition: border-color 0.2s; }
+        .gh-card:hover { border-color: #8b949e; }
+        .tech-badge { background-color: #161b22; border: 1px solid #30363d; color: #8b949e; font-size: 12px; padding: 2px 8px; border-radius: 2em; }
+        .edu-photo { object-fit: cover; width: 100%; height: 200px; border-radius: 6px 6px 0 0; border-bottom: 1px solid #30363d; }
     </style>
 </head>
 <body>
-    <nav class="fixed w-full z-50 glass px-6 py-4 flex justify-between items-center">
-        <span class="text-xl font-bold tracking-tighter text-blue-400">ENES2424</span>
-        <div class="space-x-8 text-sm font-medium">
-            <a href="#about" class="hover:text-blue-400 transition">Hakkımda</a>
-            <a href="#projects" class="hover:text-blue-400 transition">Projeler</a>
-            <a href="mailto:enesmahmutates@email.com" class="bg-blue-600 px-4 py-2 rounded-lg hover:bg-blue-700 transition">İletişim</a>
-        </div>
-    </nav>
 
-    <section id="about" class="pt-32 pb-20 px-6 text-center">
-        <h1 class="text-5xl md:text-7xl font-black mb-6 bg-gradient-to-b from-white to-gray-500 bg-clip-text text-transparent">
-            Bilgisayar Mühendisi
-        </h1>
-        <p class="max-w-2xl mx-auto text-gray-400 text-lg md:text-xl">
-            Sistem mühendisliği, mobil geliştirme ve karmaşık altyapı çözümleri üzerine odaklanıyorum. 
-            Yeditepe Üniversitesi ve 42 Kocaeli'de projeler üretiyorum.
-        </p>
+<nav class="p-5 border-b border-[#30363d] bg-[#0d1117]">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+        <div class="flex items-center gap-3">
+            <img src="profil.jpg" alt="Enes Mahmut Ateş" class="w-10 h-10 rounded-full border-2 border-[#30363d]">
+            <span class="font-semibold text-white text-lg">enes2424</span>
+        </div>
+        <div class="space-x-6 text-sm">
+            <a href="#about" class="text-[#8b949e] hover:text-[#58a6ff]">Hakkımda</a>
+            <a href="#projects" class="text-[#8b949e] hover:text-[#58a6ff]">Projeler</a>
+            <a href="#education" class="text-[#8b949e] hover:text-[#58a6ff]">Eğitim</a>
+        </div>
+    </div>
+</nav>
+
+<main class="max-w-7xl mx-auto p-6 md:p-10 space-y-12">
+
+    <section id="about" class="py-10 text-center md:text-left md:flex items-center gap-10">
+        <img src="profil.jpg" alt="Enes Mahmut Ateş" class="w-32 h-32 md:w-48 md:h-48 rounded-full border-4 border-[#30363d] mx-auto md:mx-0 mb-6 md:mb-0">
+        <div>
+            <h1 class="text-4xl font-bold text-white mb-3">Enes Mahmut Ateş</h1>
+            <p class="text-xl text-[#8b949e] mb-6">Bilgisayar Mühendisi ve Yazılım Geliştirici. Düşük seviyeli sistemlerden modern mobil uygulamalara kadar geniş bir yelpazede çözümler üretiyorum.</p>
+            <div class="flex gap-4 justify-center md:justify-start">
+                <a href="https://github.com/enes2424" target="_blank" class="text-sm px-4 py-2 rounded bg-[#21262d] border border-[#30363d] hover:bg-[#30363d] text-white">GitHub'da Gör</a>
+                <a href="mailto:enes.mahmut24@hotmail.com" class="text-sm px-4 py-2 rounded bg-[#238636] hover:bg-[#2ea043] text-white">İletişim</a>
+            </div>
+        </div>
     </section>
 
-    <section id="projects" class="max-w-6xl mx-auto px-6 py-20">
-        <h2 class="text-3xl font-bold mb-12 flex items-center gap-4">
-            <span class="h-1 w-12 bg-blue-500 rounded"></span> Projelerim
+    <section id="projects">
+        <h2 class="text-2xl font-semibold text-white mb-6 flex items-center gap-2">
+            <svg class="w-6 h-6 text-[#8b949e]" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.25.25 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2Z"></path></svg>
+            Öne Çıkan Projeler (CV'den)
         </h2>
-        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+            <div class="gh-card p-5 space-y-3">
+                <h3 class="font-bold text-[#58a6ff] text-lg">Kuyumculuk Management App</h3>
+                <p class="text-sm text-[#8b949e]">Kapsamlı bir takı işletme yönetimi uygulaması. Gerçek zamanlı altın fiyatları, sipariş takibi ve OCR tarama özelliklerine sahip.</p>
+                <div class="flex gap-2 flex-wrap">
+                    <span class="tech-badge">Flutter</span>
+                    <span class="tech-badge">Firebase</span>
+                    <span class="tech-badge">OCR</span>
+                </div>
+            </div>
+
+            <div class="gh-card p-5 space-y-3">
+                <h3 class="font-bold text-[#58a6ff] text-lg">Minishell (42 Kocaeli)</h3>
+                <p class="text-sm text-[#8b949e]">Unix kabuğunun (shell) C dilinde simülasyonu. Pipe'lar, çoklu işlem (multiprocessing) ve sinyal yönetimi üzerine karmaşık bir altyapı projesi.</p>
+                <div class="flex gap-2 flex-wrap">
+                    <span class="tech-badge">C</span>
+                    <span class="tech-badge">Unix API</span>
+                    <span class="tech-badge">System</span>
+                </div>
+            </div>
+
+            <div class="gh-card p-5 space-y-3">
+                <h3 class="font-bold text-[#58a6ff] text-lg">Docwatch</h3>
+                <p class="text-sm text-[#8b949e]">Flutter ve Django ile oluşturulmuş sağlık yönetimi platformu. Hastalar ve doktorlar arasında dijital bir köprü kurar.</p>
+                <div class="flex gap-2 flex-wrap">
+                    <span class="tech-badge">Flutter</span>
+                    <span class="tech-badge">Django</span>
+                    <span class="tech-badge">API</span>
+                </div>
+            </div>
+
+            </div>
+    </section>
+
+    <section id="education">
+        <h2 class="text-2xl font-semibold text-white mb-6">Eğitim & Kurumlar</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div class="project-card glass p-8 rounded-2xl">
-                <div class="text-blue-500 mb-4 font-mono text-sm">Graduation Project</div>
-                <h3 class="text-2xl font-bold mb-3">Meeting Notes Assistant</h3>
-                <p class="text-gray-400 mb-6">Toplantı notlarını otomatik olarak alan ve özetleyen tam kapsamlı bir web uygulaması. React ve Node.js mimarisi üzerine kurulu.</p>
-                <div class="flex gap-3">
-                    <span class="text-xs border border-gray-700 px-2 py-1 rounded">React</span>
-                    <span class="text-xs border border-gray-700 px-2 py-1 rounded">MongoDB</span>
+
+            <div class="gh-card">
+                <img src="yeditepe.jpg" alt="Yeditepe University" class="edu-photo">
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-white mb-1">Yeditepe Üniversitesi</h3>
+                    <p class="text-sm text-[#58a6ff] mb-4">Computer Science and Engineering | 2020 - 2025</p>
+                    <p class="text-[#8b949e] text-sm">YKS 2020'de Türkiye 5802'ncisi olarak %100 burslu olarak kabul edildim. Bilgisayar mühendisliği temelleri, algoritmalar ve sistem mimarisi üzerine kapsamlı eğitim aldım. Buraya kazandığım süreci ve üniversitedeki çalışmalarımı daha sonra detaylandıracağım.</p>
                 </div>
             </div>
 
-            <div class="project-card glass p-8 rounded-2xl">
-                <div class="text-emerald-500 mb-4 font-mono text-sm">Flutter & API</div>
-                <h3 class="text-2xl font-bold mb-3">Perfume Recommendation App</h3>
-                <p class="text-gray-400 mb-6">Fragella ve Fragrantica API'lerini kullanarak kişiselleştirilmiş parfüm önerileri sunan mobil uygulama.</p>
-                <div class="flex gap-3">
-                    <span class="text-xs border border-gray-700 px-2 py-1 rounded">Flutter</span>
-                    <span class="text-xs border border-gray-700 px-2 py-1 rounded">Dart</span>
+            <div class="gh-card">
+                <img src="kocaeli42.jpg" alt="42 Kocaeli" class="edu-photo">
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-white mb-1">42 Kocaeli</h3>
+                    <p class="text-sm text-[#58a6ff] mb-4">Software School | 2023 - Devam Ediyor</p>
+                    <p class="text-[#8b949e] text-sm">Dünya çapında tanınan, akranlar arası öğrenme ve proje tabanlı yazılım okulunun bir parçasıyım. C ve C++ dillerinde derinlemesine sistem programlama ve karmaşık problem çözme odaklı projeler yürütüyorum. Ekolün eğitim metodolojisini ve projelerimi ileride buraya ekleyeceğim.</p>
                 </div>
             </div>
 
-            <div class="project-card glass p-8 rounded-2xl">
-                <div class="text-purple-500 mb-4 font-mono text-sm">Infrastructure</div>
-                <h3 class="text-2xl font-bold mb-3">Inception of Things</h3>
-                <p class="text-gray-400 mb-6">42 Kocaeli kapsamında hazırlanan; K3s, Docker ve Vagrant kullanarak kurulan gelişmiş sistem altyapısı projesi.</p>
-                <div class="flex gap-3">
-                    <span class="text-xs border border-gray-700 px-2 py-1 rounded">K3s</span>
-                    <span class="text-xs border border-gray-700 px-2 py-1 rounded">Docker</span>
-                </div>
-            </div>
         </div>
     </section>
 
-    <footer class="text-center py-10 text-gray-600 text-sm border-t border-gray-900">
-        <p>© 2026 enes2424.github.io</p>
-    </footer>
+</main>
+
+<footer class="text-center py-10 text-xs text-[#8b949e] border-t border-[#30363d] mt-10">
+    <p>© 2026 Enes Mahmut Ateş</p>
+    <p>Gebze/Kocaeli</p>
+</footer>
+
 </body>
 </html>
