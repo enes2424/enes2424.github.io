@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enes Mahmut Ateş | Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background-color: #0f172a; color: white; }
+        .project-card { transition: transform 0.3s; }
+        .project-card:hover { transform: translateY(-5px); }
+    </style>
+</head>
+<body class="font-sans">
+    <nav class="p-6 flex justify-between items-center border-b border-gray-800">
+        <h1 class="text-2xl font-bold bg-gradient-to-r from-blue-400 to-emerald-400 bg-clip-text text-transparent">EMA</h1>
+        <div class="space-x-6 text-gray-400">
+            <a href="#projects" class="hover:text-white">Projeler</a>
+            <a href="https://github.com/senin-kullanici-adin" target="_blank" class="hover:text-white">GitHub</a>
+        </div>
+    </nav>
+
+    <header class="py-20 text-center">
+        <h2 class="text-5xl font-extrabold mb-4">Merhaba, Ben Enes</h2>
+        <p class="text-xl text-gray-400 max-w-2xl mx-auto">Bilgisayar Mühendisi & Yazılım Geliştirici. Sistem mimarisi, mobil uygulamalar ve açık kaynak projeler üzerine çalışıyorum.</p>
+    </header>
+
+    <main id="projects" class="max-w-6xl mx-auto px-6 py-12">
+        <h3 class="text-3xl font-bold mb-8 border-l-4 border-blue-500 pl-4">Öne Çıkan Projeler</h3>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="project-card bg-gray-800 p-6 rounded-xl border border-gray-700">
+                <h4 class="text-xl font-bold mb-2">Meeting Notes Assistant</h4>
+                <p class="text-gray-400 mb-4 text-sm">Toplantı notlarını otomatik özetleyen React ve Node.js tabanlı bitirme projem.</p>
+                <div class="flex gap-2 mb-4">
+                    <span class="bg-blue-900 text-blue-300 text-xs px-2 py-1 rounded">React</span>
+                    <span class="bg-green-900 text-green-300 text-xs px-2 py-1 rounded">Node.js</span>
+                </div>
+                <a href="#" class="text-blue-400 hover:underline text-sm font-semibold">GitHub'da Gör →</a>
+            </div>
+
+            </div>
+    </main>
+
+    <footer class="py-12 text-center text-gray-500 border-t border-gray-800">
+        <p>© 2026 - GitHub Pages ile oluşturuldu</p>
+    </footer>
+</body>
+</html>
