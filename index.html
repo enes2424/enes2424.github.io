@@ -6,131 +6,153 @@
     <title>Enes Mahmut Ateş | Portfolyo</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body { background-color: #0d1117; color: #c9d1d9; font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif; }
-        .gh-card { background-color: #161b22; border: 1px solid #30363d; border-radius: 6px; transition: 0.2s; }
-        .gh-card:hover { border-color: #8b949e; background-color: #1c2128; }
-        .edu-img { width: 100%; height: 300px; object-fit: cover; border-radius: 8px; border: 1px solid #30363d; }
-        .lang-tag { font-size: 10px; padding: 2px 8px; border-radius: 10px; background: #21262d; border: 1px solid #30363d; }
+        body { background-color: #0d1117; color: #c9d1d9; font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif; scroll-behavior: smooth; }
+        .gh-card { background-color: #161b22; border: 1px solid #30363d; border-radius: 8px; transition: 0.3s; cursor: pointer; }
+        .gh-card:hover { border-color: #58a6ff; transform: translateY(-4px); }
+        .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 100; align-items: center; justify-content: center; padding: 20px; }
+        .modal.active { display: flex; }
+        .edu-img { width: 100%; height: 250px; object-fit: cover; border-radius: 8px; border: 1px solid #30363d; }
     </style>
 </head>
 <body>
 
-<nav class="sticky top-0 z-50 bg-[#0d1117]/80 backdrop-blur-md border-b border-[#30363d] p-4">
+<nav class="sticky top-0 z-50 bg-[#0d1117]/90 backdrop-blur-md border-b border-[#30363d] p-4">
     <div class="max-w-6xl mx-auto flex justify-between items-center">
         <div class="flex items-center gap-3">
-            <img src="profil.jpg" class="w-8 h-8 rounded-full border border-[#30363d]">
-            <span class="font-bold text-white">enes2424</span>
+            <img src="Profile Foto.jpeg" class="w-8 h-8 rounded-full border border-[#30363d]">
+            <span class="font-bold text-white tracking-tight">ENES2424</span>
         </div>
-        <div class="flex gap-6 text-sm font-medium">
+        <div class="flex gap-6 text-sm">
             <a href="#about" class="hover:text-[#58a6ff]">Hakkımda</a>
-            <a href="#projects" class="hover:text-[#58a6ff]">Projeler</a>
             <a href="#education" class="hover:text-[#58a6ff]">Eğitim</a>
+            <a href="#projects" class="hover:text-[#58a6ff]">Projeler</a>
         </div>
     </div>
 </nav>
 
 <main class="max-w-6xl mx-auto px-6 py-12 space-y-24">
 
-    <section id="about" class="flex flex-col md:flex-row items-center gap-10">
-        <img src="profil.jpg" class="w-48 h-48 md:w-64 md:h-64 rounded-full border-4 border-[#30363d] shadow-2xl">
-        <div class="text-center md:text-left">
-            <h1 class="text-4xl md:text-6xl font-bold text-white mb-4">Enes Mahmut Ateş</h1>
-            <p class="text-xl text-[#8b949e] max-w-2xl leading-relaxed">
-                Bilgisayar Mühendisi & Yazılım Geliştirici. Düşük seviyeli sistemlerden yüksek seviyeli mobil çözümlere kadar geniş bir yelpazede kod üretiyorum.
-            </p>
-            <div class="mt-6 flex flex-wrap justify-center md:justify-start gap-3">
-                <span class="lang-tag">C / C++</span> <span class="lang-tag">Flutter</span> <span class="lang-tag">Python</span> <span class="lang-tag">Java</span>
-            </div>
+    <section id="about" class="flex flex-col md:flex-row items-center gap-12 pt-10">
+        <img src="Profile Foto.jpeg" class="w-48 h-48 md:w-56 md:h-56 rounded-2xl border-2 border-[#30363d] shadow-2xl object-cover">
+        <div class="space-y-4">
+            <h1 class="text-5xl font-extrabold text-white">Enes Mahmut Ateş</h1>
+            <p class="text-xl text-[#8b949e]">Bilgisayar Mühendisi & Yazılım Geliştirici</p>
+            <p class="text-[#8b949e] max-w-xl">Düşük seviyeli sistemlerden modern mobil mimarilere kadar geniş bir teknik yelpazede projeler üretiyorum. 42 Kocaeli ve Yeditepe Üniversitesi'nde yetkinliklerimi geliştiriyorum.</p>
         </div>
     </section>
 
-    <section id="education" class="space-y-12">
-        <h2 class="text-3xl font-bold text-white border-b border-[#30363d] pb-4">Eğitim & Başarılar</h2>
-        
-        <div class="grid md:grid-cols-2 gap-8 items-center">
-            <img src="yeditepe.jpg" class="edu-img">
-            <div class="space-y-4">
-                <h3 class="text-2xl font-bold text-[#58a6ff]">Yeditepe Üniversitesi</h3>
-                <p class="text-white font-medium">Computer Science and Engineering | 2020 - 2025</p>
-                <div class="bg-blue-500/10 border border-blue-500/20 p-4 rounded-lg">
-                    <p class="text-blue-400 text-sm font-bold italic">YKS 2020 Türkiye 5802.'si - %100 Tam Burslu</p>
+    <section id="education" class="space-y-10">
+        <h2 class="text-3xl font-bold text-white border-l-4 border-[#58a6ff] pl-4">Eğitim ve Başarılar</h2>
+        <div class="grid md:grid-cols-2 gap-8">
+            <div class="gh-card p-2">
+                <img src="Yeditepe Üniversitesi.jpg" class="edu-img mb-4">
+                <div class="p-4">
+                    <h3 class="text-xl font-bold text-[#58a6ff]">Yeditepe Üniversitesi</h3>
+                    <p class="text-sm mb-2 text-white">Computer Science and Engineering (2020-2025) </p>
+                    <div class="bg-blue-500/10 border border-blue-500/30 p-2 rounded text-blue-400 text-xs font-bold mb-3 italic">
+                        YKS 2020 Türkiye 5802.'si - %100 Tam Burslu 
+                    </div>
+                    <p class="text-xs text-[#8b949e]">Akademik temellerimi ve mühendislik disiplinimi bu köklü kurumda inşa ettim.</p>
                 </div>
-                <p class="text-[#8b949e]">Buraya Yeditepe'yi kazanma sürecindeki disiplinimi, mühendislik vizyonumu nasıl kazandığımı ve üniversite yıllarımda yer aldığım projelerin detaylarını ekleyeceğiz.</p>
             </div>
-        </div>
-
-        <div class="grid md:grid-cols-2 gap-8 items-center">
-            <div class="order-2 md:order-1 space-y-4">
-                <h3 class="text-2xl font-bold text-[#3fb950]">42 Kocaeli</h3>
-                <p class="text-white font-medium">Peer-to-Peer Software Engineering | 2023 - Devam Ediyor</p>
-                <p class="text-[#8b949e]">Dünya genelinde prestijli 42 ağının bir parçası olarak, tamamen proje odaklı ve hoca olmadan, akran öğrenmesiyle ilerlediğim bu süreçteki teknik gelişimimi burada detaylandıracağım.</p>
+            <div class="gh-card p-2">
+                <img src="42 Kocaeli.jpg" class="edu-img mb-4">
+                <div class="p-4">
+                    <h3 class="text-xl font-bold text-[#3fb950]">42 Kocaeli</h3>
+                    <p class="text-sm mb-2 text-white">Yazılım Okulu (2023 - Devam) [cite: 2]</p>
+                    <p class="text-xs text-[#8b949e]">Tamamen proje odaklı, akran öğrenmesine dayalı ekol ile sistem mimarileri geliştiriyorum[cite: 2].</p>
+                </div>
             </div>
-            <img src="kocaeli42.jpg" class="edu-img order-1 md:order-2">
         </div>
     </section>
 
     <section id="projects" class="space-y-8">
-        <div class="flex items-center justify-between">
-            <h2 class="text-3xl font-bold text-white">Tüm Projelerim</h2>
-            <p class="text-xs text-[#8b949e]">GitHub üzerinden senkronize ediliyor</p>
-        </div>
+        <h2 class="text-3xl font-bold text-white">Projelerim</h2>
         <div id="repo-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             </div>
     </section>
 
 </main>
 
-<footer class="py-20 text-center border-t border-[#30363d] text-sm text-[#8b949e]">
+<div id="projectModal" class="modal" onclick="closeModal()">
+    <div class="bg-[#161b22] border border-[#30363d] w-full max-w-2xl rounded-xl p-8 space-y-6 relative" onclick="event.stopPropagation()">
+        <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-500 hover:text-white text-2xl">&times;</button>
+        <div id="modalContent" class="space-y-4">
+            </div>
+    </div>
+</div>
+
+<footer class="py-12 border-t border-[#30363d] text-center text-xs text-[#8b949e]">
     <p>© 2026 Enes Mahmut Ateş | Gebze, Kocaeli</p>
 </footer>
 
 <script>
-    async function loadAllRepos() {
-        const container = document.getElementById('repo-list');
-        const username = 'enes2424';
-        let allRepos = [];
-        let page = 1;
-        let keepFetching = true;
+    const username = 'enes2424';
+    let projects = [];
 
+    async function loadRepos() {
+        const container = document.getElementById('repo-list');
         try {
-            // Döngü: GitHub boş sayfa döndürene kadar tüm sayfaları çek
-            while (keepFetching) {
-                const response = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=100&page=${page}`);
-                const data = await response.json();
-                
-                if (data.length > 0) {
-                    allRepos = [...allRepos, ...data];
-                    page++;
-                } else {
-                    keepFetching = false;
-                }
+            // Tüm sayfaları çeken döngü (100+ proje desteği)
+            let page = 1;
+            while (true) {
+                const res = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=100&page=${page}`);
+                const data = await res.json();
+                if (data.length === 0) break;
+                projects = [...projects, ...data];
+                page++;
             }
 
             container.innerHTML = '';
-            
-            // Projeleri ekrana bas
-            allRepos.forEach(repo => {
-                // Kendi portfolyo reponu ve forkları gizle
+            projects.forEach((repo, index) => {
                 if (!repo.fork && repo.name !== 'enes2424.github.io') {
                     container.innerHTML += `
-                        <a href="${repo.html_url}" target="_blank" class="gh-card p-6 flex flex-col justify-between h-full">
+                        <div class="gh-card p-6 flex flex-col justify-between" onclick="showDetails(${index})">
                             <div>
-                                <h4 class="text-lg font-bold text-[#58a6ff] mb-2">${repo.name}</h4>
-                                <p class="text-sm text-[#8b949e] line-clamp-3">${repo.description || 'Proje açıklaması GitHub üzerinden güncellenebilir.'}</p>
+                                <h3 class="text-lg font-bold text-[#58a6ff] mb-2">${repo.name}</h3>
+                                <p class="text-sm text-[#8b949e] line-clamp-2">${repo.description || 'Proje açıklaması GitHub üzerinden güncellenebilir.'}</p>
                             </div>
-                            <div class="mt-6 flex items-center justify-between">
-                                <span class="text-[10px] font-mono text-[#8b949e] uppercase">${repo.language || 'Kod'}</span>
-                                <span class="text-[10px] text-gray-600">★ ${repo.stargazers_count}</span>
+                            <div class="mt-4 pt-4 border-t border-[#30363d] flex justify-between items-center text-[10px] text-gray-500 uppercase font-mono">
+                                <span>${repo.language || 'Mixed'}</span>
+                                <span>Detayları Gör →</span>
                             </div>
-                        </a>
+                        </div>
                     `;
                 }
             });
-        } catch (e) {
-            container.innerHTML = "Projeler yüklenirken bir hata oluştu. Lütfen bağlantını kontrol et.";
-        }
+        } catch (e) { container.innerHTML = "Projeler yüklenemedi."; }
     }
-    loadAllRepos();
+
+    function showDetails(index) {
+        const repo = projects[index];
+        const modal = document.getElementById('projectModal');
+        const content = document.getElementById('modalContent');
+        
+        content.innerHTML = `
+            <h2 class="text-3xl font-bold text-[#58a6ff]">${repo.name}</h2>
+            <p class="text-[#8b949e] text-lg">${repo.description || 'Bu proje için henüz bir açıklama girilmemiş.'}</p>
+            <div class="grid grid-cols-2 gap-4 text-sm bg-[#0d1117] p-4 rounded-lg">
+                <div><span class="text-gray-500">Ana Dil:</span> ${repo.language || 'Belirtilmemiş'}</div>
+                <div><span class="text-gray-500">Yıldız:</span> ⭐ ${repo.stargazers_count}</div>
+                <div><span class="text-gray-500">Oluşturulma:</span> ${new Date(repo.created_at).toLocaleDateString()}</div>
+                <div><span class="text-gray-500">Son Güncelleme:</span> ${new Date(repo.updated_at).toLocaleDateString()}</div>
+            </div>
+            <div class="flex gap-4 pt-4">
+                <a href="${repo.html_url}" target="_blank" class="flex-1 text-center bg-[#238636] hover:bg-[#2ea043] text-white py-3 rounded-lg font-bold transition">GitHub'da Görüntüle</a>
+                <button onclick="closeModal()" class="flex-1 border border-[#30363d] hover:bg-[#30363d] text-white py-3 rounded-lg font-bold transition">Kapat</button>
+            </div>
+            <p class="text-[10px] text-center text-gray-600 italic mt-4">* Projenin farklı branch'lerdeki detaylarını görmek için GitHub butonuna tıklayabilirsiniz.</p>
+        `;
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden'; // Arka plan kaymasını engelle
+    }
+
+    function closeModal() {
+        document.getElementById('projectModal').classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+
+    loadRepos();
 </script>
 
 </body>
