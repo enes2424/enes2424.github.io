@@ -11,8 +11,8 @@
         .gh-card:hover { border-color: #58a6ff; transform: translateY(-4px); }
         .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 100; align-items: center; justify-content: center; padding: 20px; }
         .modal.active { display: flex; }
-        .edu-img { width: 100%; height: 250px; object-fit: cover; border-radius: 8px; border: 1px solid #30363d; }
-        .branch-pill { background: #21262d; border: 1px solid #30363d; padding: 2px 8px; border-radius: 12px; font-size: 11px; }
+        .edu-img { width: 100%; height: 250px; object-fit: cover; border-radius: 8px; border: 1px solid #30363d; opacity: 0.8; }
+        .branch-pill { background: #21262d; border: 1px solid #30363d; padding: 2px 10px; border-radius: 12px; font-size: 11px; color: #58a6ff; font-family: monospace; }
     </style>
 </head>
 <body>
@@ -21,7 +21,7 @@
     <div class="max-w-6xl mx-auto flex justify-between items-center">
         <div class="flex items-center gap-3">
             <img src="profil.jpg" class="w-8 h-8 rounded-full border border-[#30363d] object-cover">
-            <span class="font-bold text-white tracking-tight">ENES2424</span>
+            <span class="font-bold text-white tracking-tight uppercase">ENES2424</span>
         </div>
         <div class="flex gap-6 text-sm">
             <a href="#about" class="hover:text-[#58a6ff]">Hakkımda</a>
@@ -32,35 +32,43 @@
 </nav>
 
 <main class="max-w-6xl mx-auto px-6 py-12 space-y-24">
-    <section id="about" class="flex flex-col md:flex-row items-center gap-12 pt-10">
+    <section id="about" class="flex flex-col md:flex-row items-center gap-12 pt-10 text-center md:text-left">
         <img src="profil.jpg" class="w-48 h-48 md:w-56 md:h-56 rounded-2xl border-2 border-[#30363d] shadow-2xl object-cover">
-        <div class="space-y-4 text-center md:text-left">
+        <div class="space-y-4">
             <h1 class="text-5xl font-extrabold text-white">Enes Mahmut Ateş</h1>
             <p class="text-xl text-[#8b949e]">Bilgisayar Mühendisi & Yazılım Geliştirici</p>
-            <p class="text-[#8b949e] max-w-xl">Düşük seviyeli sistemlerden modern mobil mimarilere kadar geniş bir teknik yelpazede projeler üretiyorum. 42 Kocaeli ve Yeditepe Üniversitesi'nde yetkinliklerimi geliştiriyorum.</p>
+            <p class="text-[#8b949e] max-w-xl text-lg">
+                Sistem programlamadan mobil uygulama mimarilerine uzanan geniş bir teknik yelpazede çözümler üreten bir bilgisayar mühendisiyim.
+            </p>
         </div>
     </section>
 
     <section id="education" class="space-y-10">
-        <h2 class="text-3xl font-bold text-white border-l-4 border-[#58a6ff] pl-4">Eğitim ve Başarılar</h2>
+        <h2 class="text-3xl font-bold text-white border-l-4 border-[#58a6ff] pl-4">Eğitim & Yetkinlik</h2>
         <div class="grid md:grid-cols-2 gap-8">
-            <div class="gh-card p-2">
+            <div class="gh-card p-2 grayscale hover:grayscale-0 transition-all duration-500">
                 <img src="yeditepe.jpg" class="edu-img mb-4">
                 <div class="p-4">
-                    <h3 class="text-xl font-bold text-[#58a6ff]">Yeditepe Üniversitesi</h3>
-                    <p class="text-sm mb-2 text-white">Bilgisayar Mühendisliği (2020-2025)</p>
-                    <div class="bg-blue-500/10 border border-blue-500/30 p-2 rounded text-blue-400 text-xs font-bold mb-3 italic">
-                        🏆 YKS 2020 Türkiye 5802.'si - %100 Tam Burslu
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="text-xl font-bold text-[#58a6ff]">Yeditepe Üniversitesi</h3>
+                        <span class="bg-gray-800 text-gray-400 text-[10px] px-2 py-1 rounded font-bold uppercase">MEZUN</span>
                     </div>
-                    <p class="text-xs text-[#8b949e]">Akademik temellerimi ve mühendislik disiplinimi bu köklü kurumda inşa ettim.</p>
+                    <p class="text-sm mb-2 text-white italic">Bilgisayar Mühendisliği (2020 - 2025)</p>
+                    <div class="bg-blue-500/10 border border-blue-500/30 p-2 rounded text-blue-400 text-xs font-bold mb-3">
+                        🏆 YKS 2020 Türkiye 5802.'si | %100 Tam Burslu
+                    </div>
+                    <p class="text-xs text-[#8b949e]">Mühendislik temellerimi tamamladığım lisans eğitimim.</p>
                 </div>
             </div>
             <div class="gh-card p-2">
                 <img src="kocaeli42.jpg" class="edu-img mb-4">
                 <div class="p-4">
-                    <h3 class="text-xl font-bold text-[#3fb950]">42 Kocaeli</h3>
-                    <p class="text-sm mb-2 text-white">Yazılım Okulu (2023 - Devam)</p>
-                    <p class="text-xs text-[#8b949e]">Proje odaklı ve akran öğrenmesine dayalı ekol ile sistem mimarileri geliştiriyorum.</p>
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="text-xl font-bold text-[#3fb950]">42 Kocaeli</h3>
+                        <span class="bg-green-900/30 text-green-400 text-[10px] px-2 py-1 rounded font-bold uppercase">AKTİF</span>
+                    </div>
+                    <p class="text-sm mb-2 text-white italic">Yazılım Okulu (Ekol 42)</p>
+                    <p class="text-xs text-[#8b949e]">Proje odaklı akran öğrenmesiyle ileri seviye sistem projeleri geliştiriyorum.</p>
                 </div>
             </div>
         </div>
@@ -68,20 +76,20 @@
 
     <section id="projects" class="space-y-8">
         <h2 class="text-3xl font-bold text-white">Projelerim</h2>
-        <div id="repo-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-center">
-            <div class="col-span-full py-10 text-gray-500">Projeler hazırlanıyor...</div>
+        <div id="repo-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="col-span-full text-center py-10 text-gray-500 animate-pulse font-mono uppercase text-xs tracking-widest">GitHub senkronizasyonu yapılıyor...</div>
         </div>
     </section>
 </main>
 
 <div id="projectModal" class="modal" onclick="closeModal()">
-    <div class="bg-[#161b22] border border-[#30363d] w-full max-w-2xl rounded-xl p-8 space-y-6 relative" onclick="event.stopPropagation()">
-        <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-500 hover:text-white text-2xl">&times;</button>
+    <div class="bg-[#161b22] border border-[#30363d] w-full max-w-2xl rounded-xl p-8 space-y-6 relative shadow-2xl" onclick="event.stopPropagation()">
+        <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-500 hover:text-white text-2xl transition">&times;</button>
         <div id="modalContent" class="space-y-4"></div>
     </div>
 </div>
 
-<footer class="py-12 border-t border-[#30363d] text-center text-xs text-[#8b949e]">
+<footer class="py-12 border-t border-[#30363d] text-center text-[10px] text-[#8b949e] uppercase tracking-widest font-mono">
     <p>© 2026 Enes Mahmut Ateş | Gebze, Kocaeli</p>
 </footer>
 
@@ -103,23 +111,23 @@
 
             container.innerHTML = '';
             projects.forEach((repo, index) => {
-                // enes2424 reposunu ve fork'ları gizle
-                if (!repo.fork && repo.name.toLowerCase() !== 'enes2424' && repo.name !== 'enes2424.github.io') {
+                const ignoredRepos = ['enes2424', 'enes2424.github.io'];
+                if (!repo.fork && !ignoredRepos.includes(repo.name.toLowerCase())) {
                     container.innerHTML += `
-                        <div class="gh-card p-6 flex flex-col justify-between text-left" onclick="showDetails(${index})">
+                        <div class="gh-card p-6 flex flex-col justify-between group" onclick="showDetails(${index})">
                             <div>
-                                <h3 class="text-lg font-bold text-[#58a6ff] mb-2">${repo.name}</h3>
-                                <p class="text-sm text-[#8b949e] line-clamp-2">${repo.description || 'Açıklama bulunamadı.'}</p>
+                                <h3 class="text-lg font-bold text-[#58a6ff] mb-2 group-hover:text-white transition">${repo.name}</h3>
+                                ${repo.description ? `<p class="text-sm text-[#8b949e] line-clamp-2">${repo.description}</p>` : ''}
                             </div>
-                            <div class="mt-4 pt-4 border-t border-[#30363d] flex justify-between items-center text-[10px] text-gray-500 font-mono uppercase">
-                                <span>${repo.language || 'Mixed'}</span>
-                                <span class="text-[#58a6ff]">Detaylar →</span>
+                            <div class="mt-4 pt-4 border-t border-[#30363d] flex justify-between items-center text-[10px] text-gray-500 font-mono">
+                                <span class="flex items-center gap-1 uppercase">● ${repo.language || 'Mixed'}</span>
+                                <span class="text-[#58a6ff] opacity-0 group-hover:opacity-100 transition">İncele →</span>
                             </div>
                         </div>
                     `;
                 }
             });
-        } catch (e) { container.innerHTML = "Veriler çekilemedi."; }
+        } catch (e) { container.innerHTML = "<p class='col-span-full text-center'>Veriler çekilemedi.</p>"; }
     }
 
     async function showDetails(index) {
@@ -127,39 +135,37 @@
         const modal = document.getElementById('projectModal');
         const content = document.getElementById('modalContent');
         
-        content.innerHTML = `<div class="text-center py-10 animate-pulse text-gray-500">Branch bilgileri ve detaylar çekiliyor...</div>`;
+        content.innerHTML = `<div class="text-center py-10 animate-pulse text-gray-500 font-mono text-xs">Branchler senkronize ediliyor...</div>`;
         modal.classList.add('active');
         document.body.style.overflow = 'hidden';
 
         try {
-            // Branch bilgilerini çek
             const branchRes = await fetch(`https://api.github.com/repos/${username}/${repo.name}/branches`);
             const branches = await branchRes.json();
-            const branchList = branches.map(b => `<span class="branch-pill text-blue-300"> ${b.name}</span>`).join(' ');
+            const branchList = branches.map(b => `<span class="branch-pill"> ${b.name}</span>`).join(' ');
 
             content.innerHTML = `
-                <h2 class="text-3xl font-bold text-[#58a6ff]">${repo.name}</h2>
-                <p class="text-[#8b949e] text-lg">${repo.description || 'Bu proje için henüz bir açıklama girilmemiş.'}</p>
-                
-                <div class="space-y-2">
-                    <h4 class="text-xs font-bold text-gray-500 uppercase tracking-widest">Aktif Branchler</h4>
-                    <div class="flex flex-wrap gap-2">${branchList}</div>
+                <div class="border-b border-[#30363d] pb-4">
+                    <h2 class="text-3xl font-bold text-[#58a6ff]">${repo.name}</h2>
+                    <p class="text-[10px] text-gray-600 mt-1 font-mono uppercase tracking-widest">Mühendislik Projesi</p>
                 </div>
-
-                <div class="grid grid-cols-2 gap-4 text-sm bg-[#0d1117] p-4 rounded-lg border border-[#30363d]">
-                    <div><span class="text-gray-500">Ana Dil:</span> <span class="text-white font-medium">${repo.language || 'Mixed'}</span></div>
-                    <div><span class="text-gray-500">Yıldız:</span> ⭐ <span class="text-white font-medium">${repo.stargazers_count}</span></div>
-                    <div><span class="text-gray-500">Açık Issue:</span> <span class="text-white font-medium">${repo.open_issues_count}</span></div>
-                    <div><span class="text-gray-500">Boyut:</span> <span class="text-white font-medium">${(repo.size / 1024).toFixed(2)} MB</span></div>
+                
+                ${repo.description ? `<p class="text-[#8b949e] text-lg leading-relaxed">${repo.description}</p>` : ''}
+                
+                <div class="space-y-3">
+                    <h4 class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Mevcut Branchler</h4>
+                    <div class="flex flex-wrap gap-2">${branchList || '<span class="text-xs text-gray-600 italic">Branch bulunamadı</span>'}</div>
                 </div>
 
                 <div class="flex gap-4 pt-4">
-                    <a href="${repo.html_url}" target="_blank" class="flex-1 text-center bg-[#238636] hover:bg-[#2ea043] text-white py-3 rounded-lg font-bold transition">GitHub'da İncele</a>
-                    <button onclick="closeModal()" class="flex-1 border border-[#30363d] hover:bg-[#30363d] text-white py-3 rounded-lg font-bold transition">Kapat</button>
+                    <a href="${repo.html_url}" target="_blank" class="flex-1 text-center bg-[#21262d] border border-[#30363d] hover:bg-[#30363d] text-white py-4 rounded-lg font-bold transition flex items-center justify-center gap-2">
+                        GitHub Üzerinden İncele
+                    </a>
+                    <button onclick="closeModal()" class="px-8 border border-[#30363d] hover:text-red-400 text-gray-400 py-4 rounded-lg font-bold transition">Kapat</button>
                 </div>
             `;
         } catch (e) {
-            content.innerHTML = `<p class="text-red-400">Detaylar yüklenirken bir hata oluştu.</p>`;
+            content.innerHTML = `<p class="text-red-400 font-mono">Hata: Detaylar alınamadı.</p>`;
         }
     }
 
