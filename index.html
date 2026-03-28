@@ -12,8 +12,8 @@
         .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 100; align-items: center; justify-content: center; padding: 20px; }
         .modal.active { display: flex; }
         .edu-img { width: 100%; height: 250px; object-fit: cover; border-radius: 8px; border: 1px solid #30363d; }
-        .branch-btn { background: #21262d; border: 1px solid #30363d; padding: 6px 14px; border-radius: 6px; font-size: 12px; color: #58a6ff; font-family: monospace; transition: 0.2s; cursor: pointer; }
-        .branch-btn:hover { background: #30363d; border-color: #58a6ff; color: #fff; }
+        .btn-main { background: #21262d; border: 1px solid #30363d; padding: 6px 14px; border-radius: 6px; font-size: 12px; color: #58a6ff; transition: 0.2s; cursor: pointer; font-weight: 600; }
+        .btn-main:hover { background: #30363d; border-color: #58a6ff; color: #fff; }
     </style>
 </head>
 <body>
@@ -43,16 +43,16 @@
         </div>
         
         <div class="space-y-6 flex-1">
-            <h2 class="text-4xl font-bold text-white tracking-tight border-b border-[#30363d] pb-4 text-pretty">Merhaba, Ben Enes.</h2>
+            <h2 class="text-4xl font-bold text-white tracking-tight border-b border-[#30363d] pb-4">Merhaba, Ben Enes.</h2>
             <div class="space-y-5 text-[#8b949e] text-lg leading-relaxed">
                 <p>
-                    Yolculuğuma Erzincan'da başladım. Mustafa Doğan Anadolu Lisesi'nden **okul birinciliğiyle** mezun olarak sağlam bir temel attım. Ardından 2020 YKS'de Türkiye **Sayısal 5802.si** olma başarısını göstererek, Yeditepe Üniversitesi Bilgisayar Mühendisliği bölümüne **%100 tam burslu** kabul edildim ve mezun oldum.
+                    Yolculuğuma Erzincan'da başladım. Mustafa Doğan Anadolu Lisesi'nden **okul birinciliğiyle** mezun olduktan sonra, 2020 yılında Türkiye **Sayısal 5802.si** olarak Yeditepe Üniversitesi Bilgisayar Mühendisliği bölümüne **%100 tam burslu** kabul edildim ve başarıyla mezun oldum.
                 </p>
                 <p>
-                    Üniversite eğitimimin yanı sıra, Bilişim Vadisi'nde yer alan, "öğretmensiz" akran öğrenimi ve tamamen proje odaklı bir ekosistem olan **42 Kocaeli** bünyesinde kendimi geliştirme şansı yakaladım.
+                    Üniversite hayatım boyunca sadece teorik eğitimle yetinmeyip, Bilişim Vadisi'ndeki **42 Kocaeli** bünyesinde proje odaklı bir ekosisteme dahil oldum.
                 </p>
                 <p>
-                    Bugün, mühendislik disiplinini meraklı bir geliştirici ruhuyla birleştiren, düşük seviyeli sistemlerden modern mobil uygulama mimarilerine kadar her katmanda çözüm üretmeye hazır bir yazılımcıyım.
+                    Bugün; düşük seviyeli sistem programlamadan modern mobil uygulama mimarilerine kadar geniş bir yelpazede çözüm üreten, mühendislik disiplinine sahip bir geliştiriciyim.
                 </p>
             </div>
         </div>
@@ -66,7 +66,7 @@
                 <div class="p-4">
                     <div class="flex justify-between items-center mb-2">
                         <h3 class="text-xl font-bold text-white">Yeditepe Üniversitesi</h3>
-                        <span class="bg-blue-900/40 text-[#58a6ff] text-[10px] px-3 py-1 rounded-full border border-[#58a6ff]/30 font-bold uppercase tracking-widest">MEZUN</span>
+                        <span class="bg-blue-900/40 text-[#58a6ff] text-[10px] px-3 py-1 rounded-full border border-[#58a6ff]/30 font-bold uppercase">MEZUN</span>
                     </div>
                     <p class="text-sm mb-3 text-[#8b949e] italic">Bilgisayar Mühendisliği (2020 - 2025)</p>
                     <div class="bg-blue-500/5 border border-[#58a6ff]/20 p-3 rounded-lg text-[#58a6ff] text-xs font-semibold uppercase tracking-tighter">
@@ -79,11 +79,11 @@
                 <div class="p-4">
                     <div class="flex justify-between items-center mb-2">
                         <h3 class="text-xl font-bold text-white">42 Kocaeli</h3>
-                        <span class="bg-green-900/40 text-[#3fb950] text-[10px] px-3 py-1 rounded-full border border-[#3fb950]/30 font-bold uppercase tracking-widest">AKTİF</span>
+                        <span class="bg-green-900/40 text-[#3fb950] text-[10px] px-3 py-1 rounded-full border border-[#3fb950]/30 font-bold uppercase">AKTİF</span>
                     </div>
                     <p class="text-sm mb-3 text-[#8b949e] italic">Yazılım Okulu (Ekol 42)</p>
                     <p class="text-xs text-[#8b949e] leading-relaxed">
-                        Üniversite 2. sınıftan itibaren dahil olduğum bu ekosistemde sistem projeleri geliştiriyorum.
+                        Akran öğrenimi ve tamamen uygulama odaklı bir sistemde yazılım geliştirme süreçlerini deneyimliyorum.
                     </p>
                 </div>
             </div>
@@ -101,7 +101,7 @@
 <div id="projectModal" class="modal" onclick="closeModal('projectModal')">
     <div class="bg-[#161b22] border border-[#30363d] w-full max-w-2xl rounded-xl p-8 space-y-6 relative shadow-2xl" onclick="event.stopPropagation()">
         <button onclick="closeModal('projectModal')" class="absolute top-4 right-4 text-gray-500 hover:text-white text-3xl">&times;</button>
-        <div id="modalContent" class="space-y-5"></div>
+        <div id="modalContent"></div>
     </div>
 </div>
 
@@ -124,14 +124,20 @@
         const container = document.getElementById('repo-list');
         try {
             const res = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=100`);
-            if (!res.ok) throw new Error('Limit');
+            
+            if (!res.ok) {
+                const resetTime = res.headers.get('x-ratelimit-reset');
+                if (resetTime) {
+                    const diffMins = Math.ceil((new Date(resetTime * 1000) - new Date()) / 60000);
+                    throw new Error(`Günlük veri çekme sınırı doldu. Yaklaşık ${diffMins} dakika sonra tekrar görüntülenebilir.`);
+                }
+                throw new Error('Verilere şu an ulaşılamıyor.');
+            }
             
             projects = await res.json();
-            
             const hidden = ['enes2424', 'enes2424.github.io', '42-kocaeli-cpp-modules'];
             const filtered = projects.filter(repo => !repo.fork && !hidden.includes(repo.name.toLowerCase()));
 
-            // Hiyerarşik Sıralama (Yeditepe -> 42 -> Diğerleri)
             filtered.sort((a, b) => {
                 const nA = a.name.toLowerCase();
                 const nB = b.name.toLowerCase();
@@ -144,20 +150,22 @@
 
             container.innerHTML = filtered.map(repo => {
                 const idx = projects.indexOf(repo);
-                return `
-                    <div class="gh-card p-6 flex flex-col justify-between group" onclick="showDetails(${idx})">
-                        <div class="space-y-3">
-                            <h3 class="text-lg font-bold text-[#58a6ff] group-hover:text-white transition truncate">${repo.name}</h3>
-                            <p class="text-sm text-[#8b949e] line-clamp-3">${repo.description || 'Açıklama mevcut değil.'}</p>
-                        </div>
-                        <div class="mt-4 pt-4 border-t border-[#30363d] flex justify-end">
-                            <span class="text-[#58a6ff] text-[10px] font-bold uppercase opacity-0 group-hover:opacity-100 transition-all">İncele →</span>
-                        </div>
-                    </div>`;
+                return `<div class="gh-card p-6 flex flex-col justify-between group" onclick="showDetails(${idx})">
+                    <div class="space-y-3">
+                        <h3 class="text-lg font-bold text-[#58a6ff] group-hover:text-white transition truncate">${repo.name}</h3>
+                        <p class="text-sm text-[#8b949e] line-clamp-3">${repo.description || 'Açıklama hazırlanıyor.'}</p>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-[#30363d] flex justify-end">
+                        <span class="text-[#58a6ff] text-[10px] font-bold uppercase opacity-0 group-hover:opacity-100 transition-all tracking-widest">DETAYLAR →</span>
+                    </div>
+                </div>`;
             }).join('');
 
         } catch (e) {
-            container.innerHTML = `<div class="col-span-full text-center py-10 text-red-400 font-mono text-xs uppercase tracking-widest border border-red-900/30 rounded-lg bg-red-900/10">GITHUB API LIMITI DOLDU. LUTFEN 18:10'DAN SONRA TEKRAR DENEYIN.</div>`;
+            container.innerHTML = `<div class="col-span-full text-center py-10 border border-red-900/30 rounded-lg bg-red-900/10 p-4">
+                <span class="text-red-400 font-mono text-xs uppercase tracking-widest">⚠️ BİLGİ</span><br>
+                <span class="text-white mt-2 block font-medium">${e.message}</span>
+            </div>`;
         }
     }
 
@@ -166,53 +174,51 @@
         const modal = document.getElementById('projectModal');
         const content = document.getElementById('modalContent');
         
-        content.innerHTML = `<div class="text-center py-10 animate-pulse text-gray-500 font-mono text-xs uppercase tracking-widest">Yükleniyor...</div>`;
+        content.innerHTML = `<div class="text-center py-10 animate-pulse text-gray-500 text-xs font-mono">VERİLER ALINIYOR...</div>`;
         modal.classList.add('active');
         document.body.style.overflow = 'hidden';
 
         try {
             const res = await fetch(`https://api.github.com/repos/${username}/${repo.name}/branches`);
+            if (!res.ok) throw new Error();
             const branches = await res.json();
             
-            // Tarih sorgusunu kaldırdık (Hafiflettik)
-            let branchBtns = branches.filter(b => b.name !== 'main').map(b => 
-                `<button onclick="openBranchInfo('${repo.name}', '${b.name}', \`${repo.description || ''}\`)" class="branch-btn">* ${b.name}</button>`
+            let projBtns = branches.filter(b => b.name !== 'main').map(b => 
+                `<button onclick="openBranchInfo('${repo.name}', '${b.name}', \`${repo.description || ''}\`)" class="btn-main">* ${b.name}</button>`
             ).join('');
 
             if (repo.name.toLowerCase() === '42-kocaeli-common-core') {
                 const cppIdx = projects.findIndex(p => p.name.toLowerCase() === '42-kocaeli-cpp-modules');
-                if (cppIdx !== -1) {
-                    branchBtns += `<button onclick="showDetails(${cppIdx})" class="branch-btn border-[#58a6ff]/50 text-white bg-[#58a6ff]/10">🚀 Cpp-Modules</button>`;
-                }
+                if (cppIdx !== -1) projBtns += `<button onclick="showDetails(${cppIdx})" class="btn-main border-[#58a6ff]/50 text-white bg-[#58a6ff]/10">🚀 C++ Modülleri</button>`;
             }
 
             content.innerHTML = `
-                <h2 class="text-3xl font-bold text-[#58a6ff] border-b border-[#30363d] pb-4">${repo.name}</h2>
-                <div class="bg-[#0d1117] p-5 rounded-lg border border-[#30363d] text-[#c9d1d9] text-lg leading-relaxed">${repo.description || 'Açıklama hazırlanıyor.'}</div>
+                <h2 class="text-3xl font-bold text-[#58a6ff] border-b border-[#30363d] pb-4 tracking-tight">${repo.name}</h2>
+                <div class="bg-[#0d1117] p-5 rounded-lg border border-[#30363d] text-[#c9d1d9] text-lg leading-relaxed">${repo.description || 'Proje detayları hazırlanıyor.'}</div>
                 <div class="space-y-4">
-                    <h4 class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Alt Projeler</h4>
-                    <div class="flex flex-wrap gap-2">${branchBtns || '<span class="text-xs text-gray-600">Dallanma bulunamadı.</span>'}</div>
+                    <h4 class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">İlgili Projeler</h4>
+                    <div class="flex flex-wrap gap-2">${projBtns || '<span class="text-xs text-gray-600">Bu bölümde alt proje bulunamadı.</span>'}</div>
                 </div>
                 <div class="flex gap-4 pt-6">
-                    <a href="${repo.html_url}" target="_blank" class="flex-1 text-center bg-[#238636] hover:bg-[#2ea043] text-white py-4 rounded-lg font-bold transition-all shadow-lg">GitHub'da Gör</a>
-                    <button onclick="closeModal('projectModal')" class="px-8 border border-[#30363d] hover:bg-[#30363d] text-gray-400 py-4 rounded-lg font-bold transition-all uppercase text-xs tracking-widest">Kapat</button>
+                    <a href="${repo.html_url}" target="_blank" class="flex-1 text-center bg-[#238636] text-white py-4 rounded-lg font-bold shadow-lg transition hover:bg-[#2ea043]">GitHub Proje Sayfası</a>
+                    <button onclick="closeModal('projectModal')" class="px-8 border border-[#30363d] text-gray-400 py-4 rounded-lg font-bold uppercase text-xs">Kapat</button>
                 </div>`;
         } catch (e) {
-            content.innerHTML = `<div class="text-center py-10 text-red-400">Detaylar şu an yüklenemiyor.</div>`;
+            content.innerHTML = `<div class="text-center py-10 text-red-400">Detaylı verilere şu an ulaşılamıyor.</div>`;
         }
     }
 
-    function openBranchInfo(r, b, d) {
+    function openBranchInfo(repo, pName, pDesc) {
         const modal = document.getElementById('branchModal');
         const content = document.getElementById('branchModalContent');
         content.innerHTML = `
             <div class="border-b border-[#444c56] pb-4 mb-4">
-                <h3 class="text-2xl font-bold text-white">${b}</h3>
-                <p class="text-[10px] text-[#58a6ff] uppercase font-mono">${r}</p>
+                <h3 class="text-2xl font-bold text-white tracking-tight">${pName}</h3>
+                <p class="text-[10px] text-[#58a6ff] uppercase font-mono tracking-widest">${repo}</p>
             </div>
-            <p class="text-[#8b949e] mb-6 leading-relaxed text-md">${d || 'Detaylar GitHub sayfasında mevcuttur.'}</p>
-            <a href="https://github.com/${username}/${r}/tree/${b}" target="_blank" class="block text-center bg-[#21262d] border border-[#444c56] hover:border-[#58a6ff] text-white py-3 rounded-lg font-bold transition-all">GitHub'da Aç</a>
-            <button onclick="closeModal('branchModal')" class="w-full mt-4 text-xs text-gray-500 hover:text-white uppercase tracking-widest">Geri Dön</button>`;
+            <p class="text-[#8b949e] mb-6 leading-relaxed text-md">${pDesc || 'İçerik bilgisi ana proje açıklamasında mevcuttur.'}</p>
+            <a href="https://github.com/${username}/${repo}/tree/${pName}" target="_blank" class="block text-center bg-[#21262d] border border-[#444c56] hover:border-[#58a6ff] text-white py-3 rounded-lg font-bold transition-all">Kodları İncele</a>
+            <button onclick="closeModal('branchModal')" class="w-full mt-4 text-xs text-gray-500 hover:text-white uppercase tracking-widest transition">Geri Dön</button>`;
         modal.classList.add('active');
     }
 
