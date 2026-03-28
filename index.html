@@ -193,12 +193,11 @@ async function showDetails(index) {
 
         let projBtns = branches.filter(b => b.name !== 'main').map(b => {
             const displayName = b.name.includes('-') && b.name.length > 2 ? b.name.slice(2) : b.name;
-            
             return `<button onclick="openBranchInfo('${repo.name}', '${b.name}', '${displayName}', \`${repo.description || ''}\`)" 
                     class="btn-main font-mono text-[13px]">* ${displayName}</button>`;
         }).join('');
 
-        // Cpp Modülleri butonunu diğerleriyle tamamen aynı görünüme getirdik
+        // Common Core için C++ Modülleri kontrolü
         if (repo.name.toLowerCase() === '42-kocaeli-common-core') {
             const cppIdx = projects.findIndex(p => p.name.toLowerCase() === '42-kocaeli-cpp-modules');
             if (cppIdx !== -1) {
@@ -206,9 +205,26 @@ async function showDetails(index) {
             }
         }
 
+        // Advanced Projects için Piscine repoları kontrolü
+        if (repo.name.toLowerCase() === '42-kocaeli-advanced-projects') {
+            const advancedRepos = [
+                '42-Kocaeli-Unity-Piscine',
+                '42-Kocaeli-Django-Piscine',
+                '42-Kocaeli-Ocaml-Piscine',
+                '42-Kocaeli-Mobile-Piscine'
+            ];
+
+            advancedRepos.forEach(advRepoName => {
+                const advIdx = projects.findIndex(p => p.name.toLowerCase() === advRepoName.toLowerCase());
+                if (advIdx !== -1) {
+                    projBtns += `<button onclick="showDetails(${advIdx})" class="btn-main font-mono text-[13px]">* ${advRepoName}</button>`;
+                }
+            });
+        }
+
         content.innerHTML = `
             <h2 class="text-3xl font-bold text-[#58a6ff] tracking-tight mb-6">${repo.name}</h2>
-            <div class="bg-[#0d1117] p-5 rounded-lg border border-[#30363d] text-[#c9d1d9] text-lg leading-relaxed">${repo.description || 'Proje açıklaması hazılanıyor.'}</div>
+            <div class="bg-[#0d1117] p-5 rounded-lg border border-[#30363d] text-[#c9d1d9] text-lg leading-relaxed">${repo.description || 'Proje açıklaması hazırlanıyor.'}</div>
             
             <div class="space-y-4 mt-10">
                 <h4 class="text-[11px] font-bold text-gray-500 uppercase tracking-widest opacity-60">İlgili Projeler</h4>
