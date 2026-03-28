@@ -206,7 +206,7 @@ async function showDetails(index) {
 
             content.innerHTML = `
                 <h2 class="text-3xl font-bold text-[#58a6ff] tracking-tight mb-6">${repo.name}</h2>
-                <div class="bg-[#0d1117] p-5 rounded-lg border border-[#30363d] text-[#c9d1d9] text-lg leading-relaxed">${repo.description || 'Proje detayları hazırlanıyor.'}</div>
+                <div class="bg-[#0d1117] p-5 rounded-lg border border-[#30363d] text-[#c9d1d9] text-lg leading-relaxed">${repo.description || 'Proje açıklaması hazılanıyor.'}</div>
                 
                 <div class="space-y-4 mt-10">
                     <h4 class="text-[11px] font-bold text-gray-500 uppercase tracking-widest opacity-60">İlgili Projeler</h4>
@@ -232,7 +232,7 @@ async function showDetails(index) {
             </div>
             
             <div class="bg-[#0d1117]/50 p-5 rounded-lg border border-[#30363d] mb-8">
-                <p class="text-[#8b949e] leading-relaxed text-sm">${pDesc || 'İçerik bilgisi ana proje açıklamasında mevcuttur.'}</p>
+                <p class="text-[#8b949e] leading-relaxed text-sm">${pDesc || 'Proje açıklaması hazılanıyor'}</p>
             </div>
             
             <a href="https://github.com/${username}/${repo}/tree/${realName}" target="_blank" 
