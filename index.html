@@ -141,7 +141,15 @@
             }
             
             projects = await res.json();
-            const hidden = ['enes2424', 'enes2424.github.io', '42-kocaeli-cpp-modules'];
+            const hidden = [
+                'enes2424', 
+                'enes2424.github.io', 
+                '42-kocaeli-cpp-modules',
+                '42-kocaeli-unity-piscine',
+                '42-kocaeli-django-piscine',
+                '42-kocaeli-ocaml-piscine',
+                '42-kocaeli-mobile-piscine'
+            ];
             const filtered = projects.filter(repo => !repo.fork && !hidden.includes(repo.name.toLowerCase()));
 
             filtered.sort((a, b) => {
