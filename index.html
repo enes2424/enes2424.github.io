@@ -210,7 +210,7 @@ async function showDetails(index) {
         }
     }
 
-    function openBranchInfo(repo, pName, pDesc) {
+function openBranchInfo(repo, pName, pDesc) {
         const modal = document.getElementById('branchModal');
         const content = document.getElementById('branchModalContent');
         content.innerHTML = `
@@ -218,9 +218,16 @@ async function showDetails(index) {
                 <h3 class="text-2xl font-bold text-white tracking-tight">${pName}</h3>
                 <p class="text-[10px] text-[#58a6ff] uppercase font-mono tracking-widest">${repo}</p>
             </div>
-            <p class="text-[#8b949e] mb-6 leading-relaxed text-md">${pDesc || 'İçerik bilgisi ana proje açıklamasında mevcuttur.'}</p>
-            <a href="https://github.com/${username}/${repo}/tree/${pName}" target="_blank" class="block text-center bg-[#21262d] border border-[#444c56] hover:border-[#58a6ff] text-white py-3 rounded-lg font-bold transition-all">Kodları İncele</a>
-            <button onclick="closeModal('branchModal')" class="w-full mt-4 text-xs text-gray-500 hover:text-white uppercase tracking-widest transition">Geri Dön</button>`;
+            <p class="text-[#8b949e] mb-8 leading-relaxed text-md">${pDesc || 'İçerik bilgisi ana proje açıklamasında mevcuttur.'}</p>
+            
+            <a href="https://github.com/${username}/${repo}/tree/${pName}" target="_blank" 
+               class="block text-center bg-[#21262d] border border-[#58a6ff]/50 text-[#58a6ff] py-4 rounded-lg font-bold transition-all duration-300 hover:bg-[#58a6ff] hover:text-white hover:shadow-[0_0_20px_rgba(88,166,255,0.3)]">
+               KODLARI İNCELE
+            </a>
+            
+            <button onclick="closeModal('branchModal')" class="w-full mt-6 text-[10px] text-gray-500 hover:text-white uppercase tracking-[0.2em] transition-colors">
+                ← GERİ DÖN
+            </button>`;
         modal.classList.add('active');
     }
 
