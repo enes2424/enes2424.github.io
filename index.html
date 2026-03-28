@@ -180,7 +180,7 @@ async function showDetails(index) {
         const modal = document.getElementById('projectModal');
         const content = document.getElementById('modalContent');
         
-        content.innerHTML = `<div class="text-center py-10 animate-pulse text-gray-500 text-xs font-mono">VERİLER ALINIYOR...</div>`;
+        content.innerHTML = `<div class="text-center py-10 animate-pulse text-gray-500 text-xs font-mono tracking-[0.2em]">VERİLER ALINIYOR...</div>`;
         modal.classList.add('active');
         document.body.style.overflow = 'hidden';
 
@@ -189,47 +189,56 @@ async function showDetails(index) {
             if (!res.ok) throw new Error();
             const branches = await res.json();
             
-            let projBtns = branches.filter(b => b.name !== 'main').map(b => 
-                `<button onclick="openBranchInfo('${repo.name}', '${b.name}', \`${repo.description || ''}\`)" class="btn-main">* ${b.name}</button>`
-            ).join('');
+            // Alfabetik sıralama (a-, b-, c- ön eklerine göre otomatik dizilecek)
+            branches.sort((a, b) => a.name.localeCompare(b.name));
+
+            let projBtns = branches.filter(b => b.name !== 'main').map(b => {
+                // Eğer isim 'a-' gibi 2 karakterli bir ön ekle başlıyorsa 2. karakterden sonrasını al
+                // Değilse (örneğin eski bir branch) olduğu gibi yaz
+                const displayName = b.name.includes('-') && b.name.length > 2 ? b.name.slice(2) : b.name;
+                
+                return `<button onclick="openBranchInfo('${repo.name}', '${b.name}', '${displayName}', \`${repo.description || ''}\`)" 
+                        class="btn-main font-mono uppercase tracking-wider italic">* ${displayName}</button>`;
+            }).join('');
 
             if (repo.name.toLowerCase() === '42-kocaeli-common-core') {
                 const cppIdx = projects.findIndex(p => p.name.toLowerCase() === '42-kocaeli-cpp-modules');
-                if (cppIdx !== -1) projBtns += `<button onclick="showDetails(${cppIdx})" class="btn-main border-[#58a6ff]/50 text-white bg-[#58a6ff]/10">🚀 Cpp Modülleri</button>`;
+                if (cppIdx !== -1) projBtns += `<button onclick="showDetails(${cppIdx})" class="btn-main border-[#58a6ff]/50 text-white bg-[#58a6ff]/10">🚀 C++ Modülleri</button>`;
             }
 
-            // Çizgiyi kaldırdık ve "İlgili Projeler" kısmına mt-8 (margin-top) ekledik
             content.innerHTML = `
                 <h2 class="text-3xl font-bold text-[#58a6ff] tracking-tight mb-6">${repo.name}</h2>
                 <div class="bg-[#0d1117] p-5 rounded-lg border border-[#30363d] text-[#c9d1d9] text-lg leading-relaxed">${repo.description || 'Proje detayları hazırlanıyor.'}</div>
                 
-                <div class="space-y-4 mt-10"> <h4 class="text-[10px] font-bold text-gray-500 uppercase tracking-[0.2em]">İlgili Projeler</h4>
-                    <div class="flex flex-wrap gap-2 pt-2">${projBtns || '<span class="text-xs text-gray-600">Bu bölümde alt proje bulunamadı.</span>'}</div>
+                <div class="space-y-4 mt-10">
+                    <h4 class="text-[10px] font-bold text-gray-500 uppercase tracking-[0.3em] opacity-60">İlgili Projeler</h4>
+                    <div class="flex flex-wrap gap-3 pt-2">${projBtns || '<span class="text-xs text-gray-600">Bu bölümde alt proje bulunamadı.</span>'}</div>
                 </div>
 
-                <div class="flex gap-4 pt-10">
-                    <a href="${repo.html_url}" target="_blank" class="flex-1 text-center bg-[#238636] text-white py-4 rounded-lg font-bold shadow-lg transition hover:bg-[#2ea043]">GitHub Proje Sayfası</a>
-                    <button onclick="closeModal('projectModal')" class="px-8 border border-[#30363d] text-gray-400 py-4 rounded-lg font-bold uppercase text-xs hover:bg-[#30363d]">Kapat</button>
+                <div class="flex gap-4 pt-12">
+                    <a href="${repo.html_url}" target="_blank" class="flex-1 text-center bg-[#238636] text-white py-4 rounded-lg font-bold shadow-lg transition hover:bg-[#2ea043] tracking-widest text-xs">GITHUB PROJE SAYFASI</a>
+                    <button onclick="closeModal('projectModal')" class="px-8 border border-[#30363d] text-gray-400 py-4 rounded-lg font-bold uppercase text-xs hover:bg-[#30363d] tracking-widest">Kapat</button>
                 </div>`;
         } catch (e) {
             content.innerHTML = `<div class="text-center py-10 text-red-400">Detaylı verilere şu an ulaşılamıyor.</div>`;
         }
     }
 
-function openBranchInfo(repo, pName, pDesc) {
+    // openBranchInfo fonksiyonunu da güncel isme göre düzenleyelim
+    function openBranchInfo(repo, realName, displayName, pDesc) {
         const modal = document.getElementById('branchModal');
         const content = document.getElementById('branchModalContent');
         content.innerHTML = `
             <div class="mb-6">
-                <h3 class="text-2xl font-bold text-white tracking-tight leading-tight">${pName}</h3>
+                <h3 class="text-2xl font-bold text-white tracking-tight leading-tight uppercase font-mono">${displayName}</h3>
                 <p class="text-[10px] text-[#58a6ff] uppercase font-mono tracking-[0.2em] mt-2 opacity-80">${repo}</p>
             </div>
             
-            <div class="bg-[#0d1117]/50 p-4 rounded-lg border border-[#30363d] mb-8">
+            <div class="bg-[#0d1117]/50 p-5 rounded-lg border border-[#30363d] mb-8">
                 <p class="text-[#8b949e] leading-relaxed text-sm">${pDesc || 'İçerik bilgisi ana proje açıklamasında mevcuttur.'}</p>
             </div>
             
-            <a href="https://github.com/${username}/${repo}/tree/${pName}" target="_blank" 
+            <a href="https://github.com/${username}/${repo}/tree/${realName}" target="_blank" 
                class="block text-center bg-[#21262d] border border-[#58a6ff]/50 text-[#58a6ff] py-4 rounded-lg font-bold transition-all duration-300 hover:bg-[#58a6ff] hover:text-white hover:shadow-[0_0_20px_rgba(88,166,255,0.2)] tracking-widest text-xs">
                KODLARI İNCELE
             </a>
