@@ -182,7 +182,7 @@
                     </div>
                 </div>
                 <div class="space-y-4">
-                    <h4 class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Dallanmalar (Branches)</h4>
+                    <h4 class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Projeler</h4>
                     <div class="flex flex-wrap gap-3">${branchBtns || '<span class="text-xs text-gray-600 italic">Başka dal bulunamadı.</span>'}</div>
                 </div>
                 <div class="flex gap-4 pt-6">
@@ -200,10 +200,10 @@
         content.innerHTML = `
             <div class="border-b border-[#444c56] pb-4">
                 <h3 class="text-2xl font-bold text-white tracking-tight">${branchName}</h3>
-                <p class="text-[10px] text-[#58a6ff] mt-1 font-mono uppercase tracking-widest">${repoName} / Branch</p>
+                <p class="text-[10px] text-[#58a6ff] mt-1 font-mono uppercase tracking-widest">${repoName}</p>
             </div>
             <div>
-                <h4 class="text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-2">Branch Açıklaması</h4>
+                <h4 class="text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-2">Proje Açıklaması</h4>
                 <p class="text-[#8b949e] text-md leading-relaxed">${description || 'Proje açıklaması geçerlidir.'}</p>
             </div>
             <div class="flex flex-col gap-3 pt-4">
