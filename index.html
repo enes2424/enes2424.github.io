@@ -132,23 +132,18 @@
             
             container.innerHTML = '';
             
-            // Cpp-Modules reposunu ana listeden temizle
             const filteredProjects = projects.filter(repo => 
                 !repo.fork && 
                 !['enes2424', 'enes2424.github.io', '42-kocaeli-cpp-modules'].includes(repo.name.toLowerCase())
             );
 
-            // Sıralama: Yeditepe Term Projects (1.), 42 Common Core (2.), gerisi tarih sırasına göre
             const sortedProjects = filteredProjects.sort((a, b) => {
                 const nameA = a.name.toLowerCase();
                 const nameB = b.name.toLowerCase();
-                
                 if (nameA === 'yeditepe-university-term-projects') return -1;
                 if (nameB === 'yeditepe-university-term-projects') return 1;
-                
                 if (nameA === '42-kocaeli-common-core') return -1;
                 if (nameB === '42-kocaeli-common-core') return 1;
-                
                 return 0;
             });
 
@@ -176,20 +171,33 @@
         const modal = document.getElementById('projectModal');
         const content = document.getElementById('modalContent');
         
-        content.innerHTML = `<div class="text-center py-10 animate-pulse text-gray-500 font-mono text-xs uppercase tracking-widest">Yükleniyor...</div>`;
+        content.innerHTML = `<div class="text-center py-10 animate-pulse text-gray-500 font-mono text-xs uppercase tracking-widest">Branchler Tarihe Göre Sıralanıyor...</div>`;
         modal.classList.add('active');
         document.body.style.overflow = 'hidden';
 
         try {
+            // Branchleri al
             const branchRes = await fetch(`https://api.github.com/repos/${username}/${repo.name}/branches`);
             const branches = await branchRes.json();
             
-            let branchBtns = branches
+            // Tarih bilgisi için her branch'in son commitini çekiyoruz
+            const branchData = await Promise.all(branches.map(async (b) => {
+                const commitRes = await fetch(b.commit.url);
+                const commitData = await commitRes.json();
+                return {
+                    name: b.name,
+                    date: new Date(commitData.commit.committer.date)
+                };
+            }));
+
+            // Tarihe göre sırala (Eskiden yeniye)
+            branchData.sort((a, b) => a.date - b.date);
+
+            let branchBtns = branchData
                 .filter(b => b.name !== 'main')
                 .map(b => `<button onclick="openBranchInfo('${repo.name}', '${b.name}', \`${repo.description ? repo.description.replace(/`/g, '\\`') : ''}\`)" class="branch-btn">* ${b.name}</button>`)
                 .join('');
 
-            // Common-Core içindeyken Cpp-Modules'ü "açılabilir" buton olarak sona ekle
             if (repo.name.toLowerCase() === '42-kocaeli-common-core') {
                 const cppIndex = projects.findIndex(p => p.name.toLowerCase() === '42-kocaeli-cpp-modules');
                 if (cppIndex !== -1) {
@@ -208,7 +216,7 @@
                     </div>
                 </div>
                 <div class="space-y-4">
-                    <h4 class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Proje İçeriği</h4>
+                    <h4 class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Proje İçeriği (Oluşturma Sırasıyla)</h4>
                     <div class="flex flex-wrap gap-3">${branchBtns || '<span class="text-xs text-gray-600 italic">Dallanma bulunamadı.</span>'}</div>
                 </div>
                 <div class="flex gap-4 pt-6">
