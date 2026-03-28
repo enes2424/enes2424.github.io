@@ -20,10 +20,10 @@
 
 <nav class="sticky top-0 z-50 bg-[#0d1117]/90 backdrop-blur-md border-b border-[#30363d] p-4">
     <div class="max-w-6xl mx-auto flex justify-between items-center">
-        <div class="flex items-center gap-3">
-            <img src="profil.jpg" class="w-8 h-8 rounded-full border border-[#30363d] object-cover">
-            <span class="font-bold text-white tracking-tight uppercase">ENES2424</span>
-        </div>
+        <a href="https://github.com/enes2424" target="_blank" class="flex items-center gap-3 hover:opacity-80 transition group">
+            <img src="profil.jpg" class="w-8 h-8 rounded-full border border-[#30363d] object-cover group-hover:border-[#58a6ff]">
+            <span class="font-bold text-white tracking-tight uppercase group-hover:text-[#58a6ff]">ENES2424</span>
+        </a>
         <div class="flex gap-6 text-sm text-[#8b949e]">
             <a href="#about" class="hover:text-[#58a6ff] transition">Hakkımda</a>
             <a href="#education" class="hover:text-[#58a6ff] transition">Eğitim</a>
@@ -168,7 +168,7 @@
             
             const branchBtns = branches
                 .filter(b => b.name !== 'main')
-                .map(b => `<button onclick="openBranchInfo('${repo.name}', '${b.name}', \`${repo.description || ''}\`)" class="branch-btn">* ${b.name}</button>`)
+                .map(b => `<button onclick="openBranchInfo('${repo.name}', '${b.name}', \`${repo.description ? repo.description.replace(/`/g, '\\`') : ''}\`)" class="branch-btn">* ${b.name}</button>`)
                 .join('');
 
             content.innerHTML = `
@@ -207,7 +207,7 @@
                 <p class="text-[#8b949e] text-md leading-relaxed">${description || 'Proje açıklaması geçerlidir.'}</p>
             </div>
             <div class="flex flex-col gap-3 pt-4">
-                <a href="${branchUrl}" target="_blank" class="text-center bg-[#21262d] border border-[#444c56] hover:border-[#58a6ff] text-white py-3 rounded-lg font-bold transition-all">Projeyi Github'da Gör</a>
+                <a href="${branchUrl}" target="_blank" class="text-center bg-[#21262d] border border-[#444c56] hover:border-[#58a6ff] text-white py-3 rounded-lg font-bold transition-all">Projeyi GitHub'da Gör</a>
                 <button onclick="closeModal('branchModal')" class="text-center text-gray-500 hover:text-white text-xs uppercase tracking-widest transition">Geri Dön</button>
             </div>`;
         modal.classList.add('active');
