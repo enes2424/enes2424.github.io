@@ -131,7 +131,6 @@
             }
             
             container.innerHTML = '';
-            
             const filteredProjects = projects.filter(repo => 
                 !repo.fork && 
                 !['enes2424', 'enes2424.github.io', '42-kocaeli-cpp-modules'].includes(repo.name.toLowerCase())
@@ -162,7 +161,6 @@
                         </div>
                     </div>`;
             });
-
         } catch (e) { container.innerHTML = "<p>Veriler çekilemedi.</p>"; }
     }
 
@@ -171,26 +169,26 @@
         const modal = document.getElementById('projectModal');
         const content = document.getElementById('modalContent');
         
-        content.innerHTML = `<div class="text-center py-10 animate-pulse text-gray-500 font-mono text-xs uppercase tracking-widest">Branchler Tarihe Göre Sıralanıyor...</div>`;
+        content.innerHTML = `<div class="text-center py-10 animate-pulse text-gray-500 font-mono text-xs uppercase tracking-widest">Yükleniyor...</div>`;
         modal.classList.add('active');
         document.body.style.overflow = 'hidden';
 
         try {
-            // Branchleri al
             const branchRes = await fetch(`https://api.github.com/repos/${username}/${repo.name}/branches`);
             const branches = await branchRes.json();
             
-            // Tarih bilgisi için her branch'in son commitini çekiyoruz
+            // Branch verilerini tarihle eşleştirirken hata kontrolü ekledik
             const branchData = await Promise.all(branches.map(async (b) => {
-                const commitRes = await fetch(b.commit.url);
-                const commitData = await commitRes.json();
-                return {
-                    name: b.name,
-                    date: new Date(commitData.commit.committer.date)
-                };
+                try {
+                    const commitRes = await fetch(b.commit.url);
+                    if (!commitRes.ok) throw new Error();
+                    const commitData = await commitRes.json();
+                    return { name: b.name, date: new Date(commitData.commit.committer.date) };
+                } catch (err) {
+                    return { name: b.name, date: new Date(0) }; // Tarih alınamazsa en sona at
+                }
             }));
 
-            // Tarihe göre sırala (Eskiden yeniye)
             branchData.sort((a, b) => a.date - b.date);
 
             let branchBtns = branchData
@@ -216,14 +214,17 @@
                     </div>
                 </div>
                 <div class="space-y-4">
-                    <h4 class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Proje İçeriği (Oluşturma Sırasıyla)</h4>
+                    <h4 class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Proje İçeriği</h4>
                     <div class="flex flex-wrap gap-3">${branchBtns || '<span class="text-xs text-gray-600 italic">Dallanma bulunamadı.</span>'}</div>
                 </div>
                 <div class="flex gap-4 pt-6">
                     <a href="${repo.html_url}" target="_blank" class="flex-1 text-center bg-[#238636] hover:bg-[#2ea043] text-white py-4 rounded-lg font-bold transition-all shadow-lg">GitHub'da Gör</a>
                     <button onclick="closeModal('projectModal')" class="px-8 border border-[#30363d] hover:bg-[#30363d] text-gray-400 py-4 rounded-lg font-bold transition-all uppercase text-xs tracking-widest">Kapat</button>
                 </div>`;
-        } catch (e) { content.innerHTML = `<p>Hata oluştu.</p>`; }
+        } catch (e) { 
+            console.error(e);
+            content.innerHTML = `<div class="text-center p-10"><p class="text-red-400">Veriler yüklenirken bir hata oluştu.</p><button onclick="closeModal('projectModal')" class="mt-4 text-xs text-gray-500 underline">KAPAT</button></div>`;
+        }
     }
 
     function openBranchInfo(repoName, branchName, description) {
