@@ -169,7 +169,7 @@
         }
     }
 
-    async function showDetails(index) {
+async function showDetails(index) {
         const repo = projects[index];
         const modal = document.getElementById('projectModal');
         const content = document.getElementById('modalContent');
@@ -192,16 +192,18 @@
                 if (cppIdx !== -1) projBtns += `<button onclick="showDetails(${cppIdx})" class="btn-main border-[#58a6ff]/50 text-white bg-[#58a6ff]/10">🚀 C++ Modülleri</button>`;
             }
 
+            // Çizgiyi kaldırdık ve "İlgili Projeler" kısmına mt-8 (margin-top) ekledik
             content.innerHTML = `
-                <h2 class="text-3xl font-bold text-[#58a6ff] border-b border-[#30363d] pb-4 tracking-tight">${repo.name}</h2>
+                <h2 class="text-3xl font-bold text-[#58a6ff] tracking-tight mb-6">${repo.name}</h2>
                 <div class="bg-[#0d1117] p-5 rounded-lg border border-[#30363d] text-[#c9d1d9] text-lg leading-relaxed">${repo.description || 'Proje detayları hazırlanıyor.'}</div>
-                <div class="space-y-4">
-                    <h4 class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">İlgili Projeler</h4>
-                    <div class="flex flex-wrap gap-2">${projBtns || '<span class="text-xs text-gray-600">Bu bölümde alt proje bulunamadı.</span>'}</div>
+                
+                <div class="space-y-4 mt-10"> <h4 class="text-[10px] font-bold text-gray-500 uppercase tracking-[0.2em]">İlgili Projeler</h4>
+                    <div class="flex flex-wrap gap-2 pt-2">${projBtns || '<span class="text-xs text-gray-600">Bu bölümde alt proje bulunamadı.</span>'}</div>
                 </div>
-                <div class="flex gap-4 pt-6">
+
+                <div class="flex gap-4 pt-10">
                     <a href="${repo.html_url}" target="_blank" class="flex-1 text-center bg-[#238636] text-white py-4 rounded-lg font-bold shadow-lg transition hover:bg-[#2ea043]">GitHub Proje Sayfası</a>
-                    <button onclick="closeModal('projectModal')" class="px-8 border border-[#30363d] text-gray-400 py-4 rounded-lg font-bold uppercase text-xs">Kapat</button>
+                    <button onclick="closeModal('projectModal')" class="px-8 border border-[#30363d] text-gray-400 py-4 rounded-lg font-bold uppercase text-xs hover:bg-[#30363d]">Kapat</button>
                 </div>`;
         } catch (e) {
             content.innerHTML = `<div class="text-center py-10 text-red-400">Detaylı verilere şu an ulaşılamıyor.</div>`;
