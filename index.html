@@ -92,21 +92,23 @@
 
     <section id="projects" class="space-y-8">
         <h2 class="text-3xl font-bold text-white">Projelerim</h2>
-        <div id="repo-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+        <div id="repo-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="col-span-full text-center py-10 text-gray-500 animate-pulse">Projeler yükleniyor...</div>
+        </div>
     </section>
 </main>
 
 <div id="projectModal" class="modal" onclick="closeModal('projectModal')">
     <div class="bg-[#161b22] border border-[#30363d] w-full max-w-2xl rounded-xl p-8 space-y-6 relative shadow-2xl" onclick="event.stopPropagation()">
         <button onclick="closeModal('projectModal')" class="absolute top-4 right-4 text-gray-500 hover:text-white text-3xl">&times;</button>
-        <div id="modalContent" class="space-y-5"></div>
+        <div id="modalContent"></div>
     </div>
 </div>
 
 <div id="branchModal" class="modal" style="z-index: 110;" onclick="closeModal('branchModal')">
     <div class="bg-[#1c2128] border border-[#444c56] w-full max-w-lg rounded-xl p-8 space-y-6 relative shadow-2xl" onclick="event.stopPropagation()">
         <button onclick="closeModal('branchModal')" class="absolute top-4 right-4 text-gray-500 hover:text-white text-2xl">&times;</button>
-        <div id="branchModalContent" class="space-y-5"></div>
+        <div id="branchModalContent"></div>
     </div>
 </div>
 
@@ -121,53 +123,39 @@
     async function loadRepos() {
         const container = document.getElementById('repo-list');
         try {
-            container.innerHTML = `<div class="col-span-full text-center py-20 text-gray-500 font-mono text-xs uppercase tracking-[0.3em] animate-pulse">Projeler Getiriliyor...</div>`;
+            const res = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=100`);
+            if (!res.ok) throw new Error('API Limiti');
+            const data = await res.json();
+            projects = data;
             
-            let page = 1;
-            while (true) {
-                const res = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=100&page=${page}`);
-                const data = await res.json();
-                if (!data || data.length === 0 || !Array.isArray(data)) break;
-                projects = [...projects, ...data];
-                page++;
-            }
-            
-            container.innerHTML = '';
-            
-            // Gizlenecek repolar
-            const hiddenRepos = ['enes2424', 'enes2424.github.io', '42-kocaeli-cpp-modules'];
-            const filteredProjects = projects.filter(repo => 
-                !repo.fork && !hiddenRepos.includes(repo.name.toLowerCase())
-            );
+            const hidden = ['enes2424', 'enes2424.github.io', '42-kocaeli-cpp-modules'];
+            const filtered = projects.filter(r => !r.fork && !hidden.includes(r.name.toLowerCase()));
 
-            // Özel Sıralama
-            const sortedProjects = filteredProjects.sort((a, b) => {
+            filtered.sort((a, b) => {
                 const nA = a.name.toLowerCase();
                 const nB = b.name.toLowerCase();
                 if (nA === 'yeditepe-university-term-projects') return -1;
                 if (nB === 'yeditepe-university-term-projects') return 1;
                 if (nA === '42-kocaeli-common-core') return -1;
                 if (nB === '42-kocaeli-common-core') return 1;
-                return new Date(b.updated_at) - new Date(a.updated_at);
+                return 0;
             });
 
-            sortedProjects.forEach((repo) => {
-                const index = projects.indexOf(repo);
-                container.innerHTML += `
-                    <div class="gh-card p-6 flex flex-col justify-between group" onclick="showDetails(${index})">
+            container.innerHTML = filtered.map(repo => {
+                const idx = projects.indexOf(repo);
+                return `
+                    <div class="gh-card p-6 flex flex-col justify-between group" onclick="showDetails(${idx})">
                         <div class="space-y-3">
                             <h3 class="text-lg font-bold text-[#58a6ff] group-hover:text-white transition truncate">${repo.name}</h3>
-                            <p class="text-sm text-[#8b949e] line-clamp-3 leading-relaxed">
-                                ${repo.description || '<span class="italic opacity-40 text-xs">Açıklama hazırlanıyor...</span>'}
-                            </p>
+                            <p class="text-sm text-[#8b949e] line-clamp-3">${repo.description || 'Açıklama yok.'}</p>
                         </div>
                         <div class="mt-4 pt-4 border-t border-[#30363d] flex justify-end">
-                            <span class="text-[#58a6ff] text-[10px] font-bold uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-all duration-300">Detaylar →</span>
+                            <span class="text-[#58a6ff] text-[10px] font-bold uppercase opacity-0 group-hover:opacity-100 transition">Detaylar →</span>
                         </div>
                     </div>`;
-            });
-        } catch (e) { 
-            container.innerHTML = `<div class="col-span-full text-center py-10"><p class="text-red-400">GitHub API sınırı nedeniyle veriler şu an çekilemiyor. Lütfen biraz sonra tekrar deneyin.</p></div>`;
+            }).join('');
+        } catch (e) {
+            container.innerHTML = `<div class="col-span-full text-center py-10 text-red-400 font-mono text-xs">GITHUB API LIMITI DOLDU. LUTFEN 1 DAKIKA SONRA TEKRAR DENEYIN.</div>`;
         }
     }
 
@@ -176,90 +164,53 @@
         const modal = document.getElementById('projectModal');
         const content = document.getElementById('modalContent');
         
-        content.innerHTML = `<div class="text-center py-10 animate-pulse text-gray-500 font-mono text-xs uppercase tracking-widest">Veriler İşleniyor...</div>`;
+        content.innerHTML = `<div class="text-center py-10 text-gray-500 font-mono text-xs">YÜKLENİYOR...</div>`;
         modal.classList.add('active');
         document.body.style.overflow = 'hidden';
 
         try {
-            const branchRes = await fetch(`https://api.github.com/repos/${username}/${repo.name}/branches`);
-            const branches = await branchRes.json();
+            const res = await fetch(`https://api.github.com/repos/${username}/${repo.name}/branches`);
+            const branches = await res.json();
             
-            // Branch tarih çekme kısmında hata olursa boş dönmesini sağlıyoruz (Modalın kapanmaması için)
-            const branchData = await Promise.all(branches.map(async (b) => {
-                try {
-                    const commitRes = await fetch(b.commit.url);
-                    const commitData = await commitRes.json();
-                    return { name: b.name, date: new Date(commitData.commit.committer.date) };
-                } catch (err) {
-                    return { name: b.name, date: new Date(0) };
-                }
-            }));
+            let btns = branches.filter(b => b.name !== 'main').map(b => 
+                `<button onclick="openBranchInfo('${repo.name}', '${b.name}', \`${repo.description || ''}\`)" class="branch-btn">* ${b.name}</button>`
+            ).join('');
 
-            // Eskiden yeniye sırala
-            branchData.sort((a, b) => a.date - b.date);
-
-            let branchBtns = branchData
-                .filter(b => b.name !== 'main')
-                .map(b => `<button onclick="openBranchInfo('${repo.name}', '${b.name}', \`${repo.description ? repo.description.replace(/`/g, '\\`') : ''}\`)" class="branch-btn">* ${b.name}</button>`)
-                .join('');
-
-            // Common Core ise Cpp Modules linkini ekle
             if (repo.name.toLowerCase() === '42-kocaeli-common-core') {
                 const cppIdx = projects.findIndex(p => p.name.toLowerCase() === '42-kocaeli-cpp-modules');
                 if (cppIdx !== -1) {
-                    branchBtns += `<button onclick="showDetails(${cppIdx})" class="branch-btn border-[#58a6ff]/50 text-white bg-[#58a6ff]/10 tracking-tighter">🚀 42-Kocaeli-Cpp-Modules</button>`;
+                    btns += `<button onclick="showDetails(${cppIdx})" class="branch-btn border-[#58a6ff]/50 text-white bg-[#58a6ff]/10">🚀 Cpp-Modules</button>`;
                 }
             }
 
             content.innerHTML = `
-                <div class="border-b border-[#30363d] pb-4">
-                    <h2 class="text-3xl font-bold text-[#58a6ff] tracking-tight">${repo.name}</h2>
-                </div>
-                <div>
-                    <h4 class="text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-3">Açıklama</h4>
-                    <div class="bg-[#0d1117] p-5 rounded-lg border border-[#30363d] text-[#c9d1d9] text-lg leading-relaxed">
-                        ${repo.description || 'Açıklama hazırlanıyor.'}
-                    </div>
-                </div>
+                <h2 class="text-2xl font-bold text-[#58a6ff] border-b border-[#30363d] pb-4 mb-4">${repo.name}</h2>
+                <div class="bg-[#0d1117] p-4 rounded-lg border border-[#30363d] mb-6 text-[#c9d1d9]">${repo.description || 'Açıklama yok.'}</div>
                 <div class="space-y-4">
-                    <h4 class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Proje İçeriği</h4>
-                    <div class="flex flex-wrap gap-3">${branchBtns || '<span class="text-xs text-gray-600 italic">Bu repoda alt proje bulunamadı.</span>'}</div>
+                    <h4 class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Alt Projeler</h4>
+                    <div class="flex flex-wrap gap-2">${btns || '<span class="text-xs text-gray-600">Dallanma yok.</span>'}</div>
                 </div>
-                <div class="flex gap-4 pt-6">
-                    <a href="${repo.html_url}" target="_blank" class="flex-1 text-center bg-[#238636] hover:bg-[#2ea043] text-white py-4 rounded-lg font-bold transition-all shadow-lg">GitHub'da Gör</a>
-                    <button onclick="closeModal('projectModal')" class="px-8 border border-[#30363d] hover:bg-[#30363d] text-gray-400 py-4 rounded-lg font-bold transition-all uppercase text-xs tracking-widest">Kapat</button>
+                <div class="flex gap-4 pt-8">
+                    <a href="${repo.html_url}" target="_blank" class="flex-1 text-center bg-[#238636] text-white py-3 rounded-lg font-bold">GitHub</a>
+                    <button onclick="closeModal('projectModal')" class="px-6 border border-[#30363d] text-gray-400 rounded-lg">Kapat</button>
                 </div>`;
         } catch (e) {
-            content.innerHTML = `<div class="text-center py-10 text-red-400">Detaylar şu an yüklenemiyor.</div>`;
+            content.innerHTML = `<div class="text-center py-10 text-red-400">Detaylar yüklenemedi.</div>`;
         }
     }
 
-    function openBranchInfo(repoName, branchName, description) {
+    function openBranchInfo(r, b, d) {
         const modal = document.getElementById('branchModal');
         const content = document.getElementById('branchModalContent');
-        const branchUrl = `https://github.com/${username}/${repoName}/tree/${branchName}`;
-
         content.innerHTML = `
-            <div class="border-b border-[#444c56] pb-4">
-                <h3 class="text-2xl font-bold text-white tracking-tight">${branchName}</h3>
-                <p class="text-[10px] text-[#58a6ff] mt-1 font-mono uppercase tracking-widest">${repoName}</p>
-            </div>
-            <div>
-                <h4 class="text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-2">Proje Açıklaması</h4>
-                <p class="text-[#8b949e] text-md leading-relaxed">${description || 'Proje detayları için GitHub bağlantısını kullanabilirsiniz.'}</p>
-            </div>
-            <div class="flex flex-col gap-3 pt-4">
-                <a href="${branchUrl}" target="_blank" class="text-center bg-[#21262d] border border-[#444c56] hover:border-[#58a6ff] text-white py-3 rounded-lg font-bold transition-all">GitHub'da Gör</a>
-                <button onclick="closeModal('branchModal')" class="text-center text-gray-500 hover:text-white text-xs uppercase tracking-widest transition">Geri Dön</button>
-            </div>`;
+            <h3 class="text-xl font-bold text-white mb-2">${b}</h3>
+            <p class="text-sm text-[#8b949e] mb-6">${d || 'Açıklama mevcut değil.'}</p>
+            <a href="https://github.com/${username}/${r}/tree/${b}" target="_blank" class="block text-center bg-[#21262d] border border-[#444c56] text-white py-3 rounded-lg font-bold">GitHub'da Aç</a>
+            <button onclick="closeModal('branchModal')" class="w-full mt-4 text-xs text-gray-500 uppercase">Geri Dön</button>`;
         modal.classList.add('active');
     }
 
-    function closeModal(id) {
-        document.getElementById(id).classList.remove('active');
-        if (id === 'projectModal') document.body.style.overflow = 'auto';
-    }
-
+    function closeModal(id) { document.getElementById(id).classList.remove('active'); if(id==='projectModal') document.body.style.overflow='auto'; }
     loadRepos();
 </script>
 </body>
