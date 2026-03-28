@@ -14,6 +14,12 @@
         .edu-img { width: 100%; height: 250px; object-fit: cover; border-radius: 8px; border: 1px solid #30363d; }
         .btn-main { background: #21262d; border: 1px solid #30363d; padding: 6px 14px; border-radius: 6px; font-size: 12px; color: #58a6ff; transition: 0.2s; cursor: pointer; font-weight: 600; }
         .btn-main:hover { background: #30363d; border-color: #58a6ff; color: #fff; }
+
+        /* Temaya uygun özel kaydırma çubuğu */
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #0d1117; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #30363d; border-radius: 10px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #58a6ff; }
     </style>
 </head>
 <body>
@@ -111,13 +117,6 @@
     </div>
 </div>
 
-<div id="branchModal" class="modal" style="z-index: 110;" onclick="closeModal('branchModal')">
-    <div class="bg-[#1c2128] border border-[#444c56] w-full max-w-lg rounded-xl p-8 space-y-6 relative shadow-2xl" onclick="event.stopPropagation()">
-        <button onclick="closeModal('branchModal')" class="absolute top-4 right-4 text-gray-500 hover:text-white text-2xl">&times;</button>
-        <div id="branchModalContent"></div>
-    </div>
-</div>
-
 <footer class="py-12 border-t border-[#30363d] text-center text-[10px] text-[#484f58] uppercase tracking-[0.3em] font-mono">
     <p>© 2026 Enes Mahmut Ateş | Gebze, Kocaeli</p>
 </footer>
@@ -183,119 +182,95 @@
         }
     }
 
-async function showDetails(index) {
-    const repo = projects[index];
-    const modal = document.getElementById('projectModal');
-    const content = document.getElementById('modalContent');
-    
-    content.innerHTML = `<div class="text-center py-10 animate-pulse text-gray-500 text-xs font-mono tracking-widest">Veriler alınıyor...</div>`;
-    modal.classList.add('active');
-    document.body.style.overflow = 'hidden';
-
-    try {
-        const res = await fetch(`https://api.github.com/repos/${username}/${repo.name}/branches`);
-        if (!res.ok) throw new Error();
-        const branches = await res.json();
+    async function showDetails(index) {
+        const repo = projects[index];
+        const modal = document.getElementById('projectModal');
+        const content = document.getElementById('modalContent');
         
-        branches.sort((a, b) => a.name.localeCompare(b.name));
+        content.innerHTML = `<div class="text-center py-10 animate-pulse text-gray-500 text-xs font-mono tracking-widest">Veriler alınıyor...</div>`;
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
 
-        // Branch'ler için liste yapısı (Doğrudan GitHub'a gider)
-        let branchItems = branches.filter(b => b.name !== 'main').map(b => {
-            const displayName = b.name.includes('-') && b.name.length > 2 ? b.name.slice(2) : b.name;
-            return `
-                <a href="https://github.com/${username}/${repo.name}/tree/${b.name}" target="_blank" 
-                   class="flex items-center justify-between p-3 rounded-lg border border-[#30363d] bg-[#161b22] hover:border-[#58a6ff] hover:bg-[#1c2128] transition-all group">
-                    <span class="font-mono text-[13px] text-[#58a6ff]">* ${displayName}</span>
-                    <span class="text-[11px] text-[#8b949e] opacity-0 group-hover:opacity-100 transition-opacity uppercase tracking-tighter">GitHub'da İncele ↗</span>
-                </a>`;
-        }).join('');
-
-        // Ekstra Repolar için liste yapısı (Yine Modal açar)
-        let extraRepoItems = "";
-        const checkExtraRepos = (targetRepo, list) => {
-            if (repo.name.toLowerCase() === targetRepo) {
-                list.forEach(name => {
-                    const idx = projects.findIndex(p => p.name.toLowerCase() === name.toLowerCase());
-                    if (idx !== -1) {
-                        const p = projects[idx];
-                        extraRepoItems += `
-                            <div onclick="showDetails(${idx})" 
-                               class="flex items-center justify-between p-3 rounded-lg border border-[#30363d] bg-[#161b22] hover:border-[#58a6ff] cursor-pointer transition-all group">
-                                <span class="font-mono text-[13px] text-[#58a6ff] font-bold">* ${p.name}</span>
-                                <span class="text-[11px] text-gray-500 italic truncate max-w-[200px] ml-4">${p.description || 'Detaylar için tıkla'}</span>
-                            </div>`;
-                    }
-                });
-            }
-        };
-
-        checkExtraRepos('42-kocaeli-common-core', ['42-kocaeli-cpp-modules']);
-        checkExtraRepos('42-kocaeli-advanced-projects', [
-            '42-Kocaeli-Unity-Piscine', '42-Kocaeli-Django-Piscine', 
-            '42-Kocaeli-Ocaml-Piscine', '42-Kocaeli-Mobile-Piscine'
-        ]);
-
-        content.innerHTML = `
-            <div class="border-b border-[#30363d] pb-6 mb-6">
-                <h2 class="text-3xl font-bold text-white tracking-tight">${repo.name}</h2>
-                <p class="text-[#8b949e] mt-4 text-base leading-relaxed">${repo.description || 'Proje açıklaması hazırlanıyor.'}</p>
-            </div>
+        try {
+            const res = await fetch(`https://api.github.com/repos/${username}/${repo.name}/branches`);
+            if (!res.ok) throw new Error();
+            const branches = await res.json();
             
-            <div class="space-y-6 max-h-[450px] overflow-y-auto pr-2 custom-scrollbar">
-                ${extraRepoItems ? `
-                    <div class="space-y-3">
-                        <h4 class="text-[10px] font-bold text-gray-500 uppercase tracking-[0.2em] opacity-60">Alt Projeler</h4>
-                        <div class="grid gap-2">${extraRepoItems}</div>
-                    </div>` : ''}
+            branches.sort((a, b) => a.name.localeCompare(b.name));
 
-                <div class="space-y-3">
-                    <h4 class="text-[10px] font-bold text-gray-500 uppercase tracking-[0.2em] opacity-60">Branch / Modüller</h4>
-                    <div class="grid gap-2">
-                        ${branchItems || '<span class="text-xs text-gray-600">Branch bulunamadı.</span>'}
+            // İçerik Listesi (GitHub'a doğrudan yönlendirir)
+            let moduleItems = branches.filter(b => b.name !== 'main').map(b => {
+                const displayName = b.name.includes('-') && b.name.length > 2 ? b.name.slice(2) : b.name;
+                return `
+                    <a href="https://github.com/${username}/${repo.name}/tree/${b.name}" target="_blank" 
+                       class="flex items-center justify-between p-3 rounded-lg border border-[#30363d] bg-[#161b22] hover:border-[#58a6ff] hover:bg-[#1c2128] transition-all group">
+                        <span class="font-mono text-[13px] text-[#58a6ff]">* ${displayName}</span>
+                        <span class="text-[11px] text-[#8b949e] opacity-0 group-hover:opacity-100 transition-opacity uppercase tracking-tighter">İncele ↗</span>
+                    </a>`;
+            }).join('');
+
+            // Alt Projeler (Yeni Modal açar)
+            let extraRepoItems = "";
+            const checkExtraRepos = (targetRepo, list) => {
+                if (repo.name.toLowerCase() === targetRepo) {
+                    list.forEach(name => {
+                        const idx = projects.findIndex(p => p.name.toLowerCase() === name.toLowerCase());
+                        if (idx !== -1) {
+                            const p = projects[idx];
+                            extraRepoItems += `
+                                <div onclick="showDetails(${idx})" 
+                                   class="flex items-center justify-between p-3 rounded-lg border border-[#30363d] bg-[#161b22] hover:border-[#58a6ff] cursor-pointer transition-all group">
+                                    <span class="font-mono text-[13px] text-[#58a6ff] font-bold">* ${p.name}</span>
+                                    <span class="text-[11px] text-gray-500 italic truncate ml-4 max-w-[250px]">${p.description || 'Detaylar için tıkla'}</span>
+                                </div>`;
+                        }
+                    });
+                }
+            };
+
+            checkExtraRepos('42-kocaeli-common-core', ['42-kocaeli-cpp-modules']);
+            checkExtraRepos('42-kocaeli-advanced-projects', [
+                '42-Kocaeli-Unity-Piscine', '42-Kocaeli-Django-Piscine', 
+                '42-Kocaeli-Ocaml-Piscine', '42-Kocaeli-Mobile-Piscine'
+            ]);
+
+            content.innerHTML = `
+                <div class="border-b border-[#30363d] pb-6 mb-6">
+                    <h2 class="text-3xl font-bold text-white tracking-tight">${repo.name}</h2>
+                    <div class="bg-[#0d1117]/50 p-4 rounded-lg border border-[#30363d]/50 mt-4">
+                        <p class="text-[#8b949e] text-sm leading-relaxed">${repo.description || 'Proje açıklaması hazırlanıyor.'}</p>
                     </div>
                 </div>
-            </div>
+                
+                <div class="space-y-8 max-h-[400px] overflow-y-auto pr-3 custom-scrollbar">
+                    <div class="space-y-3">
+                        <h4 class="text-[10px] font-bold text-gray-500 uppercase tracking-[0.2em] opacity-60">Proje İçeriği</h4>
+                        <div class="grid gap-2">
+                            ${moduleItems || '<span class="text-xs text-gray-600">İçerik bilgisi ana proje sayfasında mevcut.</span>'}
+                        </div>
+                    </div>
 
-            <div class="flex gap-4 pt-6 border-t border-[#30363d] mt-6">
-                <a href="${repo.html_url}" target="_blank" class="flex-1 text-center bg-[#238636] text-white py-3 rounded-lg font-bold transition hover:bg-[#2ea043] text-sm">GitHub Ana Sayfası</a>
-                <button onclick="closeModal('projectModal')" class="px-6 border border-[#30363d] text-gray-400 py-3 rounded-lg font-bold transition hover:bg-[#30363d] text-sm">Kapat</button>
-            </div>`;
-    } catch (e) {
-        content.innerHTML = `<div class="text-center py-10 text-red-400 font-mono text-xs">VERİLER ALINIRKEN HATA OLUŞTU.</div>`;
-    }
-}
+                    ${extraRepoItems ? `
+                        <div class="space-y-3 pt-4 border-t border-[#30363d]/30">
+                            <h4 class="text-[10px] font-bold text-gray-500 uppercase tracking-[0.2em] opacity-60">İlgili Alt Projeler</h4>
+                            <div class="grid gap-2">${extraRepoItems}</div>
+                        </div>` : ''}
+                </div>
 
-    function openBranchInfo(repo, realName, displayName, pDesc) {
-        const modal = document.getElementById('branchModal');
-        const content = document.getElementById('branchModalContent');
-        content.innerHTML = `
-            <div class="mb-6">
-                <h3 class="text-2xl font-bold text-white tracking-tight leading-tight">${displayName}</h3>
-                <p class="text-[10px] text-[#58a6ff] font-mono tracking-widest mt-2 opacity-80">${repo}</p>
-            </div>
-            
-            <div class="bg-[#0d1117]/50 p-5 rounded-lg border border-[#30363d] mb-8">
-                <p class="text-[#8b949e] leading-relaxed text-sm">${pDesc || 'Proje açıklaması hazılanıyor'}</p>
-            </div>
-            
-            <a href="https://github.com/${username}/${repo}/tree/${realName}" target="_blank" 
-               class="block text-center bg-[#21262d] border border-[#58a6ff]/50 text-[#58a6ff] py-4 rounded-lg font-bold transition-all duration-300 hover:bg-[#58a6ff] hover:text-white">
-               Kodları İncele
-            </a>
-            
-            <div class="flex justify-center mt-8">
-                <button onclick="closeModal('branchModal')" 
-                        class="group flex items-center gap-2 text-[12px] text-[#484f58] hover:text-[#8b949e] transition-all font-medium">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 transition-transform group-hover:-translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-                    </svg>
-                    <span class="border-b border-transparent group-hover:border-[#484f58]">Geri dön</span>
-                </button>
-            </div>`;
-        modal.classList.add('active');
+                <div class="flex gap-4 pt-6 border-t border-[#30363d] mt-6">
+                    <a href="${repo.html_url}" target="_blank" class="flex-1 text-center bg-[#238636] text-white py-3 rounded-lg font-bold transition hover:bg-[#2ea043] text-sm">GitHub Sayfası</a>
+                    <button onclick="closeModal('projectModal')" class="px-8 border border-[#30363d] text-gray-400 py-3 rounded-lg font-bold transition hover:bg-[#30363d] text-sm">Kapat</button>
+                </div>`;
+        } catch (e) {
+            content.innerHTML = `<div class="text-center py-10 text-red-400 font-mono text-xs">VERİLER ALINIRKEN HATA OLUŞTU.</div>`;
+        }
     }
 
-    function closeModal(id) { document.getElementById(id).classList.remove('active'); if(id==='projectModal') document.body.style.overflow='auto'; }
+    function closeModal(id) { 
+        document.getElementById(id).classList.remove('active'); 
+        if(id==='projectModal') document.body.style.overflow='auto'; 
+    }
+    
     loadRepos();
 </script>
 </body>
