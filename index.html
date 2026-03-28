@@ -176,51 +176,53 @@
     }
 
 async function showDetails(index) {
-        const repo = projects[index];
-        const modal = document.getElementById('projectModal');
-        const content = document.getElementById('modalContent');
+    const repo = projects[index];
+    const modal = document.getElementById('projectModal');
+    const content = document.getElementById('modalContent');
+    
+    content.innerHTML = `<div class="text-center py-10 animate-pulse text-gray-500 text-xs font-mono tracking-widest">Veriler alınıyor...</div>`;
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+
+    try {
+        const res = await fetch(`https://api.github.com/repos/${username}/${repo.name}/branches`);
+        if (!res.ok) throw new Error();
+        const branches = await res.json();
         
-        content.innerHTML = `<div class="text-center py-10 animate-pulse text-gray-500 text-xs font-mono tracking-widest">Veriler alınıyor...</div>`;
-        modal.classList.add('active');
-        document.body.style.overflow = 'hidden';
+        branches.sort((a, b) => a.name.localeCompare(b.name));
 
-        try {
-            const res = await fetch(`https://api.github.com/repos/${username}/${repo.name}/branches`);
-            if (!res.ok) throw new Error();
-            const branches = await res.json();
+        let projBtns = branches.filter(b => b.name !== 'main').map(b => {
+            const displayName = b.name.includes('-') && b.name.length > 2 ? b.name.slice(2) : b.name;
             
-            branches.sort((a, b) => a.name.localeCompare(b.name));
+            return `<button onclick="openBranchInfo('${repo.name}', '${b.name}', '${displayName}', \`${repo.description || ''}\`)" 
+                    class="btn-main font-mono text-[13px]">* ${displayName}</button>`;
+        }).join('');
 
-            let projBtns = branches.filter(b => b.name !== 'main').map(b => {
-                // Harf büyütme (uppercase) kaldırıldı, orijinal yazım korunuyor
-                const displayName = b.name.includes('-') && b.name.length > 2 ? b.name.slice(2) : b.name;
-                
-                return `<button onclick="openBranchInfo('${repo.name}', '${b.name}', '${displayName}', \`${repo.description || ''}\`)" 
-                        class="btn-main font-mono text-[13px]">* ${displayName}</button>`;
-            }).join('');
-
-            if (repo.name.toLowerCase() === '42-kocaeli-common-core') {
-                const cppIdx = projects.findIndex(p => p.name.toLowerCase() === '42-kocaeli-cpp-modules');
-                if (cppIdx !== -1) projBtns += `<button onclick="showDetails(${cppIdx})" class="btn-main border-[#58a6ff]/50 text-white bg-[#58a6ff]/10">🚀 C++ Modülleri</button>`;
+        // Cpp Modülleri butonunu diğerleriyle tamamen aynı görünüme getirdik
+        if (repo.name.toLowerCase() === '42-kocaeli-common-core') {
+            const cppIdx = projects.findIndex(p => p.name.toLowerCase() === '42-kocaeli-cpp-modules');
+            if (cppIdx !== -1) {
+                projBtns += `<button onclick="showDetails(${cppIdx})" class="btn-main font-mono text-[13px]">* 42-Kocaeli-Cpp-Modules</button>`;
             }
-
-            content.innerHTML = `
-                <h2 class="text-3xl font-bold text-[#58a6ff] tracking-tight mb-6">${repo.name}</h2>
-                <div class="bg-[#0d1117] p-5 rounded-lg border border-[#30363d] text-[#c9d1d9] text-lg leading-relaxed">${repo.description || 'Proje açıklaması hazılanıyor.'}</div>
-                
-                <div class="space-y-4 mt-10">
-                    <h4 class="text-[11px] font-bold text-gray-500 uppercase tracking-widest opacity-60">İlgili Projeler</h4>
-                    <div class="flex flex-wrap gap-3 pt-2">${projBtns || '<span class="text-xs text-gray-600">Bu bölümde alt proje bulunamadı.</span>'}</div>
-                </div>
-
-                <div class="flex gap-4 pt-12">
-                    <a href="${repo.html_url}" target="_blank" class="flex-1 text-center bg-[#238636] text-white py-4 rounded-lg font-bold shadow-lg transition hover:bg-[#2ea043]">GitHub Proje Sayfası</a>
-                    <button onclick="closeModal('projectModal')" class="px-8 border border-[#30363d] text-gray-400 py-4 rounded-lg font-bold transition hover:bg-[#30363d]">Kapat</button>
-                </div>`;
-        } catch (e) {
-            content.innerHTML = `<div class="text-center py-10 text-red-400">Detaylı verilere şu an ulaşılamıyor.</div>`;
         }
+
+        content.innerHTML = `
+            <h2 class="text-3xl font-bold text-[#58a6ff] tracking-tight mb-6">${repo.name}</h2>
+            <div class="bg-[#0d1117] p-5 rounded-lg border border-[#30363d] text-[#c9d1d9] text-lg leading-relaxed">${repo.description || 'Proje açıklaması hazılanıyor.'}</div>
+            
+            <div class="space-y-4 mt-10">
+                <h4 class="text-[11px] font-bold text-gray-500 uppercase tracking-widest opacity-60">İlgili Projeler</h4>
+                <div class="flex flex-wrap gap-3 pt-2">${projBtns || '<span class="text-xs text-gray-600">Bu bölümde alt proje bulunamadı.</span>'}</div>
+            </div>
+
+            <div class="flex gap-4 pt-12">
+                <a href="${repo.html_url}" target="_blank" class="flex-1 text-center bg-[#238636] text-white py-4 rounded-lg font-bold shadow-lg transition hover:bg-[#2ea043]">GitHub Proje Sayfası</a>
+                <button onclick="closeModal('projectModal')" class="px-8 border border-[#30363d] text-gray-400 py-4 rounded-lg font-bold transition hover:bg-[#30363d]">Kapat</button>
+            </div>`;
+    } catch (e) {
+        content.innerHTML = `<div class="text-center py-10 text-red-400">Detaylı verilere şu an ulaşılamıyor.</div>`;
     }
+}
 
     function openBranchInfo(repo, realName, displayName, pDesc) {
         const modal = document.getElementById('branchModal');
