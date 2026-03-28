@@ -33,12 +33,31 @@
 </nav>
 
 <main class="max-w-6xl mx-auto px-6 py-12 space-y-24">
-    <section id="about" class="flex flex-col md:flex-row items-center gap-12 pt-10 text-center md:text-left">
-        <img src="profil.jpg" class="w-48 h-48 md:w-56 md:h-56 rounded-2xl border-2 border-[#30363d] shadow-2xl object-cover">
-        <div class="space-y-4">
-            <h1 class="text-5xl font-extrabold text-white tracking-tight">Enes Mahmut Ateş</h1>
-            <p class="text-xl text-[#58a6ff] font-medium">Bilgisayar Mühendisi & Yazılım Geliştirici</p>
-            <p class="text-[#8b949e] max-w-xl text-lg leading-relaxed">Sistem programlamadan mobil uygulama mimarilerine uzanan geniş bir teknik yelpazede çözümler üreten bir bilgisayar mühendisiyim.</p>
+    <section id="about" class="flex flex-col md:flex-row items-start gap-12 pt-10">
+        <div class="flex flex-col items-center md:sticky md:top-24">
+            <img src="profil.jpg" class="w-48 h-48 md:w-56 md:h-56 rounded-2xl border-2 border-[#30363d] shadow-2xl object-cover">
+            <div class="mt-4 text-center">
+                <h1 class="text-3xl font-extrabold text-white tracking-tight">Enes Mahmut Ateş</h1>
+                <p class="text-[#58a6ff] font-medium">Bilgisayar Mühendisi</p>
+            </div>
+        </div>
+        
+        <div class="space-y-6 flex-1">
+            <h2 class="text-4xl font-bold text-white tracking-tight border-b border-[#30363d] pb-4">Hakkımda</h2>
+            <div class="space-y-4 text-[#8b949e] text-lg leading-relaxed">
+                <p>
+                    2001 yılında Erzincan'da doğdum. 24 yaşındayım. Akademik yolculuğum Erzincan Mustafa Doğan Anadolu Lisesi'nde, okulu **birincilikle** bitirerek başladı. 
+                </p>
+                <p>
+                    2020 yılında girdiğim üniversite sınavında Türkiye **5802.**'si olarak büyük bir başarı elde ettim ve Yeditepe Üniversitesi Bilgisayar Mühendisliği bölümünü **%100 tam burslu** olarak kazandım. Hazırlık eğitimiyle birlikte toplam 5 yıllık dolu dolu bir mühendislik eğitiminin ardından mezun oldum.
+                </p>
+                <p>
+                    Yazılıma olan tutkum üniversite yıllarında farklı bir boyut kazandı. 2. sınıftayken katıldığım bir kulüp gezisi sayesinde **42 Kocaeli** ile tanıştım. Bu yenilikçi eğitim modelinden etkilenerek yine aynı yıl (2. sınıf) içerisinde 42 eğitimine başladım ve o günden bugüne sistem programlama ve modern yazılım mimarileri üzerine kendimi geliştirmeye devam ediyorum.
+                </p>
+                <p>
+                    Şu an düşük seviyeli dillerden mobil uygulama ekosistemlerine kadar geniş bir teknik yelpazede projeler üreten, disiplinli ve meraklı bir bilgisayar mühendisi olarak kariyerimi sürdürüyorum.
+                </p>
+            </div>
         </div>
     </section>
 
@@ -52,8 +71,10 @@
                         <h3 class="text-xl font-bold text-white">Yeditepe Üniversitesi</h3>
                         <span class="bg-blue-900/40 text-[#58a6ff] text-[10px] px-3 py-1 rounded-full border border-[#58a6ff]/30 font-bold uppercase tracking-widest">MEZUN</span>
                     </div>
-                    <p class="text-sm mb-3 text-[#8b949e] italic text-pretty">Bilgisayar Mühendisliği (2020 - 2025)</p>
-                    <div class="bg-blue-500/5 border border-[#58a6ff]/20 p-3 rounded-lg text-[#58a6ff] text-xs font-semibold">🏆 YKS 2020 Türkiye 5802.'si | %100 Tam Burslu</div>
+                    <p class="text-sm mb-3 text-[#8b949e] italic">Bilgisayar Mühendisliği (2020 - 2025)</p>
+                    <div class="bg-blue-500/5 border border-[#58a6ff]/20 p-3 rounded-lg text-[#58a6ff] text-xs font-semibold uppercase tracking-tighter">
+                        🏆 Türkiye 5802.'si | %100 Tam Burslu
+                    </div>
                 </div>
             </div>
             <div class="gh-card p-2 border-[#30363d]">
@@ -64,7 +85,9 @@
                         <span class="bg-green-900/40 text-[#3fb950] text-[10px] px-3 py-1 rounded-full border border-[#3fb950]/30 font-bold uppercase tracking-widest">AKTİF</span>
                     </div>
                     <p class="text-sm mb-3 text-[#8b949e] italic">Yazılım Okulu (Ekol 42)</p>
-                    <p class="text-xs text-[#8b949e] leading-relaxed">Proje odaklı akran öğrenmesiyle ileri seviye sistem projeleri geliştiriyorum.</p>
+                    <p class="text-xs text-[#8b949e] leading-relaxed">
+                        Üniversite 2. sınıftan itibaren dahil olduğum bu ekosistemde sistem projeleri geliştiriyorum.
+                    </p>
                 </div>
             </div>
         </div>
@@ -135,7 +158,7 @@
         const modal = document.getElementById('projectModal');
         const content = document.getElementById('modalContent');
         
-        content.innerHTML = `<div class="text-center py-10 animate-pulse text-gray-500 font-mono text-xs uppercase tracking-widest">Repo verileri yükleniyor...</div>`;
+        content.innerHTML = `<div class="text-center py-10 animate-pulse text-gray-500 font-mono text-xs uppercase tracking-widest">Yükleniyor...</div>`;
         modal.classList.add('active');
         document.body.style.overflow = 'hidden';
 
@@ -151,20 +174,19 @@
             content.innerHTML = `
                 <div class="border-b border-[#30363d] pb-4">
                     <h2 class="text-3xl font-bold text-[#58a6ff] tracking-tight">${repo.name}</h2>
-                    <p class="text-[10px] text-gray-500 mt-2 font-mono uppercase tracking-[0.2em]">Ana Proje Dizini</p>
                 </div>
                 <div>
-                    <h4 class="text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-3">Açıklama</h4>
-                    <div class="bg-[#0d1117] p-5 rounded-lg border border-[#30363d] text-[#c9d1d9] text-lg leading-relaxed shadow-inner">
-                        ${repo.description || '<span class="italic opacity-40">Açıklama hazırlanıyor.</span>'}
+                    <h4 class="text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-3 text-pretty">Açıklama</h4>
+                    <div class="bg-[#0d1117] p-5 rounded-lg border border-[#30363d] text-[#c9d1d9] text-lg leading-relaxed">
+                        ${repo.description || 'Açıklama hazırlanıyor.'}
                     </div>
                 </div>
                 <div class="space-y-4">
-                    <h4 class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Diğer Dallanmalar (Branches)</h4>
+                    <h4 class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Dallanmalar (Branches)</h4>
                     <div class="flex flex-wrap gap-3">${branchBtns || '<span class="text-xs text-gray-600 italic">Başka dal bulunamadı.</span>'}</div>
                 </div>
                 <div class="flex gap-4 pt-6">
-                    <a href="${repo.html_url}" target="_blank" class="flex-1 text-center bg-[#238636] hover:bg-[#2ea043] text-white py-4 rounded-lg font-bold transition-all shadow-lg shadow-green-900/10">GitHub'da Ana Projeyi Gör</a>
+                    <a href="${repo.html_url}" target="_blank" class="flex-1 text-center bg-[#238636] hover:bg-[#2ea043] text-white py-4 rounded-lg font-bold transition-all shadow-lg">GitHub'da Gör</a>
                     <button onclick="closeModal('projectModal')" class="px-8 border border-[#30363d] hover:bg-[#30363d] text-gray-400 py-4 rounded-lg font-bold transition-all uppercase text-xs tracking-widest">Kapat</button>
                 </div>`;
         } catch (e) { content.innerHTML = `<p>Hata oluştu.</p>`; }
@@ -182,12 +204,10 @@
             </div>
             <div>
                 <h4 class="text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-2">Branch Açıklaması</h4>
-                <p class="text-[#8b949e] text-md leading-relaxed">
-                    ${description || 'Bu branch için ana proje açıklaması geçerlidir.'}
-                </p>
+                <p class="text-[#8b949e] text-md leading-relaxed">${description || 'Proje açıklaması geçerlidir.'}</p>
             </div>
             <div class="flex flex-col gap-3 pt-4">
-                <a href="${branchUrl}" target="_blank" class="text-center bg-[#21262d] border border-[#444c56] hover:border-[#58a6ff] text-white py-3 rounded-lg font-bold transition-all">Bu Branch'i GitHub'da Gör</a>
+                <a href="${branchUrl}" target="_blank" class="text-center bg-[#21262d] border border-[#444c56] hover:border-[#58a6ff] text-white py-3 rounded-lg font-bold transition-all">Bu Branch'e Git</a>
                 <button onclick="closeModal('branchModal')" class="text-center text-gray-500 hover:text-white text-xs uppercase tracking-widest transition">Geri Dön</button>
             </div>`;
         modal.classList.add('active');
