@@ -43,12 +43,10 @@
                 <p class="text-[#58a6ff] font-medium uppercase text-xs tracking-[0.2em] mt-2">Bilgisayar Mühendisi</p>
             </div>
         </div>
-        <div class="space-y-6 flex-1">
+        <div class="space-y-6 flex-1 text-[#8b949e] text-lg leading-relaxed">
             <h2 class="text-4xl font-bold text-white tracking-tight border-b border-[#30363d] pb-4">Merhaba, Ben Enes.</h2>
-            <div class="space-y-5 text-[#8b949e] text-lg leading-relaxed">
-                <p>Erzincan'da başlayan yolculuğumda Yeditepe Üniversitesi'nden tam burslu olarak mezun oldum. Mühendislik eğitimimi 42 Kocaeli'deki pratik ve proje odaklı disiplinle harmanladım.</p>
-                <p>Flutter ve Backend teknolojilerinden, sistem seviyesindeki düşük seviyeli projelere kadar geniş bir alanda yazılım çözümleri geliştiriyorum.</p>
-            </div>
+            <p>Yolculuğuma Erzincan'da başladım. Yeditepe Üniversitesi Bilgisayar Mühendisliği bölümünden tam burslu mezun oldum. 42 Kocaeli bünyesinde proje odaklı ekosistemde kendimi geliştirdim.</p>
+            <p>Düşük seviyeli sistemlerden modern mobil uygulama mimarilerine kadar her katmanda çözüm üretmeye hazır bir yazılımcıyım.</p>
         </div>
     </section>
 
@@ -62,7 +60,7 @@
                         <h3 class="text-xl font-bold text-white group-hover:text-[#58a6ff]">Yeditepe Üniversitesi</h3>
                         <span class="bg-blue-900/40 text-[#58a6ff] text-[10px] px-3 py-1 rounded-full border border-[#58a6ff]/30 font-bold uppercase">MEZUN</span>
                     </div>
-                    <p class="text-sm text-[#8b949e] italic">Bilgisayar Mühendisi (2020 - 2025)</p>
+                    <p class="text-sm text-[#8b949e] italic">Bilgisayar Mühendisliği (2020 - 2025)</p>
                 </div>
             </a>
             <a href="https://42turkiye.com.tr/" target="_blank" class="gh-card p-2 border-[#30363d] block transition-all group">
@@ -116,12 +114,16 @@
 
             const filtered = projects.filter(repo => !repo.fork && !hidden.includes(repo.name.toLowerCase()));
 
+            // KRİTİK SIRALAMA: Yeditepe -> Common Core -> Advanced
             filtered.sort((a, b) => {
-                const nA = a.name.toLowerCase();
-                const nB = b.name.toLowerCase();
-                if (nA === '42-kocaeli-common-core') return -1;
-                if (nA === '42-kocaeli-advanced-projects') return -1;
-                return 0;
+                const order = {
+                    'yeditepe-university-term-projects': 1,
+                    '42-kocaeli-common-core': 2,
+                    '42-kocaeli-advanced-projects': 3
+                };
+                const valA = order[a.name.toLowerCase()] || 99;
+                const valB = order[b.name.toLowerCase()] || 99;
+                return valA - valB;
             });
 
             container.innerHTML = filtered.map(repo => {
@@ -145,7 +147,7 @@
         const repo = projects[index];
         const modal = document.getElementById('projectModal');
         const content = document.getElementById('modalContent');
-        content.innerHTML = `<div class="text-center py-10 animate-pulse text-gray-500 text-xs font-mono">YÜKLENİYOR...</div>`;
+        content.innerHTML = `<div class="text-center py-10 animate-pulse text-gray-500 text-xs font-mono uppercase tracking-widest">Yükleniyor...</div>`;
         modal.classList.add('active');
         document.body.style.overflow = 'hidden';
 
@@ -154,6 +156,7 @@
             const branches = await res.json();
             branches.sort((a, b) => a.name.localeCompare(b.name));
 
+            // Proje Listesi (Üstte)
             let moduleItems = branches.filter(b => b.name !== 'main').map(b => {
                 const displayName = b.name.includes('-') && b.name.length > 2 ? b.name.slice(2) : b.name;
                 return `<a href="https://github.com/${username}/${repo.name}/tree/${b.name}" target="_blank" class="flex items-center justify-between p-3 rounded-lg border border-[#30363d] bg-[#161b22] hover:border-[#58a6ff] transition-all group">
@@ -162,14 +165,16 @@
                 </a>`;
             }).join('');
 
+            // Alt Projeler (En Altta)
             let extraRepoItems = "";
             const mapping = {
                 '42-kocaeli-common-core': ['42-kocaeli-cpp-modules'],
                 '42-kocaeli-advanced-projects': ['42-Kocaeli-Unity-Piscine', '42-Kocaeli-Django-Piscine', '42-Kocaeli-Ocaml-Piscine', '42-Kocaeli-Mobile-Piscine']
             };
 
-            if (mapping[repo.name.toLowerCase()]) {
-                mapping[repo.name.toLowerCase()].forEach(name => {
+            const targetKey = repo.name.toLowerCase();
+            if (mapping[targetKey]) {
+                mapping[targetKey].forEach(name => {
                     const found = projects.find(p => p.name.toLowerCase() === name.toLowerCase());
                     if (found) {
                         extraRepoItems += `<div onclick="showDetails(${projects.indexOf(found)})" class="flex items-center justify-between p-3 rounded-lg border border-[#30363d] bg-[#161b22] hover:border-[#58a6ff] cursor-pointer transition-all group">
@@ -182,19 +187,19 @@
 
             content.innerHTML = `
                 <div class="border-b border-[#30363d] pb-6 mb-6">
-                    <h2 class="text-3xl font-bold text-white">${repo.name}</h2>
-                    <p class="text-[#8b949e] text-sm mt-4">${repo.description || 'Proje detayları ana sayfada mevcut.'}</p>
+                    <h2 class="text-3xl font-bold text-white tracking-tight">${repo.name}</h2>
+                    <p class="text-[#8b949e] text-sm mt-4 leading-relaxed">${repo.description || 'Bu projeye dair detaylı açıklama GitHub sayfası üzerinden incelenebilir.'}</p>
                 </div>
                 <div class="space-y-6 max-h-[400px] overflow-y-auto pr-3 custom-scrollbar">
                     ${moduleItems ? `<div><h4 class="text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-3">Projeler</h4><div class="grid gap-2">${moduleItems}</div></div>` : ''}
                     ${extraRepoItems ? `<div class="pt-4 border-t border-[#30363d]/30"><h4 class="text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-3">Alt Projeler</h4><div class="grid gap-2">${extraRepoItems}</div></div>` : ''}
                 </div>
                 <div class="flex gap-4 pt-6 border-t border-[#30363d] mt-6">
-                    <a href="${repo.html_url}" target="_blank" class="flex-1 text-center bg-[#238636] text-white py-3 rounded-lg font-bold text-sm">GitHub Sayfası</a>
-                    <button onclick="closeModal('projectModal')" class="px-8 border border-[#30363d] text-gray-400 py-3 rounded-lg font-bold text-sm">Kapat</button>
+                    <a href="${repo.html_url}" target="_blank" class="flex-1 text-center bg-[#238636] text-white py-3 rounded-lg font-bold transition hover:bg-[#2ea043] text-sm">GitHub Sayfası</a>
+                    <button onclick="closeModal('projectModal')" class="px-8 border border-[#30363d] text-gray-400 py-3 rounded-lg font-bold transition hover:bg-[#30363d] text-sm">Kapat</button>
                 </div>`;
         } catch (e) {
-            content.innerHTML = `<div class="text-center py-10 text-red-400">Hata oluştu.</div>`;
+            content.innerHTML = `<div class="text-center py-10 text-red-400 font-mono text-xs uppercase">Veri yüklenirken hata oluştu.</div>`;
         }
     }
 
