@@ -72,6 +72,12 @@
       .text-vibrant {
         color: #f0f6fc !important;
         font-weight: 400;
+        line-clamp: 2;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        line-height: 1.4;
       }
       .gh-link-icon {
         color: #58a6ff !important;
@@ -274,7 +280,8 @@
         "02": "Ad-hoc Polimorfizm, Operatör Aşırı Yükleme",
         "03": "Kalıtım (Inheritance) ve Sınıf Hiyerarşileri",
         "04": "Subtype Polimorfizm, Abstract Sınıflar ve Interface",
-        "-Kocaeli-Minishell": "Bash benzeri terminal simülasyonu Bash benzeri terminal simülasyonu Bash benzeri terminal simülasyonu Bash benzeri terminal simülasyonu Bash benzeri terminal simülasyonu Bash benzeri terminal simülasyonu Bash benzeri terminal simülasyonu Bash benzeri terminal simülasyonu Bash benzeri terminal simülasyonu Bash benzeri terminal simülasyonu Bash benzeri terminal simülasyonu Bash benzeri terminal simülasyonu Bash benzeri terminal simülasyonu Bash benzeri terminal simülasyonu Bash benzeri terminal simülasyonu Bash benzeri terminal simülasyonu Bash benzeri terminal simülasyonu Bash benzeri terminal simülasyonu Bash benzeri terminal simülasyonu Bash benzeri terminal simülasyonu Bash benzeri terminal simülasyonu Bash benzeri terminal simülasyonu Bash benzeri terminal simülasyonu Bash benzeri terminal simülasyonu Bash benzeri terminal simülasyonu Bash benzeri terminal simülasyonu Bash benzeri terminal simülasyonu Bash benzeri terminal simülasyonu Bash benzeri terminal simülasyonu Bash benzeri terminal simülasyonu Bash benzeri terminal simülasyonu Bash benzeri terminal simülasyonu Bash benzeri terminal simülasyonu Bash benzeri terminal simülasyonu Bash benzeri terminal simülasyonu",
+        "-Kocaeli-Minishell":
+          "Bash benzeri terminal simülasyonu Bash benzeri terminal simülasyonu Bash benzeri terminal simülasyonu Bash benzeri terminal simülasyonu Bash benzeri terminal simülasyonu Bash benzeri terminal simülasyonu Bash benzeri terminal simülasyonu Bash benzeri terminal simülasyonu Bash benzeri terminal simülasyonu Bash benzeri terminal simülasyonu Bash benzeri terminal simülasyonu Bash benzeri terminal simülasyonu Bash benzeri terminal simülasyonu Bash benzeri terminal simülasyonu Bash benzeri terminal simülasyonu Bash benzeri terminal simülasyonu Bash benzeri terminal simülasyonu Bash benzeri terminal simülasyonu Bash benzeri terminal simülasyonu Bash benzeri terminal simülasyonu Bash benzeri terminal simülasyonu Bash benzeri terminal simülasyonu Bash benzeri terminal simülasyonu Bash benzeri terminal simülasyonu Bash benzeri terminal simülasyonu Bash benzeri terminal simülasyonu Bash benzeri terminal simülasyonu Bash benzeri terminal simülasyonu Bash benzeri terminal simülasyonu Bash benzeri terminal simülasyonu Bash benzeri terminal simülasyonu Bash benzeri terminal simülasyonu Bash benzeri terminal simülasyonu Bash benzeri terminal simülasyonu Bash benzeri terminal simülasyonu",
         printf: "Özelleştirilmiş printf fonksiyonu geliştirme",
         get_next_line: "Dosya okuma ve satır işleme kütüphanesi",
       };
@@ -363,9 +370,10 @@
                 <a href="https://github.com/${username}/${repo.name}/tree/${b.name}" target="_blank"
                   class="flex items-center justify-between p-4 desc-box hover:border-[#58a6ff] transition-all group">
                     <span class="font-mono text-[13px] text-[#58a6ff] font-bold tracking-tight">* ${cleanName}</span>
-                    <span class="text-[12px] text-vibrant truncate ml-4 italic text-right flex items-center gap-2">
-                      ${desc || "Kodları incele"} <span class="gh-link-icon">↗</span>
-                    </span>
+                    <span class="text-[12px] text-vibrant ml-4 text-left flex-1 italic">
+						${desc || "Kodları incele"}
+					</span>
+					<span class="gh-link-icon ml-2">↗</span>
                 </a>`;
             })
             .join("");
@@ -394,9 +402,10 @@
                   <div onclick="showDetails(${projects.indexOf(found)})"
                       class="flex items-center justify-between p-4 desc-box hover:border-[#58a6ff] cursor-pointer transition-all group">
                       <span class="font-mono text-[13px] text-[#58a6ff] font-bold">* ${found.name}</span>
-                      <span class="text-[12px] text-vibrant truncate ml-4 italic text-right flex items-center gap-2">
-                        ${found.description || "Alt proje detayı"} <span class="gh-link-icon">↗</span>
-                      </span>
+                      <span class="text-[12px] text-vibrant ml-4 text-left flex-1 italic">
+					${found.description || "Alt proje detayı"}
+					</span>
+					<span class="gh-link-icon ml-2">↗</span>
                   </div>`;
               }
             });
