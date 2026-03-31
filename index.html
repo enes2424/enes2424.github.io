@@ -59,14 +59,15 @@
       .custom-scrollbar::-webkit-scrollbar-thumb:hover {
         background: #58a6ff;
       }
-      .highlight-box {
+      .desc-highlight {
         background-color: #010409 !important;
         border-color: #58a6ff !important;
-        box-shadow: 0 0 15px rgba(88, 166, 255, 0.1);
-      }
-      .highlight-text {
         color: #f0f6fc !important;
-        font-weight: 600;
+        box-shadow: inset 0 0 10px rgba(88, 166, 255, 0.05);
+      }
+      .text-bright {
+        color: #58a6ff !important;
+        font-weight: 500;
       }
     </style>
   </head>
@@ -305,15 +306,18 @@
           container.innerHTML = filtered
             .map((repo) => {
               const idx = projects.indexOf(repo);
-              return `<div class="gh-card p-6 flex flex-col justify-between group" onclick="showDetails(${idx})">
-                    <div class="space-y-4">
-                        <h3 class="text-lg font-bold text-[#58a6ff] group-hover:text-white transition truncate">${repo.name}</h3>
-                        <p class="text-sm text-[#8b949e] leading-relaxed line-clamp-3 h-[60px]">${repo.description || "Proje detaylarını inceleyebilirsiniz."}</p>
-                    </div>
-                    <div class="mt-4 pt-4 border-t border-[#30363d] flex justify-end">
-                        <span class="text-[#58a6ff] text-[10px] font-bold uppercase opacity-0 group-hover:opacity-100 transition-all tracking-widest">İncele →</span>
-                    </div>
-                </div>`;
+              const hasDesc =
+                repo.description && repo.description.trim() !== "";
+
+              return `<div class="gh-card p-6 flex flex-col justify-between group ${hasDesc ? "desc-highlight" : ""}" onclick="showDetails(${idx})">
+              <div class="space-y-4">
+                  <h3 class="text-lg font-bold ${hasDesc ? "text-white" : "text-[#58a6ff]"} group-hover:text-white transition truncate">${repo.name}</h3>
+                  <p class="text-sm ${hasDesc ? "text-[#c9d1d9]" : "text-[#8b949e]"} leading-relaxed line-clamp-3 h-[60px]">${repo.description || "Proje detaylarını inceleyebilirsiniz."}</p>
+              </div>
+              <div class="mt-4 pt-4 border-t border-[#30363d] flex justify-end">
+                  <span class="text-[#58a6ff] text-[10px] font-bold uppercase opacity-0 group-hover:opacity-100 transition-all tracking-widest">İncele →</span>
+              </div>
+          </div>`;
             })
             .join("");
         } catch (e) {
@@ -343,19 +347,14 @@
                 b.name.includes("-") && b.name.length > 2
                   ? b.name.slice(2)
                   : b.name;
-
-              // Açıklama var mı kontrol et
-              const hasDescription =
-                branchDescriptions[cleanName] !== undefined;
-              const desc =
-                branchDescriptions[cleanName] ||
-                "Proje detaylarını ve kodları incele";
+              const desc = branchDescriptions[cleanName];
+              const hasDesc = desc !== undefined; // Senin yazdığın sözlükte var mı?
 
               return `
       <a href="https://github.com/${username}/${repo.name}/tree/${b.name}" target="_blank"
-         class="flex items-center justify-between p-4 rounded-lg border border-[#30363d] bg-[#0d1117] hover:border-[#58a6ff] transition-all group ${hasDescription ? "highlight-box" : ""}">
+         class="flex items-center justify-between p-4 rounded-lg border border-[#30363d] bg-[#0d1117] hover:border-[#58a6ff] transition-all group ${hasDesc ? "desc-highlight" : ""}">
           <span class="font-mono text-[13px] text-[#58a6ff] font-bold tracking-tight">* ${cleanName}</span>
-          <span class="text-[11px] ${hasDescription ? "highlight-text" : "text-[#484f58]"} group-hover:text-[#8b949e] transition-colors truncate ml-4 italic text-right">${desc} ↗</span>
+          <span class="text-[11px] ${hasDesc ? "text-bright" : "text-[#484f58]"} group-hover:text-[#8b949e] transition-colors truncate ml-4 italic text-right">${desc || "İncele"} ↗</span>
       </a>`;
             })
             .join("");
@@ -377,12 +376,15 @@
                 (p) => p.name.toLowerCase() === name.toLowerCase(),
               );
               if (found) {
+                const hasExtraDesc =
+                  found.description && found.description.trim() !== "";
+
                 extraRepoItems += `
-                        <div onclick="showDetails(${projects.indexOf(found)})"
-                             class="flex items-center justify-between p-4 rounded-lg border border-[#30363d] bg-[#0d1117] hover:border-[#58a6ff] cursor-pointer transition-all group">
-                            <span class="font-mono text-[13px] text-[#58a6ff] font-bold">* ${found.name}</span>
-                            <span class="text-[11px] text-[#484f58] group-hover:text-[#8b949e] transition-colors truncate ml-4 italic text-right">${found.description || "Alt proje detayı"} ↗</span>
-                        </div>`;
+              <div onclick="showDetails(${projects.indexOf(found)})"
+                   class="flex items-center justify-between p-4 rounded-lg border border-[#30363d] bg-[#0d1117] hover:border-[#58a6ff] cursor-pointer transition-all group ${hasExtraDesc ? "desc-highlight" : ""}">
+                  <span class="font-mono text-[13px] text-[#58a6ff] font-bold">* ${found.name}</span>
+                  <span class="text-[11px] ${hasExtraDesc ? "text-bright" : "text-[#484f58]"} group-hover:text-[#8b949e] transition-colors truncate ml-4 italic text-right">${found.description || "Alt proje detayı"} ↗</span>
+              </div>`;
               }
             });
           }
