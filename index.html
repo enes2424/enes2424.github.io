@@ -1,220 +1,403 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="tr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Enes Mahmut Ateş | Portfolyo</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body { background-color: #0d1117; color: #c9d1d9; font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif; scroll-behavior: smooth; }
-        .gh-card { background-color: #161b22; border: 1px solid #30363d; border-radius: 8px; transition: 0.3s; cursor: pointer; min-height: 160px; }
-        .gh-card:hover { border-color: #58a6ff; transform: translateY(-4px); }
-        .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 100; align-items: center; justify-content: center; padding: 20px; }
-        .modal.active { display: flex; }
-        .edu-img { width: 100%; height: 250px; object-fit: cover; border-radius: 8px; border: 1px solid #30363d; }
-        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
-        .custom-scrollbar::-webkit-scrollbar-track { background: #0d1117; }
-        .custom-scrollbar::-webkit-scrollbar-thumb { background: #30363d; border-radius: 10px; }
-        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #58a6ff; }
+      body {
+        background-color: #0d1117;
+        color: #c9d1d9;
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial,
+          sans-serif;
+        scroll-behavior: smooth;
+      }
+      .gh-card {
+        background-color: #161b22;
+        border: 1px solid #30363d;
+        border-radius: 8px;
+        transition: 0.3s;
+        cursor: pointer;
+        min-height: 160px;
+      }
+      .gh-card:hover {
+        border-color: #58a6ff;
+        transform: translateY(-4px);
+      }
+      .modal {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.85);
+        z-index: 100;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+      }
+      .modal.active {
+        display: flex;
+      }
+      .edu-img {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+        border-radius: 8px;
+        border: 1px solid #30363d;
+      }
+      .custom-scrollbar::-webkit-scrollbar {
+        width: 6px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-track {
+        background: #0d1117;
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: #30363d;
+        border-radius: 10px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+        background: #58a6ff;
+      }
     </style>
-</head>
-<body>
-
-<nav class="sticky top-0 z-50 bg-[#0d1117]/90 backdrop-blur-md border-b border-[#30363d] p-4">
-    <div class="max-w-6xl mx-auto flex justify-between items-center">
-        <a href="https://github.com/enes2424" target="_blank" class="flex items-center gap-3 hover:opacity-80 transition group">
-            <img src="profil.jpg" class="w-8 h-8 rounded-full border border-[#30363d] object-cover group-hover:border-[#58a6ff]">
-            <span class="font-bold text-white tracking-tight uppercase group-hover:text-[#58a6ff]">ENES2424</span>
+  </head>
+  <body>
+    <nav
+      class="sticky top-0 z-50 bg-[#0d1117]/90 backdrop-blur-md border-b border-[#30363d] p-4"
+    >
+      <div class="max-w-6xl mx-auto flex justify-between items-center">
+        <a
+          href="https://github.com/enes2424"
+          target="_blank"
+          class="flex items-center gap-3 hover:opacity-80 transition group"
+        >
+          <img
+            src="profil.jpg"
+            class="w-8 h-8 rounded-full border border-[#30363d] object-cover group-hover:border-[#58a6ff]"
+          />
+          <span
+            class="font-bold text-white tracking-tight uppercase group-hover:text-[#58a6ff]"
+            >ENES2424</span
+          >
         </a>
         <div class="flex gap-6 text-sm text-[#8b949e]">
-            <a href="#about" class="hover:text-[#58a6ff] transition">Hakkımda</a>
-            <a href="#education" class="hover:text-[#58a6ff] transition">Eğitim</a>
-            <a href="#projects" class="hover:text-[#58a6ff] transition">Projeler</a>
+          <a href="#about" class="hover:text-[#58a6ff] transition">Hakkımda</a>
+          <a href="#education" class="hover:text-[#58a6ff] transition"
+            >Eğitim</a
+          >
+          <a href="#projects" class="hover:text-[#58a6ff] transition"
+            >Projeler</a
+          >
         </div>
-    </div>
-</nav>
+      </div>
+    </nav>
 
-<main class="max-w-6xl mx-auto px-6 py-12 space-y-24">
-    <section id="about" class="flex flex-col md:flex-row items-start gap-12 pt-10">
+    <main class="max-w-6xl mx-auto px-6 py-12 space-y-24">
+      <section
+        id="about"
+        class="flex flex-col md:flex-row items-start gap-12 pt-10"
+      >
         <div class="flex flex-col items-center md:sticky md:top-24">
-            <img src="profil.jpg" class="w-48 h-48 md:w-56 md:h-56 rounded-2xl border-2 border-[#30363d] shadow-2xl object-cover">
-            <div class="mt-4 text-center">
-                <h1 class="text-3xl font-extrabold text-white tracking-tight">Enes Mahmut Ateş</h1>
-                <p class="text-[#58a6ff] font-medium uppercase text-xs tracking-[0.2em] mt-2">Bilgisayar Mühendisi</p>
-            </div>
+          <img
+            src="profil.jpg"
+            class="w-48 h-48 md:w-56 md:h-56 rounded-2xl border-2 border-[#30363d] shadow-2xl object-cover"
+          />
+          <div class="mt-4 text-center">
+            <h1 class="text-3xl font-extrabold text-white tracking-tight">
+              Enes Mahmut Ateş
+            </h1>
+            <p
+              class="text-[#58a6ff] font-medium uppercase text-xs tracking-[0.2em] mt-2"
+            >
+              Bilgisayar Mühendisi
+            </p>
+          </div>
         </div>
         <div class="space-y-6 flex-1 text-[#8b949e] text-lg leading-relaxed">
-            <h2 class="text-4xl font-bold text-white tracking-tight border-b border-[#30363d] pb-4">Merhaba, Ben Enes.</h2>
-            <p>
-                    Yolculuğuma Erzincan'da başladım. Mustafa Doğan Anadolu Lisesi'nden **okul birinciliğiyle** mezun olarak sağlam bir temel attım. Ardından 2020 YKS'de Türkiye **Sayısal 5802.si** olma başarısını göstererek, Yeditepe Üniversitesi Bilgisayar Mühendisliği bölümüne **%100 tam burslu** kabul edildim ve 5 yıllık bir eğitimin ardından mezun oldum.
-                </p>
-                <p>
-                    Üniversite eğitimimin yanı sıra, Bilişim Vadisi'nde yer alan, "öğretmensiz" akran öğrenimi ve tamamen proje odaklı bir ekosistem olan **42 Kocaeli** bünyesinde kendimi geliştirme şansı yakaladım. 2. sınıfta bir kulüp gezisiyle tanıştığım bu yenilikçi okulda, gerçek dünya problemlerine kodla çözüm üretmeyi öğrendim.
-                </p>
-                <p>
-                    Kurumsal eğitimlerin dışına çıkarak **Exercism** ve **LeetCode** gibi platformlarda 400'e yakın algoritmik egzersiz tamamlayarak problem çözme kaslarımı sürekli diri tuttum. Bu disiplinli çalışma süreci, bana özellikle **Flutter** ve **Backend** teknolojileri üzerine yoğunlaşan birçok freelance projede yer alma ve ticari ürünler geliştirme fırsatı sundu.
-                </p>
-                <p>
-                    Bugün, mühendislik disiplinini meraklı bir geliştirici ruhuyla birleştiren, düşük seviyeli sistemlerden modern mobil uygulama mimarilerine kadar her katmanda çözüm üretmeye hazır bir yazılımcıyım.
-                </p>
+          <h2
+            class="text-4xl font-bold text-white tracking-tight border-b border-[#30363d] pb-4"
+          >
+            Merhaba, Ben Enes.
+          </h2>
+          <p>
+            Yolculuğuma Erzincan'da başladım. Mustafa Doğan Anadolu Lisesi'nden
+            **okul birinciliğiyle** mezun olarak sağlam bir temel attım.
+            Ardından 2020 YKS'de Türkiye **Sayısal 5802.si** olma başarısını
+            göstererek, Yeditepe Üniversitesi Bilgisayar Mühendisliği bölümüne
+            **%100 tam burslu** kabul edildim ve 5 yıllık bir eğitimin ardından
+            mezun oldum.
+          </p>
+          <p>
+            Üniversite eğitimimin yanı sıra, Bilişim Vadisi'nde yer alan,
+            "öğretmensiz" akran öğrenimi ve tamamen proje odaklı bir ekosistem
+            olan **42 Kocaeli** bünyesinde kendimi geliştirme şansı yakaladım.
+            2. sınıfta bir kulüp gezisiyle tanıştığım bu yenilikçi okulda,
+            gerçek dünya problemlerine kodla çözüm üretmeyi öğrendim.
+          </p>
+          <p>
+            Kurumsal eğitimlerin dışına çıkarak **Exercism** ve **LeetCode**
+            gibi platformlarda 400'e yakın algoritmik egzersiz tamamlayarak
+            problem çözme kaslarımı sürekli diri tuttum. Bu disiplinli çalışma
+            süreci, bana özellikle **Flutter** ve **Backend** teknolojileri
+            üzerine yoğunlaşan birçok freelance projede yer alma ve ticari
+            ürünler geliştirme fırsatı sundu.
+          </p>
+          <p>
+            Bugün, mühendislik disiplinini meraklı bir geliştirici ruhuyla
+            birleştiren, düşük seviyeli sistemlerden modern mobil uygulama
+            mimarilerine kadar her katmanda çözüm üretmeye hazır bir
+            yazılımcıyım.
+          </p>
         </div>
-    </section>
+      </section>
 
-    <section id="education" class="space-y-10">
-        <h2 class="text-3xl font-bold text-white border-l-4 border-[#58a6ff] pl-4">Eğitim & Yetkinlik</h2>
+      <section id="education" class="space-y-10">
+        <h2
+          class="text-3xl font-bold text-white border-l-4 border-[#58a6ff] pl-4"
+        >
+          Eğitim & Yetkinlik
+        </h2>
         <div class="grid md:grid-cols-2 gap-8">
-            <a href="https://yeditepe.edu.tr" target="_blank" class="gh-card p-2 border-[#30363d] block transition-all group">
-                <img src="yeditepe.jpg" class="edu-img mb-4">
-                <div class="p-4">
-                    <div class="flex justify-between items-center mb-2">
-                        <h3 class="text-xl font-bold text-white group-hover:text-[#58a6ff]">Yeditepe Üniversitesi</h3>
-                        <span class="bg-blue-900/40 text-[#58a6ff] text-[10px] px-3 py-1 rounded-full border border-[#58a6ff]/30 font-bold uppercase">MEZUN</span>
-                    </div>
-                    <p class="text-sm text-[#8b949e] italic">Bilgisayar Mühendisi (2020 - 2025)</p>
-                </div>
-            </a>
-            <a href="https://42turkiye.com.tr/" target="_blank" class="gh-card p-2 border-[#30363d] block transition-all group">
-                <img src="kocaeli42.jpg" class="edu-img mb-4">
-                <div class="p-4">
-                    <div class="flex justify-between items-center mb-2">
-                        <h3 class="text-xl font-bold text-white group-hover:text-[#3fb950]">42 Kocaeli</h3>
-                        <span class="bg-green-900/40 text-[#3fb950] text-[10px] px-3 py-1 rounded-full border border-[#3fb950]/30 font-bold uppercase">AKTİF</span>
-                    </div>
-                    <p class="text-sm text-[#8b949e] italic">Yazılım Okulu (Ekol 42)</p>
-                </div>
-            </a>
+          <a
+            href="https://yeditepe.edu.tr"
+            target="_blank"
+            class="gh-card p-2 border-[#30363d] block transition-all group"
+          >
+            <img src="yeditepe.jpg" class="edu-img mb-4" />
+            <div class="p-4">
+              <div class="flex justify-between items-center mb-2">
+                <h3
+                  class="text-xl font-bold text-white group-hover:text-[#58a6ff]"
+                >
+                  Yeditepe Üniversitesi
+                </h3>
+                <span
+                  class="bg-blue-900/40 text-[#58a6ff] text-[10px] px-3 py-1 rounded-full border border-[#58a6ff]/30 font-bold uppercase"
+                  >MEZUN</span
+                >
+              </div>
+              <p class="text-sm text-[#8b949e] italic">
+                Bilgisayar Mühendisi (2020 - 2025)
+              </p>
+            </div>
+          </a>
+          <a
+            href="https://42turkiye.com.tr/"
+            target="_blank"
+            class="gh-card p-2 border-[#30363d] block transition-all group"
+          >
+            <img src="kocaeli42.jpg" class="edu-img mb-4" />
+            <div class="p-4">
+              <div class="flex justify-between items-center mb-2">
+                <h3
+                  class="text-xl font-bold text-white group-hover:text-[#3fb950]"
+                >
+                  42 Kocaeli
+                </h3>
+                <span
+                  class="bg-green-900/40 text-[#3fb950] text-[10px] px-3 py-1 rounded-full border border-[#3fb950]/30 font-bold uppercase"
+                  >AKTİF</span
+                >
+              </div>
+              <p class="text-sm text-[#8b949e] italic">
+                Yazılım Okulu (Ekol 42)
+              </p>
+            </div>
+          </a>
         </div>
-    </section>
+      </section>
 
-    <section id="projects" class="space-y-8">
+      <section id="projects" class="space-y-8">
         <h2 class="text-3xl font-bold text-white">Projelerim</h2>
-        <div id="repo-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div class="col-span-full text-center py-20 text-gray-500 animate-pulse font-mono text-xs">YÜKLENİYOR...</div>
+        <div
+          id="repo-list"
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+        >
+          <div
+            class="col-span-full text-center py-20 text-gray-500 animate-pulse font-mono text-xs"
+          >
+            YÜKLENİYOR...
+          </div>
         </div>
-    </section>
-</main>
+      </section>
+    </main>
 
-<div id="projectModal" class="modal" onclick="closeModal('projectModal')">
-    <div class="bg-[#161b22] border border-[#30363d] w-full max-w-3xl rounded-xl p-8 space-y-6 relative shadow-2xl" onclick="event.stopPropagation()">
-        <button onclick="closeModal('projectModal')" class="absolute top-4 right-4 text-gray-500 hover:text-white text-3xl">&times;</button>
+    <div id="projectModal" class="modal" onclick="closeModal('projectModal')">
+      <div
+        class="bg-[#161b22] border border-[#30363d] w-full max-w-3xl rounded-xl p-8 space-y-6 relative shadow-2xl"
+        onclick="event.stopPropagation()"
+      >
+        <button
+          onclick="closeModal('projectModal')"
+          class="absolute top-4 right-4 text-gray-500 hover:text-white text-3xl"
+        >
+          &times;
+        </button>
         <div id="modalContent"></div>
+      </div>
     </div>
-</div>
 
-<footer class="py-12 border-t border-[#30363d] text-center text-[10px] text-[#484f58] uppercase tracking-[0.3em] font-mono">
-    <p>© 2026 Enes Mahmut Ateş | Gebze, Kocaeli</p>
-</footer>
+    <footer
+      class="py-12 border-t border-[#30363d] text-center text-[10px] text-[#484f58] uppercase tracking-[0.3em] font-mono"
+    >
+      <p>© 2026 Enes Mahmut Ateş | Gebze, Kocaeli</p>
+    </footer>
 
-<script>
-    const username = 'enes2424';
-    let projects = [];
+    <script>
+      const username = "enes2424";
+      let projects = [];
 
-    // BURAYA İSTEDİĞİN AÇIKLAMALARI EKLE: "branch_adı": "açıklama"
-    const branchDescriptions = {
+      // BURAYA İSTEDİĞİN AÇIKLAMALARI EKLE: "branch_adı": "açıklama"
+      const branchDescriptions = {
         "00": "C++ Temelleri, Sınıf Yapıları ve Veri Tipleri",
         "01": "Bellek Yönetimi, Pointerlar ve Referanslar",
         "02": "Ad-hoc Polimorfizm, Operatör Aşırı Yükleme",
         "03": "Kalıtım (Inheritance) ve Sınıf Hiyerarşileri",
         "04": "Subtype Polimorfizm, Abstract Sınıflar ve Interface",
         "-Kocaeli-Minishell": "Bash benzeri terminal simülasyonu",
-        "printf": "Özelleştirilmiş printf fonksiyonu geliştirme",
-        "get_next_line": "Dosya okuma ve satır işleme kütüphanesi"
-    };
+        printf: "Özelleştirilmiş printf fonksiyonu geliştirme",
+        get_next_line: "Dosya okuma ve satır işleme kütüphanesi",
+      };
 
-    async function loadRepos() {
-        const container = document.getElementById('repo-list');
+      async function loadRepos() {
+        const container = document.getElementById("repo-list");
         try {
-            const res = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=100`);
-            projects = await res.json();
-            
-            const hidden = ['enes2424', 'enes2424.github.io', '42-kocaeli-cpp-modules', '42-kocaeli-unity-piscine', '42-kocaeli-django-piscine', '42-kocaeli-ocaml-piscine', '42-kocaeli-mobile-piscine'];
+          const res = await fetch(
+            `https://api.github.com/users/${username}/repos?sort=updated&per_page=100`,
+          );
+          projects = await res.json();
 
-            const filtered = projects.filter(repo => !repo.fork && !hidden.includes(repo.name.toLowerCase()));
+          const hidden = [
+            "enes2424",
+            "enes2424.github.io",
+            "42-kocaeli-cpp-modules",
+            "42-kocaeli-unity-piscine",
+            "42-kocaeli-django-piscine",
+            "42-kocaeli-ocaml-piscine",
+            "42-kocaeli-mobile-piscine",
+          ];
 
-            filtered.sort((a, b) => {
-                const order = { 'yeditepe-university-term-projects': 1, '42-kocaeli-common-core': 2, '42-kocaeli-advanced-projects': 3 };
-                return (order[a.name.toLowerCase()] || 99) - (order[b.name.toLowerCase()] || 99);
-            });
+          const filtered = projects.filter(
+            (repo) => !repo.fork && !hidden.includes(repo.name.toLowerCase()),
+          );
 
-            container.innerHTML = filtered.map(repo => {
-                const idx = projects.indexOf(repo);
-                return `<div class="gh-card p-6 flex flex-col justify-between group" onclick="showDetails(${idx})">
+          filtered.sort((a, b) => {
+            const order = {
+              "yeditepe-university-term-projects": 1,
+              "42-kocaeli-common-core": 2,
+              "42-kocaeli-advanced-projects": 3,
+            };
+            return (
+              (order[a.name.toLowerCase()] || 99) -
+              (order[b.name.toLowerCase()] || 99)
+            );
+          });
+
+          container.innerHTML = filtered
+            .map((repo) => {
+              const idx = projects.indexOf(repo);
+              return `<div class="gh-card p-6 flex flex-col justify-between group" onclick="showDetails(${idx})">
                     <div class="space-y-4">
                         <h3 class="text-lg font-bold text-[#58a6ff] group-hover:text-white transition truncate">${repo.name}</h3>
-                        <p class="text-sm text-[#8b949e] leading-relaxed line-clamp-3 h-[60px]">${repo.description || 'Proje detaylarını inceleyebilirsiniz.'}</p>
+                        <p class="text-sm text-[#8b949e] leading-relaxed line-clamp-3 h-[60px]">${repo.description || "Proje detaylarını inceleyebilirsiniz."}</p>
                     </div>
                     <div class="mt-4 pt-4 border-t border-[#30363d] flex justify-end">
                         <span class="text-[#58a6ff] text-[10px] font-bold uppercase opacity-0 group-hover:opacity-100 transition-all tracking-widest">İncele →</span>
                     </div>
                 </div>`;
-            }).join('');
-        } catch (e) { container.innerHTML = "Hata oluştu."; }
-    }
+            })
+            .join("");
+        } catch (e) {
+          container.innerHTML = "Hata oluştu.";
+        }
+      }
 
-    async function showDetails(index) {
+      async function showDetails(index) {
         const repo = projects[index];
-        const modal = document.getElementById('projectModal');
-        const content = document.getElementById('modalContent');
+        const modal = document.getElementById("projectModal");
+        const content = document.getElementById("modalContent");
         content.innerHTML = `<div class="text-center py-20 animate-pulse text-gray-600 text-xs font-mono uppercase">Yükleniyor...</div>`;
-        modal.classList.add('active');
-        document.body.style.overflow = 'hidden';
+        modal.classList.add("active");
+        document.body.style.overflow = "hidden";
 
         try {
-            const res = await fetch(`https://api.github.com/repos/${username}/${repo.name}/branches`);
-            const branches = await res.json();
-            branches.sort((a, b) => a.name.localeCompare(b.name));
+          const res = await fetch(
+            `https://api.github.com/repos/${username}/${repo.name}/branches`,
+          );
+          const branches = await res.json();
+          branches.sort((a, b) => a.name.localeCompare(b.name));
 
-            let moduleItems = branches.filter(b => b.name !== 'main').map(b => {
-                const cleanName = b.name.includes('-') && b.name.length > 2 ? b.name.slice(2) : b.name;
-                // Sözlükten açıklamayı çek, yoksa boş bırakma "Detaylar..." yaz.
-                const desc = branchDescriptions[cleanName] || "Proje detaylarını ve kodları incele";
-                
-                return `
-                <a href="https://github.com/${username}/${repo.name}/tree/${b.name}" target="_blank" 
+          let moduleItems = branches
+            .filter((b) => b.name !== "main")
+            .map((b) => {
+              const cleanName =
+                b.name.includes("-") && b.name.length > 2
+                  ? b.name.slice(2)
+                  : b.name;
+              // Sözlükten açıklamayı çek, yoksa boş bırakma "Detaylar..." yaz.
+              const desc =
+                branchDescriptions[cleanName] ||
+                "Proje detaylarını ve kodları incele";
+
+              return `
+                <a href="https://github.com/${username}/${repo.name}/tree/${b.name}" target="_blank"
                    class="flex items-center justify-between p-4 rounded-lg border border-[#30363d] bg-[#0d1117] hover:border-[#58a6ff] transition-all group">
                     <span class="font-mono text-[13px] text-[#58a6ff] font-bold tracking-tight">* ${cleanName}</span>
                     <span class="text-[11px] text-[#484f58] group-hover:text-[#8b949e] transition-colors truncate ml-4 italic text-right">${desc} ↗</span>
                 </a>`;
-            }).join('');
+            })
+            .join("");
 
-            let extraRepoItems = "";
-            const mapping = {
-                '42-kocaeli-common-core': ['42-kocaeli-cpp-modules'],
-                '42-kocaeli-advanced-projects': ['42-Kocaeli-Unity-Piscine', '42-Kocaeli-Django-Piscine', '42-Kocaeli-Ocaml-Piscine', '42-Kocaeli-Mobile-Piscine']
-            };
+          let extraRepoItems = "";
+          const mapping = {
+            "42-kocaeli-common-core": ["42-kocaeli-cpp-modules"],
+            "42-kocaeli-advanced-projects": [
+              "42-Kocaeli-Unity-Piscine",
+              "42-Kocaeli-Django-Piscine",
+              "42-Kocaeli-Ocaml-Piscine",
+              "42-Kocaeli-Mobile-Piscine",
+            ],
+          };
 
-            if (mapping[repo.name.toLowerCase()]) {
-                mapping[repo.name.toLowerCase()].forEach(name => {
-                    const found = projects.find(p => p.name.toLowerCase() === name.toLowerCase());
-                    if (found) {
-                        extraRepoItems += `
-                        <div onclick="showDetails(${projects.indexOf(found)})" 
+          if (mapping[repo.name.toLowerCase()]) {
+            mapping[repo.name.toLowerCase()].forEach((name) => {
+              const found = projects.find(
+                (p) => p.name.toLowerCase() === name.toLowerCase(),
+              );
+              if (found) {
+                extraRepoItems += `
+                        <div onclick="showDetails(${projects.indexOf(found)})"
                              class="flex items-center justify-between p-4 rounded-lg border border-[#30363d] bg-[#0d1117] hover:border-[#58a6ff] cursor-pointer transition-all group">
                             <span class="font-mono text-[13px] text-[#58a6ff] font-bold">* ${found.name}</span>
-                            <span class="text-[11px] text-[#484f58] group-hover:text-[#8b949e] transition-colors truncate ml-4 italic text-right">${found.description || 'Alt proje detayı'} ↗</span>
+                            <span class="text-[11px] text-[#484f58] group-hover:text-[#8b949e] transition-colors truncate ml-4 italic text-right">${found.description || "Alt proje detayı"} ↗</span>
                         </div>`;
-                    }
-                });
-            }
+              }
+            });
+          }
 
-            content.innerHTML = `
+          content.innerHTML = `
                 <div class="border-b border-[#30363d] pb-6 mb-6">
                     <h2 class="text-3xl font-bold text-white tracking-tight">${repo.name}</h2>
-                    <p class="text-[#8b949e] text-sm mt-4 leading-relaxed">${repo.description || 'Detaylı çalışma notları ve kaynak kodlar ilgili proje başlıkları altında yer almaktadır.'}</p>
+                    <p class="text-[#8b949e] text-sm mt-4 leading-relaxed">${repo.description || "Detaylı çalışma notları ve kaynak kodlar ilgili proje başlıkları altında yer almaktadır."}</p>
                 </div>
                 <div class="space-y-6 max-h-[450px] overflow-y-auto pr-3 custom-scrollbar">
-                    ${moduleItems ? `<div><h4 class="text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-3">Projeler</h4><div class="grid gap-2">${moduleItems}</div></div>` : ''}
-                    ${extraRepoItems ? `<div class="pt-4 border-t border-[#30363d]/30"><h4 class="text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-3">Alt Projeler</h4><div class="grid gap-2">${extraRepoItems}</div></div>` : ''}
+                    ${moduleItems ? `<div><h4 class="text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-3">Projeler</h4><div class="grid gap-2">${moduleItems}</div></div>` : ""}
+                    ${extraRepoItems ? `<div class="pt-4 border-t border-[#30363d]/30"><h4 class="text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-3">Alt Projeler</h4><div class="grid gap-2">${extraRepoItems}</div></div>` : ""}
                 </div>
                 <div class="flex gap-4 pt-6 border-t border-[#30363d] mt-6">
                     <a href="${repo.html_url}" target="_blank" class="flex-1 text-center bg-[#238636] text-white py-3 rounded-lg font-bold hover:bg-[#2ea043] transition text-sm">Depo Anasayfası</a>
                     <button onclick="closeModal('projectModal')" class="px-8 border border-[#30363d] text-gray-400 py-3 rounded-lg font-bold hover:bg-[#30363d] transition text-sm">Kapat</button>
                 </div>`;
-        } catch (e) { content.innerHTML = "Hata oluştu."; }
-    }
+        } catch (e) {
+          content.innerHTML = "Hata oluştu.";
+        }
+      }
 
-    function closeModal(id) { document.getElementById(id).classList.remove('active'); document.body.style.overflow='auto'; }
-    loadRepos();
-</script>
-</body>
+      function closeModal(id) {
+        document.getElementById(id).classList.remove("active");
+        document.body.style.overflow = "auto";
+      }
+      loadRepos();
+    </script>
+  </body>
 </html>
