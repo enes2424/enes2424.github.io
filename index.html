@@ -59,6 +59,15 @@
       .custom-scrollbar::-webkit-scrollbar-thumb:hover {
         background: #58a6ff;
       }
+      .highlight-box {
+        background-color: #010409 !important;
+        border-color: #58a6ff !important;
+        box-shadow: 0 0 15px rgba(88, 166, 255, 0.1);
+      }
+      .highlight-text {
+        color: #f0f6fc !important;
+        font-weight: 600;
+      }
     </style>
   </head>
   <body>
@@ -334,17 +343,20 @@
                 b.name.includes("-") && b.name.length > 2
                   ? b.name.slice(2)
                   : b.name;
-              // Sözlükten açıklamayı çek, yoksa boş bırakma "Detaylar..." yaz.
+
+              // Açıklama var mı kontrol et
+              const hasDescription =
+                branchDescriptions[cleanName] !== undefined;
               const desc =
                 branchDescriptions[cleanName] ||
                 "Proje detaylarını ve kodları incele";
 
               return `
-                <a href="https://github.com/${username}/${repo.name}/tree/${b.name}" target="_blank"
-                   class="flex items-center justify-between p-4 rounded-lg border border-[#30363d] bg-[#0d1117] hover:border-[#58a6ff] transition-all group">
-                    <span class="font-mono text-[13px] text-[#58a6ff] font-bold tracking-tight">* ${cleanName}</span>
-                    <span class="text-[11px] text-[#484f58] group-hover:text-[#8b949e] transition-colors truncate ml-4 italic text-right">${desc} ↗</span>
-                </a>`;
+      <a href="https://github.com/${username}/${repo.name}/tree/${b.name}" target="_blank"
+         class="flex items-center justify-between p-4 rounded-lg border border-[#30363d] bg-[#0d1117] hover:border-[#58a6ff] transition-all group ${hasDescription ? "highlight-box" : ""}">
+          <span class="font-mono text-[13px] text-[#58a6ff] font-bold tracking-tight">* ${cleanName}</span>
+          <span class="text-[11px] ${hasDescription ? "highlight-text" : "text-[#484f58]"} group-hover:text-[#8b949e] transition-colors truncate ml-4 italic text-right">${desc} ↗</span>
+      </a>`;
             })
             .join("");
 
