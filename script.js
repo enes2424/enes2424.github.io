@@ -97,6 +97,8 @@ const branchDescriptions = {
     // Yeditepe-University-Term-Projects
     UnoTermProject:
       "Bu proje, popüler kart oyunu Uno'nun Python programlama dili kullanılarak geliştirilmiş bir konsol uygulamasıdır. Nesne yönelimli programlama prensipleriyle kart, deste ve oyuncu gibi oyun bileşenleri modellenmiştir. Program, kartların dağıtılmasını, karıştırılmasını, sıra tabanlı oynanışı ve oyun kurallarını otomatik olarak yöneterek iki oyunculu bir Uno deneyimi sunar.",
+    TetrisTermProject:
+      "Bu proje, klasik Tetris oyununun C++ ve Raylib kütüphanesi kullanılarak geliştirilmiş bir versiyonudur. Proje; rastgele blok oluşturma, döndürme, skor takibi ve artan zorluk seviyesi gibi temel Tetris mekaniklerini başarıyla uygulamaktadır. Oyun, C++ dilinin oyun döngüsü yönetimi, çarpışma tespiti ve kullanıcı girdilerini işleme yeteneklerini sergilemektedir.",
 
     // 42-Kocaeli-Common-Core
     "42-Kocaeli-Minishell": "Bash benzeri terminal simülasyonu",
@@ -105,6 +107,8 @@ const branchDescriptions = {
     // Yeditepe-University-Term-Projects
     UnoTermProject:
       "This project is a console application of the popular card game Uno developed using the Python programming language. Game components such as cards, decks, and players are modeled using object-oriented programming principles. The program provides a two-player Uno experience by automatically managing card distribution, shuffling, turn-based gameplay, and game rules.",
+    TetrisTermProject:
+      "This project is a C++ version of the classic Tetris game developed using the Raylib library. The project successfully implements core Tetris mechanics such as random block generation, rotation, score tracking, and increasing difficulty levels. The game showcases C++'s capabilities in game loop management, collision detection, and processing user input.",
 
     // 42-Kocaeli-Common-Core
     "42-Kocaeli-Minishell": "Bash-like terminal simulation",
