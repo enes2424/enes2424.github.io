@@ -159,7 +159,7 @@ let currentLang = localStorage.getItem("lang") || "en";
 
 function getDescription(desc, lang) {
   if (!desc || typeof desc !== "string") return "";
-  const separator = desc.includes("|") ? "|" : desc.includes("/") ? "/" : null;
+  const separator = desc.includes("|") ? "|" : null;
 
   if (separator) {
     const parts = desc.split(separator);
