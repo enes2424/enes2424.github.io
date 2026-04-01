@@ -301,7 +301,7 @@
         "02": "Ad-hoc Polimorfizm, Operatör Aşırı Yükleme",
         "03": "Kalıtım (Inheritance) ve Sınıf Hiyerarşileri",
         "04": "Subtype Polimorfizm, Abstract Sınıflar ve Interface",
-        "-Kocaeli-Minishell": "Bash benzeri terminal simülasyonu",
+        "42-Kocaeli-Minishell": "Bash benzeri terminal simülasyonu",
         printf: "Özelleştirilmiş printf fonksiyonu geliştirme",
         get_next_line: "Dosya okuma ve satır işleme kütüphanesi",
       };
@@ -439,7 +439,10 @@
             ],
           };
 
+          console.log("Repo adı:", repo.name);
+
           if (mapping[repo.name.toLowerCase()]) {
+            console.log("Eşleşen projeler:", mapping[repo.name.toLowerCase()]);
             mapping[repo.name.toLowerCase()].forEach((name) => {
               const found = projects.find(
                 (p) => p.name.toLowerCase() === name.toLowerCase(),
