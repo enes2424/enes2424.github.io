@@ -439,12 +439,9 @@
             ],
           };
 
-          console.log("Repo adı:", repo.name);
-
           if (mapping[repo.name.toLowerCase()]) {
-            console.log("Eşleşen projeler:", mapping[repo.name.toLowerCase()]);
             mapping[repo.name.toLowerCase()].forEach((name) => {
-              const found = projects.find(
+              const found = githubProjects.find(
                 (p) => p.name.toLowerCase() === name.toLowerCase(),
               );
               if (found) {
@@ -452,7 +449,7 @@
                   found.description && found.description.trim() !== "";
 
                 extraRepoItems += `
-                  <div onclick="showDetails(${projects.indexOf(found)})"
+                  <div onclick="showDetails(${githubProjects.indexOf(found)})"
                       class="flex items-center justify-between p-4 desc-box hover:border-[#58a6ff] cursor-pointer transition-all group">
                       <span class="font-mono text-[13px] text-[#58a6ff] font-bold">* ${found.name}</span>
                       <span class="text-[12px] text-vibrant ml-4 text-left flex-1 italic">
