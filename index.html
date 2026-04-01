@@ -327,7 +327,7 @@
           description:
             "Konum tabanlı mimarisiyle ısıtma ve teknik servis ihtiyaçlarına çözüm sunan, Flutter ile geliştirilmiş; harita entegrasyonu ve gelişmiş talep yönetim sistemine sahip dinamik bir on-demand mobil uygulamasıdır. Ortak bir backend mimarisi üzerinden hem web hem de mobil platformlarda hizmet veren projenin mobil frontend geliştirme sürecini üstlendim. Uygulamanın aktif kullanımı devam etmekte olup, kullanıcı deneyimini iyileştirmeye yönelik yeni özellikler eklemeye ve geliştirmeler yapmaya hala devam etmekteyim.",
           isManual: true,
-          url: "market://details?id=com.f2r.servishane",
+          url: "https://play.google.com/store/apps/details?id=com.f2r.servishane&hl=uz",
           customLabel: "Uygulamaya Git ↗",
         },
       ];
@@ -372,11 +372,15 @@
                   ${repo.description || "Proje detaylarını inceleyebilirsiniz."}
                 </p>
             </div>
-            <div class="mt-4 pt-4 border-t border-[#30363d] flex justify-end">
+			${
+        repo.isManual && repo.url === "#"
+          ? ""
+          : `<div class="mt-4 pt-4 border-t border-[#30363d] flex justify-end">
                 <span class="gh-link-icon opacity-0 group-hover:opacity-100 transition-all text-xs">
                   ${repo.customLabel || "İncele ↗"}
                 </span>
-            </div>
+            </div>`
+      }
         </div>`;
             })
             .join("");
