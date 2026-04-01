@@ -266,12 +266,11 @@ async function loadRepos() {
     "42-kocaeli-mobile-piscine",
   ];
 
-  const displayProjects = [
-    "Yeditepe-University-Term-Projects",
-    "42-Kocaeli-Common-Core",
-    "42-Kocaeli-Advanced-Projects",
-    ...manualProjects,
-  ];
+  const displayProjects = projects.filter((repo) => {
+    if (repo.isManual) return true;
+    if (repo.fork) return false;
+    return !hideFromGrid.includes(repo.name.toLowerCase());
+  });
 
   if (displayProjects.length === 0 && githubProjects.length === 0) {
     container.innerHTML = translations[currentLang]["error"];
