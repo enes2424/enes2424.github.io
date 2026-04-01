@@ -94,24 +94,20 @@ const translations = {
 
 const branchDescriptions = {
   tr: {
-    "00": "C++ Temelleri, Sınıf Yapıları ve Veri Tipleri",
-    "01": "Bellek Yönetimi, Pointerlar ve Referanslar",
-    "02": "Ad-hoc Polimorfizm, Operatör Aşırı Yükleme",
-    "03": "Kalıtım (Inheritance) ve Sınıf Hiyerarşileri",
-    "04": "Subtype Polimorfizm, Abstract Sınıflar ve Interface",
+    // Yeditepe-University-Term-Projects
+    UnoTermProject:
+      "Bu proje, popüler kart oyunu Uno'nun Python programlama dili kullanılarak geliştirilmiş bir konsol uygulamasıdır. Nesne yönelimli programlama prensipleriyle kart, deste ve oyuncu gibi oyun bileşenleri modellenmiştir. Program, kartların dağıtılmasını, karıştırılmasını, sıra tabanlı oynanışı ve oyun kurallarını otomatik olarak yöneterek iki oyunculu bir Uno deneyimi sunar.",
+
+    // 42-Kocaeli-Common-Core
     "42-Kocaeli-Minishell": "Bash benzeri terminal simülasyonu",
-    printf: "Özelleştirilmiş printf fonksiyonu geliştirme",
-    get_next_line: "Dosya okuma ve satır işleme kütüphanesi",
   },
   en: {
-    "00": "C++ Basics, Class Structures and Data Types",
-    "01": "Memory Management, Pointers and References",
-    "02": "Ad-hoc Polymorphism, Operator Overloading",
-    "03": "Inheritance and Class Hierarchies",
-    "04": "Subtype Polymorphism, Abstract Classes and Interfaces",
+    // Yeditepe-University-Term-Projects
+    UnoTermProject:
+      "This project is a console application of the popular card game Uno developed using the Python programming language. Game components such as cards, decks, and players are modeled using object-oriented programming principles. The program provides a two-player Uno experience by automatically managing card distribution, shuffling, turn-based gameplay, and game rules.",
+
+    // 42-Kocaeli-Common-Core
     "42-Kocaeli-Minishell": "Bash-like terminal simulation",
-    printf: "Developing a custom printf function",
-    get_next_line: "File reading and line processing library",
   },
 };
 
