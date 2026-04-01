@@ -116,6 +116,7 @@ const branchDescriptions = {
     AITermProject2:
       'Bu C++ projesi, Raylib kütüphanesi kullanılarak geliştirilmiş, "Hareket Et ve Kaldır" mekaniğine dayalı bir strateji oyunudur. Proje, rakibin hareket alanını kısıtlama hedefine odaklanan ve 7 hamle ilerisini hesaplayabilen gelişmiş bir Minimax yapay zekasına sahiptir. Oyunun temel amacı, rakibin tüm geçerli hamlelerini engelleyerek onu sıkıştırmak ve yapay zekanın stratejik derinliğini sergilemektir. Bu proje, oyun teorisi ve yapay zeka algoritmalarının etkileşimli bir ortamda nasıl birleştirilebileceğini göstermektedir.',
 
+    
     // 42-Kocaeli-Common-Core
     "42-Kocaeli-Minishell": "Bash benzeri terminal simülasyonu",
   },
