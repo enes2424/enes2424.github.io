@@ -116,7 +116,6 @@ const branchDescriptions = {
     AITermProject2:
       'Bu C++ projesi, Raylib kütüphanesi kullanılarak geliştirilmiş, "Hareket Et ve Kaldır" mekaniğine dayalı bir strateji oyunudur. Proje, rakibin hareket alanını kısıtlama hedefine odaklanan ve 7 hamle ilerisini hesaplayabilen gelişmiş bir Minimax yapay zekasına sahiptir. Oyunun temel amacı, rakibin tüm geçerli hamlelerini engelleyerek onu sıkıştırmak ve yapay zekanın stratejik derinliğini sergilemektir. Bu proje, oyun teorisi ve yapay zeka algoritmalarının etkileşimli bir ortamda nasıl birleştirilebileceğini göstermektedir.',
 
-    
     // 42-Kocaeli-Common-Core
     "42-Kocaeli-Minishell": "Bash benzeri terminal simülasyonu",
   },
@@ -253,7 +252,9 @@ async function loadRepos() {
     console.error("GitHub API error:", e);
   }
 
-  projects = [...githubProjects, ...getManualProjects(currentLang)];
+  const manualProjects = getManualProjects(currentLang);
+
+  projects = [...githubProjects, ...manualProjects];
 
   const hideFromGrid = [
     "enes2424",
@@ -265,11 +266,12 @@ async function loadRepos() {
     "42-kocaeli-mobile-piscine",
   ];
 
-  const displayProjects = projects.filter((repo) => {
-    if (repo.isManual) return true;
-    if (repo.fork) return false;
-    return !hideFromGrid.includes(repo.name.toLowerCase());
-  });
+  const displayProjects = [
+    "Yeditepe-University-Term-Projects",
+    "42-Kocaeli-Common-Core",
+    "42-Kocaeli-Advanced-Projects",
+    ...manualProjects,
+  ];
 
   if (displayProjects.length === 0 && githubProjects.length === 0) {
     container.innerHTML = translations[currentLang]["error"];
