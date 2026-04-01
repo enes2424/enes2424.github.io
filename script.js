@@ -283,10 +283,10 @@ async function showDetails(index) {
     const mapping = {
       "42-kocaeli-common-core": ["42-kocaeli-cpp-modules"],
       "42-kocaeli-advanced-projects": [
-        "42-kocaeli-mobile-piscine",
-        "42-kocaeli-ocaml-piscine",
-        "42-kocaeli-django-piscine",
         "42-kocaeli-unity-piscine",
+        "42-kocaeli-django-piscine",
+        "42-kocaeli-ocaml-piscine",
+        "42-kocaeli-mobile-piscine",
       ],
     };
 
