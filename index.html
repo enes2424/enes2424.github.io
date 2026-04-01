@@ -413,10 +413,7 @@
           let moduleItems = branches
             .filter((b) => b.name !== "main")
             .map((b) => {
-              const cleanName =
-                b.name.includes("-") && b.name.length > 2
-                  ? b.name.slice(2)
-                  : b.name;
+              const cleanName = b.name.length > 2 ? b.name.slice(2) : b.name;
               const desc = branchDescriptions[cleanName];
 
               return `
