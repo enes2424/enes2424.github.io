@@ -195,7 +195,6 @@ function toggleLanguage() {
   localStorage.setItem("lang", currentLang);
   updateLanguageUI();
 
-  // If modal is active, re-show details to update language
   const modal = document.getElementById("projectModal");
   if (modal.classList.contains("active")) {
     const title = modal.querySelector("h2").textContent;
@@ -312,10 +311,10 @@ async function showDetails(index) {
     const mapping = {
       "42-kocaeli-common-core": ["42-kocaeli-cpp-modules"],
       "42-kocaeli-advanced-projects": [
-        "42-kocaeli-unity-piscine",
-        "42-kocaeli-django-piscine",
-        "42-kocaeli-ocaml-piscine",
         "42-kocaeli-mobile-piscine",
+        "42-kocaeli-ocaml-piscine",
+        "42-kocaeli-django-piscine",
+        "42-kocaeli-unity-piscine",
       ],
     };
 
