@@ -114,9 +114,11 @@ const branchDescriptions = {
     AITermProject:
       "Bu proje, C++ ve Raylib kütüphanesi kullanılarak geliştirilmiş, 7x7'lik bir tahta üzerinde oynanan bir strateji oyunudur. Projede, en iyi hamleyi hesaplamak için Minimax algoritmasını kullanan bir yapay zekaya karşı mücadele edilmektedir. Oyunun amacı, rakip taşları ele geçirerek oyun alanında üstünlük sağlamak ve yapay zeka prensiplerinin oyun geliştirmedeki pratik uygulamasını göstermektir. Bu proje, temel oyun mekanikleri ile yapay zeka entegrasyonunu bir araya getirmektedir.",
     AITermProject2:
-      'Bu C++ projesi, Raylib kütüphanesi kullanılarak geliştirilmiş, "Hareket Et ve Kaldır" mekaniğine dayalı bir strateji oyunudur. Proje, rakibin hareket alanını kısıtlama hedefine odaklanan ve 7 hamle ilerisini hesaplayabilen gelişmiş bir Minimax yapay zekasına sahiptir. Oyunun temel amacı, rakibin tüm geçerli hamlelerini engelleyerek onu sıkıştırmak ve yapay zekanın stratejik derinliğini sergilemektir. Bu proje, oyun teorisi ve yapay zeka algoritmalarının etkileşimli bir ortamda nasıl birleştirilebileceğini göstermektedir.',
+      'Bu proje, C++ ve Raylib kütüphanesi kullanılarak geliştirilmiş, "Hareket Et ve Kaldır" mekaniğine dayalı bir strateji oyunudur. Proje, rakibin hareket alanını kısıtlama hedefine odaklanan ve 7 hamle ilerisini hesaplayabilen gelişmiş bir Minimax yapay zekasına sahiptir. Oyunun temel amacı, rakibin tüm geçerli hamlelerini engelleyerek onu sıkıştırmak ve yapay zekanın stratejik derinliğini sergilemektir. Bu proje, oyun teorisi ve yapay zeka algoritmalarının etkileşimli bir ortamda nasıl birleştirilebileceğini göstermektedir.',
 
     // 42-Kocaeli-Common-Core
+    "42-Kocaeli-Libft":
+      "Bu proje, 42 Okulu Common Core müfredatının temelini oluşturan, standart C kütüphanesi fonksiyonlarının (libc) yeniden implement edildiği kapsamlı bir çalışmadır. Bellek yönetimi (dynamic memory allocation), pointer manipülasyonu ve string işleme gibi kritik C programlama temellerini derinlemesine ele alır. Ayrıca içerisinde barındırdığı linked list (bağlı liste) gibi veri yapısı implementasyonları ile dinamik veri yönetimi konusundaki yetkinliği sergiler. Müfredat boyunca geliştirilen tüm projelerde kullanılmak üzere optimize edilmiş, güvenilir ve yüksek performanslı bir araç seti sunmaktadır.",
     "42-Kocaeli-Minishell": "Bash benzeri terminal simülasyonu",
   },
   en: {
@@ -140,9 +142,11 @@ const branchDescriptions = {
     AITermProject:
       "This project is a strategy game played on a 7x7 board, developed using C++ and the Raylib library. In this project, you compete against an artificial intelligence that utilizes the Minimax algorithm to calculate the optimal move. The objective of the game is to achieve dominance on the board by capturing the opponent's pieces, demonstrating the practical application of artificial intelligence principles in game development. This project effectively combines fundamental game mechanics with AI integration.",
     AITermProject2:
-      'This C++ project is a strategy game based on the "Move and Remove" mechanic, developed using the Raylib library. The project features an advanced Minimax artificial intelligence that can calculate 7 moves ahead, focusing on the objective of restricting the opponent\'s movement. The primary goal of the game is to trap the opponent by blocking all their valid moves, showcasing the strategic depth of the AI. This project demonstrates how game theory and artificial intelligence algorithms can be combined in an interactive environment.',
+      'This project is a strategy game based on the "Move and Remove" mechanic, developed using C++ and the Raylib library. The project features an advanced Minimax artificial intelligence that can calculate 7 moves ahead, focusing on the objective of restricting the opponent\'s movement. The primary goal of the game is to trap the opponent by blocking all their valid moves, showcasing the strategic depth of the AI. This project demonstrates how game theory and artificial intelligence algorithms can be combined in an interactive environment.',
 
     // 42-Kocaeli-Common-Core
+    "42-Kocaeli-Libft":
+      "This project is a comprehensive work where standard C library functions (libc) are reimplemented, forming the basis of the 42 School Common Core curriculum. It delves deeply into critical C programming fundamentals such as memory management (dynamic memory allocation), pointer manipulation, and string handling. Additionally, it showcases proficiency in dynamic data management with implementations of data structures like linked lists. It provides an optimized, reliable, and high-performance toolkit for use in all projects developed throughout the curriculum.",
     "42-Kocaeli-Minishell": "Bash-like terminal simulation",
   },
 };
