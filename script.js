@@ -157,6 +157,15 @@ const getManualProjects = (lang) => [
 
 let currentLang = localStorage.getItem("lang") || "en";
 
+function getDescription(repo, lang) {
+  if (!repo.description) return "";
+  const parts = repo.description.split("/");
+  if (parts.length >= 2) {
+    return lang === "en" ? parts[0].trim() : parts[1].trim();
+  }
+  return repo.description;
+}
+
 function updateLanguageUI() {
   document.querySelectorAll("[data-i18n]").forEach((el) => {
     const key = el.getAttribute("data-i18n");
@@ -226,7 +235,7 @@ async function loadRepos() {
                             <div class="space-y-4">
                                 <h3 class="text-lg font-bold text-[#58a6ff] group-hover:text-white transition truncate">${repo.name}</h3>
                                 <p class="text-sm text-vibrant leading-relaxed mt-2">
-                                    ${repo.description || (currentLang === "tr" ? "Proje detaylarını inceleyebilirsiniz." : "You can check project details.")}
+                                    ${getDescription(repo, currentLang) || (currentLang === "tr" ? "Proje detaylarını inceleyebilirsiniz." : "You can check project details.")}
                                 </p>
                             </div>
                             ${
@@ -302,7 +311,7 @@ async function showDetails(index) {
                                 class="flex items-center justify-between p-4 desc-box hover:border-[#58a6ff] cursor-pointer transition-all group">
                                 <span class="font-mono text-[13px] text-[#58a6ff] font-bold">* ${subRepo.name}</span>
                                 <span class="text-[12px] text-vibrant ml-4 text-left flex-1 italic">
-                                    ${subRepo.description || (currentLang === "tr" ? "Alt proje detayı" : "Subproject detail")}
+                                    ${getDescription(subRepo, currentLang) || (currentLang === "tr" ? "Alt proje detayı" : "Subproject detail")}
                                 </span>
                                 <span class="gh-link-icon ml-2">↗</span>
                             </div>`;
@@ -312,7 +321,7 @@ async function showDetails(index) {
     content.innerHTML = `
                     <div class="border-b border-[#30363d] pb-6 mb-6">
                         <h2 class="text-3xl font-bold text-white tracking-tight">${repo.name}</h2>
-                        <p class="text-vibrant text-sm mt-4 leading-relaxed">${repo.description || translations[currentLang]["modal-default-desc"]}</p>
+                        <p class="text-vibrant text-sm mt-4 leading-relaxed">${getDescription(repo, currentLang) || translations[currentLang]["modal-default-desc"]}</p>
                     </div>
                     <div class="space-y-6 max-h-[450px] overflow-y-auto pr-3 custom-scrollbar">
                         ${moduleItems ? `<div><h4 class="text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-3">${translations[currentLang]["modal-projects-title"]}</h4><div class="grid gap-2">${moduleItems}</div></div>` : ""}
