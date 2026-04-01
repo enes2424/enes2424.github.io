@@ -160,6 +160,7 @@ let currentLang = localStorage.getItem("lang") || "en";
 function getDescription(repo, lang) {
   if (!repo.description) return "";
   const parts = repo.description.split("/");
+  console.log(parts);
   if (parts.length >= 2) {
     return lang === "en" ? parts[0].trim() : parts[1].trim();
   }
