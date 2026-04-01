@@ -119,6 +119,13 @@ const branchDescriptions = {
     // 42-Kocaeli-Common-Core
     "42-Kocaeli-Libft":
       "Bu proje, 42 Okulu Common Core müfredatının temelini oluşturan, standart C kütüphanesi fonksiyonlarının (libc) yeniden implement edildiği kapsamlı bir çalışmadır. Bellek yönetimi (dynamic memory allocation), pointer manipülasyonu ve string işleme gibi kritik C programlama temellerini derinlemesine ele alır. Ayrıca içerisinde barındırdığı linked list (bağlı liste) gibi veri yapısı implementasyonları ile dinamik veri yönetimi konusundaki yetkinliği sergiler. Müfredat boyunca geliştirilen tüm projelerde kullanılmak üzere optimize edilmiş, güvenilir ve yüksek performanslı bir araç seti sunmaktadır.",
+    "42-Kocaeli-Printf":
+      "Bu proje, standart C kütüphanesindeki printf fonksiyonunun variadic fonksiyonlar kullanılarak yeniden geliştirilmiş bir versiyonudur. Karakter, string, tam sayı ve hexadecimal gibi farklı format belirleyicilerini destekleyerek düşük seviyeli I/O işlemlerini ve değişken sayıda argüman yönetimini başarıyla gerçekleştirir. Ayrıca genişlik (width), hassasiyet (precision) ve bayraklar (flags) gibi gelişmiş özellikleri içeren bonus bölümüyle karmaşık metin formatlama kabiliyetini sergiler. Proje, C dilinde esnek fonksiyon yapısı ve hassas bellek yönetimi prensiplerinin pratik bir uygulamasını sunmaktadır.",
+    "42-Kocaeli-Get_Next_Line":
+      "Bu proje, bir dosya tanımlayıcısından (file descriptor) her çağrıldığında bir satır okuyan fonksiyonel bir sistem aracıdır. Statik değişkenlerin (static variables) kullanımıyla dosya içindeki okuma konumunu koruyarak verimli bir buffer yönetimi ve düşük seviyeli I/O kontrolü sergiler. Bellek sızıntılarını önleyen hassas dinamik bellek yönetimi prensipleriyle geliştirilen bu fonksiyon, aynı anda birden fazla dosyadan (multiple file descriptors) veri okuyabilme yeteneğine sahiptir. Proje, sistem programlama ve C dilinde kaynak yönetimi konularındaki yetkinliği kanıtlayan kritik bir çalışmadır.",
+    "42-Kocaeli-Push_Swap":
+      "Bu proje, karmaşık bir sıralama problemini iki stack (yığın) ve kısıtlı bir işlem seti kullanarak çözen verimli bir algoritma tasarımı çalışmasıdır. Verileri en az hamle ile sıralamak için optimize edilmiş bir Quicksort algoritması kullanarak veri yapıları, algoritma karmaşıklığı (Big O) ve özyinelemeli programlama kavramlarını derinlemesine uygular. Proje, hem ana sıralama motorunu hem de işlemlerin doğruluğunu kontrol eden bir 'checker' (doğrulayıcı) modülünü içermektedir. Bellek yönetimi ve performans optimizasyonu prensiplerine sadık kalarak, yüksek ölçekli veri setlerinde bile başarılı sonuçlar vermektedir.",
+
     "42-Kocaeli-Minishell": "Bash benzeri terminal simülasyonu",
   },
   en: {
@@ -147,6 +154,13 @@ const branchDescriptions = {
     // 42-Kocaeli-Common-Core
     "42-Kocaeli-Libft":
       "This project is a comprehensive work where standard C library functions (libc) are reimplemented, forming the basis of the 42 School Common Core curriculum. It delves deeply into critical C programming fundamentals such as memory management (dynamic memory allocation), pointer manipulation, and string handling. Additionally, it showcases proficiency in dynamic data management with implementations of data structures like linked lists. It provides an optimized, reliable, and high-performance toolkit for use in all projects developed throughout the curriculum.",
+    "42-Kocaeli-Printf":
+      "This project is a reimplementation of the standard C library's printf function using variadic functions. It successfully handles different format specifiers such as character, string, integer, and hexadecimal, demonstrating low-level I/O operations and management of variable numbers of arguments. Additionally, with its bonus section that includes advanced features like width, precision, and flags, it showcases complex text formatting capabilities. The project offers a practical application of flexible function structure and precise memory management principles in C.",
+    "42-Kocaeli-Get_Next_Line":
+      "This project is a functional utility that reads a line from a file descriptor each time it is called. By using static variables to maintain the reading position within the file, it demonstrates efficient buffer management and low-level I/O control. Developed with precise dynamic memory management principles to prevent memory leaks, this function has the capability to read from multiple file descriptors simultaneously. The project is a critical work that proves proficiency in system programming and resource management in C.",
+    "42-Kocaeli-Push_Swap":
+      "This project is an efficient algorithm design exercise that solves a complex sorting problem using two stacks and a limited set of operations. It applies data structures, algorithmic complexity (Big O), and recursive programming concepts in depth by utilizing an optimized Quicksort algorithm to sort data with minimal moves. The project includes both the main sorting engine and a 'checker' module that verifies the correctness of the operations. Adhering to principles of memory management and performance optimization, it delivers successful results even on large-scale data sets.",
+
     "42-Kocaeli-Minishell": "Bash-like terminal simulation",
   },
 };
