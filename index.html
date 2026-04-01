@@ -354,7 +354,7 @@
             (repo) => !repo.fork && !hidden.includes(repo.name.toLowerCase()),
           );
 
-          projects = [...manualProjects, ...filteredGithub];
+          projects = [...filteredGithub, ...manualProjects];
 
           container.innerHTML = projects
             .map((repo, idx) => {
