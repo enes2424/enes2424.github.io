@@ -70,12 +70,12 @@
         box-shadow: 0 0 15px rgba(88, 166, 255, 0.15);
       }
       .text-vibrant {
-		  color: #f0f6fc !important;
-		  font-weight: 400;
-		  line-height: 1.5;
-		  display: block;
-		  overflow: visible;
-		}
+        color: #f0f6fc !important;
+        font-weight: 400;
+        line-height: 1.5;
+        display: block;
+        overflow: visible;
+      }
       .gh-link-icon {
         color: #58a6ff !important;
         font-weight: 800 !important;
@@ -202,10 +202,16 @@
               <p class="text-sm text-[#8b949e] italic">
                 Bilgisayar Mühendisi (2020 - 2025)
               </p>
-				<div class="bg-blue-500/5 border border-[#58a6ff]/20 p-3 rounded-lg text-[#58a6ff] text-xs font-semibold uppercase tracking-tighter">
-                        🏆 Türkiye Sayısal 5802.'si | %100 Tam Burslu
-                    </div>
-				<p class="text-[10px] text-gray-600 mt-4 text-right uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity">Siteyi Ziyaret Et ↗</p>
+              <div
+                class="bg-blue-500/5 border border-[#58a6ff]/20 p-3 rounded-lg text-[#58a6ff] text-xs font-semibold uppercase tracking-tighter"
+              >
+                🏆 Türkiye Sayısal 5802.'si | %100 Tam Burslu
+              </div>
+              <p
+                class="text-[10px] text-gray-600 mt-4 text-right uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity"
+              >
+                Siteyi Ziyaret Et ↗
+              </p>
             </div>
           </a>
           <a
@@ -229,10 +235,15 @@
               <p class="text-sm text-[#8b949e] italic">
                 Yazılım Okulu (Ekol 42)
               </p>
-				<p class="text-xs text-[#8b949e] leading-relaxed">
-                        Akran öğrenimi ve tamamen uygulama odaklı bir sistemde yazılım geliştirme süreçlerini deneyimliyorum.
-                    </p>
-				<p class="text-[10px] text-gray-600 mt-4 text-right uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity">Siteyi Ziyaret Et ↗</p>
+              <p class="text-xs text-[#8b949e] leading-relaxed">
+                Akran öğrenimi ve tamamen uygulama odaklı bir sistemde yazılım
+                geliştirme süreçlerini deneyimliyorum.
+              </p>
+              <p
+                class="text-[10px] text-gray-600 mt-4 text-right uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity"
+              >
+                Siteyi Ziyaret Et ↗
+              </p>
             </div>
           </a>
         </div>
@@ -278,18 +289,48 @@
       const username = "enes2424";
       let projects = [];
 
-      // BURAYA İSTEDİĞİN AÇIKLAMALARI EKLE: "branch_adı": "açıklama"
       const branchDescriptions = {
         "00": "C++ Temelleri, Sınıf Yapıları ve Veri Tipleri",
         "01": "Bellek Yönetimi, Pointerlar ve Referanslar",
         "02": "Ad-hoc Polimorfizm, Operatör Aşırı Yükleme",
         "03": "Kalıtım (Inheritance) ve Sınıf Hiyerarşileri",
         "04": "Subtype Polimorfizm, Abstract Sınıflar ve Interface",
-        "-Kocaeli-Minishell":
-          "Bash benzeri terminal simülasyonu",
+        "-Kocaeli-Minishell": "Bash benzeri terminal simülasyonu",
         printf: "Özelleştirilmiş printf fonksiyonu geliştirme",
         get_next_line: "Dosya okuma ve satır işleme kütüphanesi",
       };
+
+      const manualProjects = [
+        {
+          name: "Bakar Mısınız",
+          description:
+            "Flutter ve Node.js ile geliştirilmiş restoran sipariş uygulaması. Bu proje bir üniversite bitirme projesidir; gizlilik gereği içeriği ve kaynak kodları saklı tutulmaktadır.",
+          isManual: true,
+          url: "#",
+        },
+        {
+          name: "Docwatch",
+          description:
+            "Flutter ve Django ile oluşturulmuş sağlık yönetim platformu. Bu proje bir üniversite bitirme projesidir; gizlilik gereği içeriği ve kaynak kodları saklı tutulmaktadır.",
+          isManual: true,
+          url: "#",
+        },
+        {
+          name: "Kuyumculuk",
+          description:
+            "Flutter ve Firebase ile geliştirilmiş; anlık altın fiyat takibi, bilezik sipariş yönetimi, havale/transfer yönetimi, IBAN için OCR (optik karakter tanıma) tarama, QR kod oluşturma, Excel/PDF raporlama ve çoklu rol tabanlı kullanıcı yetkilendirme sistemine sahip kapsamlı bir kuyumculuk işletme yönetim uygulaması; şu an aktif olarak kullanılmaktadır ancak halka açık paylaşılmamaktadır.",
+          isManual: true,
+          url: "#",
+        },
+        {
+          name: "Pratik Servis",
+          description:
+            "Konum tabanlı mimarisiyle ısıtma ve teknik servis ihtiyaçlarına çözüm sunan, Flutter ile geliştirilmiş; harita entegrasyonu ve gelişmiş talep yönetim sistemine sahip dinamik bir on-demand mobil uygulamasıdır. Ortak bir backend mimarisi üzerinden hem web hem de mobil platformlarda hizmet veren projenin mobil frontend geliştirme sürecini üstlendim. Uygulamanın aktif kullanımı devam etmekte olup, kullanıcı deneyimini iyileştirmeye yönelik yeni özellikler eklemeye ve geliştirmeler yapmaya hala devam etmekteyim.",
+          isManual: true,
+          url: "market://details?id=com.f2r.servishane",
+          customLabel: "Uygulamaya Git ↗",
+        },
+      ];
 
       async function loadRepos() {
         const container = document.getElementById("repo-list");
@@ -297,7 +338,7 @@
           const res = await fetch(
             `https://api.github.com/users/${username}/repos?sort=updated&per_page=100`,
           );
-          projects = await res.json();
+          const githubProjects = await res.json();
 
           const hidden = [
             "enes2424",
@@ -309,37 +350,34 @@
             "42-kocaeli-mobile-piscine",
           ];
 
-          const filtered = projects.filter(
+          const filteredGithub = githubProjects.filter(
             (repo) => !repo.fork && !hidden.includes(repo.name.toLowerCase()),
           );
 
-          filtered.sort((a, b) => {
-            const order = {
-              "yeditepe-university-term-projects": 1,
-              "42-kocaeli-common-core": 2,
-              "42-kocaeli-advanced-projects": 3,
-            };
-            return (
-              (order[a.name.toLowerCase()] || 99) -
-              (order[b.name.toLowerCase()] || 99)
-            );
-          });
+          projects = [...manualProjects, ...filteredGithub];
 
-          container.innerHTML = filtered
-            .map((repo) => {
-              const idx = projects.indexOf(repo);
+          container.innerHTML = projects
+            .map((repo, idx) => {
+              const clickAction = repo.isManual
+                ? repo.url !== "#"
+                  ? `window.open('${repo.url}', '_blank')`
+                  : "return"
+                : `showDetails(${idx})`;
+
               return `
-      <div class="desc-box p-6 flex flex-col justify-between group cursor-pointer" onclick="showDetails(${idx})">
-          <div class="space-y-4">
-              <h3 class="text-lg font-bold text-[#58a6ff] group-hover:text-white transition truncate">${repo.name}</h3>
-              <p class="text-sm text-vibrant leading-relaxed mt-2">
-                ${repo.description || "Proje detaylarını inceleyebilirsiniz."}
-              </p>
-          </div>
-          <div class="mt-4 pt-4 border-t border-[#30363d] flex justify-end">
-              <span class="gh-link-icon opacity-0 group-hover:opacity-100 transition-all">İncele ↗</span>
-          </div>
-      </div>`;
+        <div class="desc-box p-6 flex flex-col justify-between group cursor-pointer" onclick="${clickAction}">
+            <div class="space-y-4">
+                <h3 class="text-lg font-bold text-[#58a6ff] group-hover:text-white transition truncate">${repo.name}</h3>
+                <p class="text-sm text-vibrant leading-relaxed mt-2">
+                  ${repo.description || "Proje detaylarını inceleyebilirsiniz."}
+                </p>
+            </div>
+            <div class="mt-4 pt-4 border-t border-[#30363d] flex justify-end">
+                <span class="gh-link-icon opacity-0 group-hover:opacity-100 transition-all text-xs">
+                  ${repo.customLabel || "İncele ↗"}
+                </span>
+            </div>
+        </div>`;
             })
             .join("");
         } catch (e) {
