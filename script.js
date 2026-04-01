@@ -252,9 +252,7 @@ async function loadRepos() {
     console.error("GitHub API error:", e);
   }
 
-  const manualProjects = getManualProjects(currentLang);
-
-  projects = [...githubProjects, ...manualProjects];
+  projects = [...githubProjects, ...getManualProjects(currentLang)];
 
   const hideFromGrid = [
     "enes2424",
