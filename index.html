@@ -294,7 +294,6 @@
     <script>
       const username = "enes2424";
       let projects = [];
-      let githubProjects = [];
 
       const branchDescriptions = {
         "00": "C++ Temelleri, Sınıf Yapıları ve Veri Tipleri",
@@ -347,7 +346,7 @@
           );
           const githubProjects = await res.json();
 
-          const hidden = [
+          const hideFromGrid = [
             "enes2424",
             "enes2424.github.io",
             "42-kocaeli-cpp-modules",
@@ -357,38 +356,42 @@
             "42-kocaeli-mobile-piscine",
           ];
 
-          const filteredGithub = githubProjects.filter(
-            (repo) => !repo.fork && !hidden.includes(repo.name.toLowerCase()),
-          );
+          projects = [...githubProjects, ...manualProjects];
 
-          projects = [...filteredGithub, ...manualProjects];
+          const displayProjects = projects.filter((repo) => {
+            if (repo.isManual) return true;
+            if (repo.fork) return false;
+            return !hideFromGrid.includes(repo.name.toLowerCase());
+          });
 
-          container.innerHTML = projects
-            .map((repo, idx) => {
+          container.innerHTML = displayProjects
+            .map((repo) => {
+              const realIndex = projects.indexOf(repo);
               const clickAction = repo.isManual
                 ? repo.url !== "#"
                   ? `window.open('${repo.url}', '_blank')`
                   : "return"
-                : `showDetails(${idx})`;
+                : `showDetails(${realIndex})`;
 
               return `
-        <div class="desc-box p-6 flex flex-col justify-between group cursor-pointer" onclick="${clickAction}">
-            <div class="space-y-4">
-                <h3 class="text-lg font-bold text-[#58a6ff] group-hover:text-white transition truncate">${repo.name}</h3>
-                <p class="text-sm text-vibrant leading-relaxed mt-2">
-                  ${repo.description || "Proje detaylarını inceleyebilirsiniz."}
-                </p>
-            </div>
-			${
-        repo.isManual && repo.url === "#"
-          ? ""
-          : `<div class="mt-4 pt-4 border-t border-[#30363d] flex justify-end">
-                <span class="gh-link-icon opacity-0 group-hover:opacity-100 transition-all text-xs">
-                  ${repo.customLabel || "İncele ↗"}
-                </span>
-            </div>`
-      }
-        </div>`;
+                      <div class="desc-box p-6 flex flex-col justify-between group cursor-pointer" onclick="${clickAction}">
+                          <div class="space-y-4">
+                              <h3 class="text-lg font-bold text-[#58a6ff] group-hover:text-white transition truncate">${repo.name}</h3>
+                              <p class="text-sm text-vibrant leading-relaxed mt-2">
+                                  ${repo.description || "Proje detaylarını inceleyebilirsiniz."}
+                              </p>
+                          </div>
+                          ${
+                            repo.isManual && repo.url === "#"
+                              ? ""
+                              : `
+                              <div class="mt-4 pt-4 border-t border-[#30363d] flex justify-end">
+                                  <span class="gh-link-icon opacity-0 group-hover:opacity-100 transition-all text-xs">
+                                      ${repo.customLabel || "İncele ↗"}
+                                  </span>
+                              </div>`
+                          }
+                      </div>`;
             })
             .join("");
         } catch (e) {
@@ -409,23 +412,22 @@
             `https://api.github.com/repos/${username}/${repo.name}/branches`,
           );
           const branches = await res.json();
-          branches.sort((a, b) => a.name.localeCompare(b.name));
 
-          let moduleItems = branches
-            .filter((b) => b.name !== "main")
+          const safeBranches = Array.isArray(branches) ? branches : [];
+          safeBranches.sort((a, b) => a.name.localeCompare(b.name));
+
+          let moduleItems = safeBranches
+            .filter((b) => b.name !== "main" && b.name !== "master")
             .map((b) => {
               const cleanName = b.name.length > 2 ? b.name.slice(2) : b.name;
               const desc = branchDescriptions[cleanName];
-
               return `
-                <a href="https://github.com/${username}/${repo.name}/tree/${b.name}" target="_blank"
-                  class="flex items-center justify-between p-4 desc-box hover:border-[#58a6ff] transition-all group">
-                    <span class="font-mono text-[13px] text-[#58a6ff] font-bold tracking-tight">* ${cleanName}</span>
-                    <span class="text-[12px] text-vibrant ml-4 text-left flex-1 italic whitespace-normal">
-					  ${desc || "Kodları incele"}
-					</span>
-					<span class="gh-link-icon ml-2">↗</span>
-                </a>`;
+                          <a href="https://github.com/${username}/${repo.name}/tree/${b.name}" target="_blank"
+                              class="flex items-center justify-between p-4 desc-box hover:border-[#58a6ff] transition-all group">
+                              <span class="font-mono text-[13px] text-[#58a6ff] font-bold tracking-tight">* ${cleanName}</span>
+                              <span class="text-[12px] text-vibrant ml-4 text-left flex-1 italic whitespace-normal">${desc || "Kodları incele"}</span>
+                              <span class="gh-link-icon ml-2">↗</span>
+                          </a>`;
             })
             .join("");
 
@@ -433,48 +435,45 @@
           const mapping = {
             "42-kocaeli-common-core": ["42-kocaeli-cpp-modules"],
             "42-kocaeli-advanced-projects": [
-              "42-Kocaeli-Unity-Piscine",
-              "42-Kocaeli-Django-Piscine",
-              "42-Kocaeli-Ocaml-Piscine",
-              "42-Kocaeli-Mobile-Piscine",
+              "42-kocaeli-unity-piscine",
+              "42-kocaeli-django-piscine",
+              "42-kocaeli-ocaml-piscine",
+              "42-kocaeli-mobile-piscine",
             ],
           };
 
-          if (mapping[repo.name.toLowerCase()]) {
-            mapping[repo.name.toLowerCase()].forEach((name) => {
-              const found = githubProjects.find(
-                (p) => p.name.toLowerCase() === name.toLowerCase(),
+          const targetKey = repo.name.toLowerCase();
+          if (mapping[targetKey]) {
+            mapping[targetKey].forEach((subRepoName) => {
+              const subRepo = projects.find(
+                (p) => p.name.toLowerCase() === subRepoName.toLowerCase(),
               );
-              if (found) {
-                const hasExtraDesc =
-                  found.description && found.description.trim() !== "";
-
+              if (subRepo) {
                 extraRepoItems += `
-                  <div onclick="showDetails(${githubProjects.indexOf(found)})"
-                      class="flex items-center justify-between p-4 desc-box hover:border-[#58a6ff] cursor-pointer transition-all group">
-                      <span class="font-mono text-[13px] text-[#58a6ff] font-bold">* ${found.name}</span>
-                      <span class="text-[12px] text-vibrant ml-4 text-left flex-1 italic">
-					${found.description || "Alt proje detayı"}
-					</span>
-					<span class="gh-link-icon ml-2">↗</span>
-                  </div>`;
+                              <div onclick="showDetails(${projects.indexOf(subRepo)})"
+                                  class="flex items-center justify-between p-4 desc-box hover:border-[#58a6ff] cursor-pointer transition-all group">
+                                  <span class="font-mono text-[13px] text-[#58a6ff] font-bold">* ${subRepo.name}</span>
+                                  <span class="text-[12px] text-vibrant ml-4 text-left flex-1 italic">
+                                      ${subRepo.description || "Alt proje detayı"}
+                                  </span>
+                                  <span class="gh-link-icon ml-2">↗</span>
+                              </div>`;
               }
             });
           }
-
           content.innerHTML = `
-                <div class="border-b border-[#30363d] pb-6 mb-6">
-                    <h2 class="text-3xl font-bold text-white tracking-tight">${repo.name}</h2>
-                    <p class="text-vibrant text-sm mt-4 leading-relaxed">${repo.description || "Detaylı çalışma notları ve kaynak kodlar ilgili proje başlıkları altında yer almaktadır."}</p>
-                </div>
-                <div class="space-y-6 max-h-[450px] overflow-y-auto pr-3 custom-scrollbar">
-                    ${moduleItems ? `<div><h4 class="text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-3">Projeler</h4><div class="grid gap-2">${moduleItems}</div></div>` : ""}
-                    ${extraRepoItems ? `<div class="pt-4 border-t border-[#30363d]/30"><h4 class="text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-3">Alt Projeler</h4><div class="grid gap-2">${extraRepoItems}</div></div>` : ""}
-                </div>
-                <div class="flex gap-4 pt-6 border-t border-[#30363d] mt-6">
-                    <a href="${repo.html_url}" target="_blank" class="flex-1 text-center bg-[#238636] text-white py-3 rounded-lg font-bold hover:bg-[#2ea043] transition text-sm">Depo Anasayfası</a>
-                    <button onclick="closeModal('projectModal')" class="px-8 border border-[#30363d] text-gray-400 py-3 rounded-lg font-bold hover:bg-[#30363d] transition text-sm">Kapat</button>
-                </div>`;
+                      <div class="border-b border-[#30363d] pb-6 mb-6">
+                          <h2 class="text-3xl font-bold text-white tracking-tight">${repo.name}</h2>
+                          <p class="text-vibrant text-sm mt-4 leading-relaxed">${repo.description || "Detaylı çalışma notları ve kaynak kodlar ilgili proje başlıkları altında yer almaktadır."}</p>
+                      </div>
+                      <div class="space-y-6 max-h-[450px] overflow-y-auto pr-3 custom-scrollbar">
+                          ${moduleItems ? `<div><h4 class="text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-3">Projeler</h4><div class="grid gap-2">${moduleItems}</div></div>` : ""}
+                          ${extraRepoItems ? `<div class="pt-4 border-t border-[#30363d]/30"><h4 class="text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-3">Alt Projeler</h4><div class="grid gap-2">${extraRepoItems}</div></div>` : ""}
+                      </div>
+                      <div class="flex gap-4 pt-6 border-t border-[#30363d] mt-6">
+                          <a href="${repo.html_url}" target="_blank" class="flex-1 text-center bg-[#238636] text-white py-3 rounded-lg font-bold hover:bg-[#2ea043] transition text-sm">Depo Anasayfası</a>
+                          <button onclick="closeModal('projectModal')" class="px-8 border border-[#30363d] text-gray-400 py-3 rounded-lg font-bold hover:bg-[#30363d] transition text-sm">Kapat</button>
+                      </div>`;
         } catch (e) {
           content.innerHTML = "Hata oluştu.";
         }
