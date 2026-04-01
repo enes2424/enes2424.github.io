@@ -157,14 +157,17 @@ const getManualProjects = (lang) => [
 
 let currentLang = localStorage.getItem("lang") || "en";
 
-function getDescription(repo, lang) {
-  if (!repo.description) return "";
-  const parts = repo.description.split("|");
-  console.log(parts);
-  if (parts.length >= 2) {
-    return lang === "en" ? parts[0].trim() : parts[1].trim();
+function getDescription(desc, lang) {
+  if (!desc || typeof desc !== "string") return "";
+  const separator = desc.includes("|") ? "|" : desc.includes("/") ? "/" : null;
+
+  if (separator) {
+    const parts = desc.split(separator);
+    if (parts.length >= 2) {
+      return lang === "en" ? parts[0].trim() : parts[1].trim();
+    }
   }
-  return repo.description;
+  return desc;
 }
 
 function updateLanguageUI() {
@@ -191,6 +194,15 @@ function toggleLanguage() {
   currentLang = currentLang === "en" ? "tr" : "en";
   localStorage.setItem("lang", currentLang);
   updateLanguageUI();
+
+  // If modal is active, re-show details to update language
+  const modal = document.getElementById("projectModal");
+  if (modal.classList.contains("active")) {
+    const title = modal.querySelector("h2").textContent;
+    const index = projects.findIndex((p) => p.name === title);
+    if (index !== -1) showDetails(index);
+  }
+
   loadRepos();
 }
 
@@ -198,45 +210,55 @@ async function loadRepos() {
   const container = document.getElementById("repo-list");
   container.innerHTML = `<div class="col-span-full text-center py-20 text-gray-500 animate-pulse font-mono text-xs">${translations[currentLang]["loading"]}</div>`;
 
+  let githubProjects = [];
   try {
     const res = await fetch(
       `https://api.github.com/users/${username}/repos?sort=updated&per_page=100`,
     );
-    const githubProjects = await res.json();
+    githubProjects = await res.json();
+    if (!Array.isArray(githubProjects)) githubProjects = [];
+  } catch (e) {
+    console.error("GitHub API error:", e);
+  }
 
-    const hideFromGrid = [
-      "enes2424",
-      "enes2424.github.io",
-      "42-kocaeli-cpp-modules",
-      "42-kocaeli-unity-piscine",
-      "42-kocaeli-django-piscine",
-      "42-kocaeli-ocaml-piscine",
-      "42-kocaeli-mobile-piscine",
-    ];
+  projects = [...githubProjects, ...getManualProjects(currentLang)];
 
-    projects = [...githubProjects, ...getManualProjects(currentLang)];
+  const hideFromGrid = [
+    "enes2424",
+    "enes2424.github.io",
+    "42-kocaeli-cpp-modules",
+    "42-kocaeli-unity-piscine",
+    "42-kocaeli-django-piscine",
+    "42-kocaeli-ocaml-piscine",
+    "42-kocaeli-mobile-piscine",
+  ];
 
-    const displayProjects = projects.filter((repo) => {
-      if (repo.isManual) return true;
-      if (repo.fork) return false;
-      return !hideFromGrid.includes(repo.name.toLowerCase());
-    });
+  const displayProjects = projects.filter((repo) => {
+    if (repo.isManual) return true;
+    if (repo.fork) return false;
+    return !hideFromGrid.includes(repo.name.toLowerCase());
+  });
 
-    container.innerHTML = displayProjects
-      .map((repo) => {
-        const realIndex = projects.indexOf(repo);
-        const clickAction = repo.isManual
-          ? repo.url !== "#"
-            ? `window.open('${repo.url}', '_blank')`
-            : "return"
-          : `showDetails(${realIndex})`;
+  if (displayProjects.length === 0 && githubProjects.length === 0) {
+    container.innerHTML = translations[currentLang]["error"];
+    return;
+  }
 
-        return `
+  container.innerHTML = displayProjects
+    .map((repo) => {
+      const realIndex = projects.indexOf(repo);
+      const clickAction = repo.isManual
+        ? repo.url !== "#"
+          ? `window.open('${repo.url}', '_blank')`
+          : "return"
+        : `showDetails(${realIndex})`;
+
+      return `
                         <div class="desc-box p-6 flex flex-col justify-between group cursor-pointer" onclick="${clickAction}">
                             <div class="space-y-4">
                                 <h3 class="text-lg font-bold text-[#58a6ff] group-hover:text-white transition truncate">${repo.name}</h3>
                                 <p class="text-sm text-vibrant leading-relaxed mt-2">
-                                    ${getDescription(repo, currentLang) || (currentLang === "tr" ? "Proje detaylarını inceleyebilirsiniz." : "You can check project details.")}
+                                    ${getDescription(repo.description, currentLang) || (currentLang === "tr" ? "Proje detaylarını inceleyebilirsiniz." : "You can check project details.")}
                                 </p>
                             </div>
                             ${
@@ -250,11 +272,8 @@ async function loadRepos() {
                                 </div>`
                             }
                         </div>`;
-      })
-      .join("");
-  } catch (e) {
-    container.innerHTML = translations[currentLang]["error"];
-  }
+    })
+    .join("");
 }
 
 async function showDetails(index) {
@@ -312,7 +331,7 @@ async function showDetails(index) {
                                 class="flex items-center justify-between p-4 desc-box hover:border-[#58a6ff] cursor-pointer transition-all group">
                                 <span class="font-mono text-[13px] text-[#58a6ff] font-bold">* ${subRepo.name}</span>
                                 <span class="text-[12px] text-vibrant ml-4 text-left flex-1 italic">
-                                    ${getDescription(subRepo, currentLang) || (currentLang === "tr" ? "Alt proje detayı" : "Subproject detail")}
+                                    ${getDescription(subRepo.description, currentLang) || (currentLang === "tr" ? "Alt proje detayı" : "Subproject detail")}
                                 </span>
                                 <span class="gh-link-icon ml-2">↗</span>
                             </div>`;
@@ -322,7 +341,7 @@ async function showDetails(index) {
     content.innerHTML = `
                     <div class="border-b border-[#30363d] pb-6 mb-6">
                         <h2 class="text-3xl font-bold text-white tracking-tight">${repo.name}</h2>
-                        <p class="text-vibrant text-sm mt-4 leading-relaxed">${getDescription(repo, currentLang) || translations[currentLang]["modal-default-desc"]}</p>
+                        <p class="text-vibrant text-sm mt-4 leading-relaxed">${getDescription(repo.description, currentLang) || translations[currentLang]["modal-default-desc"]}</p>
                     </div>
                     <div class="space-y-6 max-h-[450px] overflow-y-auto pr-3 custom-scrollbar">
                         ${moduleItems ? `<div><h4 class="text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-3">${translations[currentLang]["modal-projects-title"]}</h4><div class="grid gap-2">${moduleItems}</div></div>` : ""}
