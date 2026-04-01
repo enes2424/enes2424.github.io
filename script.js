@@ -99,6 +99,10 @@ const branchDescriptions = {
       "Bu proje, popüler kart oyunu Uno'nun Python programlama dili kullanılarak geliştirilmiş bir konsol uygulamasıdır. Nesne yönelimli programlama prensipleriyle kart, deste ve oyuncu gibi oyun bileşenleri modellenmiştir. Program, kartların dağıtılmasını, karıştırılmasını, sıra tabanlı oynanışı ve oyun kurallarını otomatik olarak yöneterek iki oyunculu bir Uno deneyimi sunar.",
     TetrisTermProject:
       "Bu proje, klasik Tetris oyununun C++ ve Raylib kütüphanesi kullanılarak geliştirilmiş bir versiyonudur. Proje; rastgele blok oluşturma, döndürme, skor takibi ve artan zorluk seviyesi gibi temel Tetris mekaniklerini başarıyla uygulamaktadır. Oyun, C++ dilinin oyun döngüsü yönetimi, çarpışma tespiti ve kullanıcı girdilerini işleme yeteneklerini sergilemektedir.",
+    PythonToCTermProject:
+      "Bu proje, Flex ve Bison kullanılarak geliştirilmiş bir derleyici/dönüştürücüdür. Python benzeri, girintiye duyarlı basit bir programlama dilinde yazılmış kodu C koduna çevirir. Proje, değişken atamaları, aritmetik işlemler ve koşullu ifadeler gibi temel dil özelliklerini desteklerken, sözcüksel analiz (lexical analysis) ve ayrıştırma (parsing) aşamalarını başarıyla uygular. Ayrıca, tür ve girinti tutarlılığı gibi hata denetimlerini de gerçekleştirir.",
+    SpaceInvadersTermProject:
+      "Bu proje, klasik atari oyunu Space Invaders'ın Java ve Swing kütüphanesi kullanılarak geliştirilmiş bir masaüstü uygulamasıdır. Oyunda, oyuncu gemisiyle uzaylıları vurma, lazerlerden kaçma ve puan toplama gibi temel mekanikler bulunmaktadır. Proje, kullanıcı kaydı ve girişi, yüksek skor tablosu gibi özelliklerle zenginleştirilmiştir. Nesne yönelimli programlama prensipleriyle geliştirilen oyun, olay dinleyicileri (event listeners) ve grafik arayüz (GUI) yönetimi konularında Java'nın yeteneklerini sergilemektedir.",
 
     // 42-Kocaeli-Common-Core
     "42-Kocaeli-Minishell": "Bash benzeri terminal simülasyonu",
@@ -109,6 +113,10 @@ const branchDescriptions = {
       "This project is a console application of the popular card game Uno developed using the Python programming language. Game components such as cards, decks, and players are modeled using object-oriented programming principles. The program provides a two-player Uno experience by automatically managing card distribution, shuffling, turn-based gameplay, and game rules.",
     TetrisTermProject:
       "This project is a C++ version of the classic Tetris game developed using the Raylib library. The project successfully implements core Tetris mechanics such as random block generation, rotation, score tracking, and increasing difficulty levels. The game showcases C++'s capabilities in game loop management, collision detection, and processing user input.",
+    PythonToCTermProject:
+      "This project is a compiler/converter developed using Flex and Bison. It converts code written in a simple, indentation-sensitive, Python-like programming language into C code. The project supports basic language features such as variable assignments, arithmetic operations, and conditional statements, while successfully implementing lexical analysis and parsing stages. Additionally, it performs error checking for type and indentation consistency.",
+    SpaceInvadersTermProject:
+      "This project is a desktop application of the classic arcade game Space Invaders developed using Java and the Swing library. The game includes core mechanics such as shooting aliens with the player's ship, dodging lasers, and collecting points. The project is enriched with features such as user registration and login, and a high score table. Developed with object-oriented programming principles, the game demonstrates Java's capabilities in event listener management and graphical user interface (GUI) management.",
 
     // 42-Kocaeli-Common-Core
     "42-Kocaeli-Minishell": "Bash-like terminal simulation",
