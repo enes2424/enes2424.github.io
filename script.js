@@ -6,6 +6,7 @@ const translations = {
     "nav-about": "Hakkımda",
     "nav-edu": "Eğitim",
     "nav-projects": "Projeler",
+    "nav-certs": "Sertifikalar",
     "about-title": "Merhaba, Ben Enes.",
     "about-p1":
       "Yolculuğuma Erzincan'da başladım. Mustafa Doğan Anadolu Lisesi'nden **okul birinciliğiyle** mezun olarak sağlam bir temel attım. Ardından 2020 YKS'de Türkiye **Sayısal 5802.si** olma başarısını göstererek, Yeditepe Üniversitesi Bilgisayar Mühendisliği bölümüne **%100 tam burslu** kabul edildim ve 5 yıllık bir eğitimin ardından mezun oldum.",
@@ -45,11 +46,17 @@ const translations = {
     "lang-tr": "Türkçe",
     "inspect-label": "İncele ↗",
     "view-code": "Kodları İncele",
+    "cert-title": "Sertifikalar",
+    "cert-42": "42 Kocaeli Tamamlama Sertifikası",
+    "cert-hb": "Hepsiburada Tech Academy Katılım Sertifikası",
+    "cert-mia": "Mesleğe İlk Adım Merkezi Yazılım Eğitimi Katılım Belgesi",
+    "cert-udemy": "Udemy Java İle Nesne Merkezli Programlamaya Giriş Bitirme Sertifikası",
   },
   en: {
     "nav-about": "About Me",
     "nav-edu": "Education",
     "nav-projects": "Projects",
+    "nav-certs": "Certificates",
     "about-title": "Hello, I'm Enes.",
     "about-p1":
       "I started my journey in Erzincan. I built a solid foundation by graduating as the **valedictorian** from Mustafa Doğan Anatolian High School. Then, achieving a rank of **5802nd** in the numerical field in the 2020 YKS exam in Turkey, I was accepted to the Computer Engineering department of Yeditepe University with a **100% full scholarship** and graduated after 5 years of education.",
@@ -89,6 +96,11 @@ const translations = {
     "lang-tr": "Türkçe",
     "inspect-label": "Inspect ↗",
     "view-code": "View Code",
+    "cert-title": "Certificates",
+    "cert-42": "42 Kocaeli Completion Certificate",
+    "cert-hb": "Hepsiburada Tech Academy Participation Certificate",
+    "cert-mia": "First Step to Profession Center Software Training Participation Certificate",
+    "cert-udemy": "Udemy Introduction to Object-Oriented Programming with Java Completion Certificate",
   },
 };
 
@@ -469,6 +481,7 @@ async function loadRepos() {
   projects = [...githubProjects, ...getManualProjects(currentLang)];
 
   const hideFromGrid = [
+    "CV",
     "enes2424",
     "enes2424.github.io",
     "42-kocaeli-cpp-modules",
@@ -604,6 +617,14 @@ async function showDetails(index) {
 function closeModal(id) {
   document.getElementById(id).classList.remove("active");
   document.body.style.overflow = "auto";
+}
+
+function openImageModal(src) {
+  const modal = document.getElementById("imageModal");
+  const img = document.getElementById("modalImage");
+  img.src = src;
+  modal.classList.add("active");
+  document.body.style.overflow = "hidden";
 }
 
 document.addEventListener("DOMContentLoaded", () => {
