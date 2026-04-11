@@ -50,7 +50,8 @@ const translations = {
     "cert-42": "42 Kocaeli Tamamlama Sertifikası",
     "cert-hb": "Hepsiburada Tech Academy Katılım Sertifikası",
     "cert-mia": "Mesleğe İlk Adım Merkezi Yazılım Eğitimi Katılım Belgesi",
-    "cert-udemy": "Udemy Java İle Nesne Merkezli Programlamaya Giriş Bitirme Sertifikası",
+    "cert-udemy":
+      "Udemy Java İle Nesne Merkezli Programlamaya Giriş Bitirme Sertifikası",
   },
   en: {
     "nav-about": "About Me",
@@ -99,8 +100,10 @@ const translations = {
     "cert-title": "Certificates",
     "cert-42": "42 Kocaeli Completion Certificate",
     "cert-hb": "Hepsiburada Tech Academy Participation Certificate",
-    "cert-mia": "First Step to Profession Center Software Training Participation Certificate",
-    "cert-udemy": "Udemy Introduction to Object-Oriented Programming with Java Completion Certificate",
+    "cert-mia":
+      "First Step to Profession Center Software Training Participation Certificate",
+    "cert-udemy":
+      "Udemy Introduction to Object-Oriented Programming with Java Completion Certificate",
   },
 };
 
@@ -481,7 +484,7 @@ async function loadRepos() {
   projects = [...githubProjects, ...getManualProjects(currentLang)];
 
   const hideFromGrid = [
-    "CV",
+    "cv",
     "enes2424",
     "enes2424.github.io",
     "42-kocaeli-cpp-modules",
