@@ -13,7 +13,7 @@ const translations = {
     "about-p2":
       'Üniversite eğitimimin yanı sıra, Bilişim Vadisi\'nde yer alan, "öğretmensiz" akran öğrenimi ve tamamen proje odaklı bir ekosistem olan **42 Kocaeli** bünyesinde kendimi geliştirme şansı yakaladım. 2. sınıfta bir kulüp gezisiyle tanıştığım bu yenilikçi okulda, gerçek dünya problemlerine kodla çözüm üretmeyi öğrendim.',
     "about-p3":
-      "Kurumsal eğitimlerin dışına çıkarak **Exercism** ve **LeetCode** gibi platformlarda 400'e yakın algoritmik egzersiz tamamlayarak problem çözme kaslarımı sürekli diri tuttum. Bu disiplinli çalışma süreci, bana özellikle **Flutter** ve **Backend** teknolojileri üzerine yoğunlaşan birçok freelance projede yer alma ve ticari ürünler geliştirme fırsatı sundu.",
+      "Kurumsal eğitimlerin dışına çıkarak <a href='https://exercism.org/profiles/enes2424' target='_blank' class='text-[#58a6ff] hover:underline'>**Exercism**</a> ve <a href='https://leetcode.com/u/enes2424' target='_blank' class='text-[#58a6ff] hover:underline'>**LeetCode**</a> gibi platformlarda 400'e yakın algoritmik egzersiz tamamlayarak problem çözme kaslarımı sürekli diri tuttum. Bu disiplinli çalışma süreci, bana özellikle **Flutter** ve **Backend** teknolojileri üzerine yoğunlaşan birçok freelance projede yer alma ve ticari ürünler geliştirme fırsatı sundu.",
     "about-p4":
       "Bugün, mühendislik disiplinini meraklı bir geliştirici ruhuyla birleştiren, düşük seviyeli sistemlerden modern mobil uygulama mimarilerine kadar her katmanda çözüm üretmeye hazır bir yazılımcıyım.",
     "edu-title": "Eğitim & Yetkinlik",
@@ -46,6 +46,7 @@ const translations = {
     "lang-tr": "Türkçe",
     "inspect-label": "İncele ↗",
     "view-code": "Kodları İncele",
+    "view-cv": "Özgeçmişi İncele",
     "cert-title": "Sertifikalar",
     "cert-42": "42 Kocaeli Tamamlama Sertifikası",
     "cert-hb": "Hepsiburada Tech Academy Katılım Sertifikası",
@@ -64,7 +65,7 @@ const translations = {
     "about-p2":
       "In addition to my university education, I had the chance to develop myself within **42 Kocaeli**, a project-oriented ecosystem with 'teacherless' peer-to-peer learning located in Bilişim Vadisi. In this innovative school, which I discovered through a club trip in my 2nd year, I learned to create solutions to real-world problems with code.",
     "about-p3":
-      "Moving beyond formal education, I kept my problem-solving muscles active by completing nearly 400 algorithmic exercises on platforms like **Exercism** and **LeetCode**. This disciplined work process provided me the opportunity to participate in many freelance projects specializing in **Flutter** and **Backend** technologies and develop commercial products.",
+      "Moving beyond formal education, I kept my problem-solving muscles active by completing nearly 400 algorithmic exercises on platforms like <a href='https://exercism.org/profiles/enes2424' target='_blank' class='text-[#58a6ff] hover:underline'>**Exercism**</a> and <a href='https://leetcode.com/u/enes2424' target='_blank' class='text-[#58a6ff] hover:underline'>**LeetCode**</a>. This disciplined work process provided me the opportunity to participate in many freelance projects specializing in **Flutter** and **Backend** technologies and develop commercial products.",
     "about-p4":
       "Today, I am a developer combining engineering discipline with a curious developer spirit, ready to produce solutions at every layer, from low-level systems to modern mobile application architectures.",
     "edu-title": "Education & Skills",
@@ -97,6 +98,7 @@ const translations = {
     "lang-tr": "Türkçe",
     "inspect-label": "Inspect ↗",
     "view-code": "View Code",
+    "view-cv": "View CV",
     "cert-title": "Certificates",
     "cert-42": "42 Kocaeli Completion Certificate",
     "cert-hb": "Hepsiburada Tech Academy Participation Certificate",
@@ -445,6 +447,15 @@ function updateLanguageUI() {
       }
     }
   });
+
+  const cvLink = document.getElementById("cv-link");
+  if (cvLink) {
+    if (currentLang === "en") {
+      cvLink.href = "https://github.com/enes2424/CV/blob/main/English%20Resume.pdf";
+    } else {
+      cvLink.href = "https://github.com/enes2424/CV/blob/main/T%C3%BCrk%C3%A7e%20%C3%96zge%C3%A7mi%C5%9F.pdf";
+    }
+  }
 
   document.getElementById("lang-text").textContent =
     currentLang === "en" ? "TR" : "EN";
