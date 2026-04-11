@@ -3,6 +3,7 @@ let projects = [];
 
 const translations = {
   tr: {
+    "page-title": "Enes Mahmut Ateş | Portfolyo",
     "nav-about": "Hakkımda",
     "nav-edu": "Eğitim",
     "nav-projects": "Projeler",
@@ -55,6 +56,7 @@ const translations = {
       "Udemy Java İle Nesne Merkezli Programlamaya Giriş Bitirme Sertifikası",
   },
   en: {
+    "page-title": "Enes Mahmut Ateş | Portfolio",
     "nav-about": "About Me",
     "nav-edu": "Education",
     "nav-projects": "Projects",
